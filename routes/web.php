@@ -22,12 +22,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index');
 
-//Route::get('login', 'HomeController@index')->middleware('verified');
 
 Route::resource('users', 'UserController')->middleware('auth');
-
 
 // Route qui permet de connaître la langue active
 Route::get('locale', 'LocalizationController@getLang');
