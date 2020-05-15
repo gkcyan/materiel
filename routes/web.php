@@ -20,15 +20,6 @@ Route::get('/', function () {
 });
 
 
-/*
-Route::get('/{locale}', function ($locale) {
-    
-    App::getLocale();
-
-    return view('welcome');
-});
- 
-*/
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index');
