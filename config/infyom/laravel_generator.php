@@ -126,9 +126,9 @@ return [
 
         'save_schema_file' => true,
 
-        'localized' => false,
+        'localized' => true,
 
-        'tables_searchable_default' => false,
+        'tables_searchable_default' => true,
 
         'repository_pattern' => true,
 
@@ -162,11 +162,11 @@ return [
 
     'add_on' => [
 
-        'swagger'       => false,
+        'swagger'       => true,
 
         'tests'         => true,
 
-        'datatables'    => false,
+        'datatables'    => true,
 
         'menu'          => [
 
