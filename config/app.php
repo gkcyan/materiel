@@ -167,7 +167,6 @@ return [
          */
 
         Yajra\DataTables\DataTablesServiceProvider::class,
-        jeremykenedy\LaravelRoles\RolesServiceProvider::class,
 
         /*
          * Application Service Providers...
