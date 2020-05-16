@@ -34,3 +34,6 @@ Route::get('locale', 'LocalizationController@getLang');
 Route::get('locale/{lang}', 'LocalizationController@setLang');
 
 
+
+
+Route::resource('sites', 'siteController')->middleware('auth');
