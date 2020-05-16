@@ -50,3 +50,13 @@ Route::post(
     'generator_builder/generate-from-file',
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
 )->name('io_generator_builder_generate_from_file');
+
+Route::resource('roles', 'RoleController');
+
+Route::resource('permissions', 'PermissionController');
+
+Route::resource('roleUsers', 'RoleUserController');
+
+Route::resource('permissionRoles', 'PermissionRoleController');
+
+Route::resource('permissionUsers', 'PermissionUserController');
