@@ -8,6 +8,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 @endrole<li class="{{ Request::is('roles*') ? 'active' : '' }}">
     <a href="{{ route('roles.index') }}"><i class="fa fa-edit"></i><span>@lang('models/roles.plural')</span></a>
 </li>
@@ -32,6 +33,8 @@
     <a href="{{ route('entrepriseFieldsFile=entreprises.index') }}"><i class="fa fa-edit"></i><span>@lang('models/entrepriseFieldsFile=entreprises.plural')</span></a>
 </li>
 
+=======
+>>>>>>> parent of 9dad59a... DU_terminé
 =======
 >>>>>>> parent of 9dad59a... DU_terminé
 =======
