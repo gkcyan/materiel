@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5339198b72c249261fd83c3ca5799b2",
+    "content-hash": "70c8e0b465a538d7dad68a3bdaa58ba7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1113,17 +1113,64 @@
             "time": "2020-03-14T06:48:45+00:00"
         },
         {
+            "name": "infyomlabs/generator-builder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/InfyOmLabs/generator-builder.git",
+                "reference": "9e3bfdb5d04bba05eea86df45938b02d7fbb7794"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/InfyOmLabs/generator-builder/zipball/9e3bfdb5d04bba05eea86df45938b02d7fbb7794",
+                "reference": "9e3bfdb5d04bba05eea86df45938b02d7fbb7794",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.0",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "InfyOm\\GeneratorBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mitul Golakiya",
+                    "email": "me@mitul.me"
+                }
+            ],
+            "description": "InfyOm Laravel Generator GUI Builder",
+            "keywords": [
+                "api",
+                "builder",
+                "crud",
+                "generator",
+                "gui",
+                "interface",
+                "laravel",
+                "view"
+            ],
+            "time": "2019-11-30T03:35:26+00:00"
+        },
+        {
             "name": "infyomlabs/laravel-generator",
             "version": "7.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/laravel-generator.git",
-                "reference": "e70fa0eea58aa56d0375d973e09ee9a05078e12f"
+                "reference": "25a87944dc2fb7f31e25f4eb5ed6d7c81f7d4940"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/e70fa0eea58aa56d0375d973e09ee9a05078e12f",
-                "reference": "e70fa0eea58aa56d0375d973e09ee9a05078e12f",
+                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/25a87944dc2fb7f31e25f4eb5ed6d7c81f7d4940",
+                "reference": "25a87944dc2fb7f31e25f4eb5ed6d7c81f7d4940",
                 "shasum": ""
             },
             "require": {
@@ -1175,7 +1222,7 @@
                 "test",
                 "view"
             ],
-            "time": "2020-04-24T09:16:29+00:00"
+            "time": "2020-05-16T10:02:12+00:00"
         },
         {
             "name": "laracasts/flash",
@@ -1730,16 +1777,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v1.0.14",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "a6b43843c89304fe96f9f98fcb3f1e2660b0deae"
+                "reference": "ee22192220ca7b4f50dec2b0b6ea4da9e49ccf11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/a6b43843c89304fe96f9f98fcb3f1e2660b0deae",
-                "reference": "a6b43843c89304fe96f9f98fcb3f1e2660b0deae",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/ee22192220ca7b4f50dec2b0b6ea4da9e49ccf11",
+                "reference": "ee22192220ca7b4f50dec2b0b6ea4da9e49ccf11",
                 "shasum": ""
             },
             "require": {
@@ -1783,7 +1830,7 @@
                 }
             ],
             "description": "A front-end framework for Laravel.",
-            "time": "2020-04-27T13:47:28+00:00"
+            "time": "2020-05-13T15:22:11+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -7003,7 +7050,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "infyomlabs/adminlte-templates": 20,
-        "infyomlabs/laravel-generator": 20
+        "infyomlabs/laravel-generator": 20,
+        "infyomlabs/generator-builder": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
