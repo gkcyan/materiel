@@ -60,3 +60,7 @@ Route::resource('roleUsers', 'RoleUserController');
 Route::resource('permissionRoles', 'PermissionRoleController');
 
 Route::resource('permissionUsers', 'PermissionUserController');
+
+Route::resource('entreprises', 'EntrepriseController');
+
+Route::resource('agences', 'AgenceController');

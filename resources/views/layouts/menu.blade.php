@@ -22,3 +22,11 @@
     <a href="{{ route('permissionUsers.index') }}"><i class="fa fa-edit"></i><span>@lang('models/permissionUsers.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('entreprises*') ? 'active' : '' }}">
+    <a href="{{ route('entreprises.index') }}"><i class="fa fa-edit"></i><span>@lang('models/entreprises.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('agences*') ? 'active' : '' }}">
+    <a href="{{ route('agences.index') }}"><i class="fa fa-edit"></i><span>@lang('models/agences.plural')</span></a>
+</li>
+
