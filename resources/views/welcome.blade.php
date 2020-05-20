@@ -62,6 +62,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        @livewireStyles
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -86,12 +87,13 @@
                 <div class="title m-b-md">
                     @lang('messages.Moyens_Generaux')
                 </div>
-
+                @livewire('counter')
                 <div class="links">
                     <a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a>
                     <a href="{{ url('locale/en') }}">@lang('messages.Anglais')</a>
                    
             </div>
         </div>
+        @livewireScripts
     </body>
 </html>
