@@ -18,7 +18,6 @@
         <div class="box box-primary">
             <div class="box-body">
                     @include('agences.table')
-                    @livewire('counter')
             </div>
         </div>
         <div class="text-center">
