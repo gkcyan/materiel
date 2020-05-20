@@ -6,19 +6,22 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Entreprise
+ * Class entreprise
  * @package App\Models
- * @version May 16, 2020, 11:49 pm UTC
+ * @version May 20, 2020, 11:51 am UTC
  *
  * @property string $libelle
  * @property string $actif
  */
-class Entreprise extends Model
+class entreprise extends Model
 {
     use SoftDeletes;
 
     public $table = 'entreprises';
     
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
 
     protected $dates = ['deleted_at'];
 
@@ -47,7 +50,6 @@ class Entreprise extends Model
      */
     public static $rules = [
         'libelle' => 'required'
-        //'actif' => 'required'
     ];
 
     

@@ -2,12 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\Entreprise;
+use App\Models\entreprise;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
 
-class EntrepriseDataTable extends DataTable
+class entrepriseDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -25,10 +25,10 @@ class EntrepriseDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Entreprise $model
+     * @param \App\Models\entreprise $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Entreprise $model)
+    public function query(entreprise $model)
     {
         return $model->newQuery();
     }

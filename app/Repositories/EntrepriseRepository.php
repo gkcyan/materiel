@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Entreprise;
+use App\Models\entreprise;
 use App\Repositories\BaseRepository;
 
 /**
- * Class EntrepriseRepository
+ * Class entrepriseRepository
  * @package App\Repositories
- * @version May 16, 2020, 11:49 pm UTC
+ * @version May 20, 2020, 11:51 am UTC
 */
 
-class EntrepriseRepository extends BaseRepository
+class entrepriseRepository extends BaseRepository
 {
     /**
      * @var array
@@ -36,6 +36,6 @@ class EntrepriseRepository extends BaseRepository
      **/
     public function model()
     {
-        return Entreprise::class;
+        return entreprise::class;
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Entreprise;
+use App\Models\entreprise;
 
-class CreateEntrepriseRequest extends FormRequest
+class CreateentrepriseRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateEntrepriseRequest extends FormRequest
      */
     public function rules()
     {
-        return Entreprise::$rules;
+        return entreprise::$rules;
     }
 }

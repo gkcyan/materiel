@@ -1,8 +1,8 @@
 <?php
 
 return array (
-  'singular' => 'Entreprise',
-  'plural' => 'Entreprises',
+  'singular' => 'entreprise',
+  'plural' => 'entreprises',
   'fields' => 
   array (
     'id' => 'Id',

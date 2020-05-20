@@ -2,40 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\EntrepriseDataTable;
+use App\DataTables\entrepriseDataTable;
 use App\Http\Requests;
-use App\Http\Requests\CreateEntrepriseRequest;
-use App\Http\Requests\UpdateEntrepriseRequest;
-use App\Repositories\EntrepriseRepository;
-//use illuminate\Http\Request;
+use App\Http\Requests\CreateentrepriseRequest;
+use App\Http\Requests\UpdateentrepriseRequest;
+use App\Repositories\entrepriseRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
-//use App\Models\Entreprise;
 use Response;
 
-class EntrepriseController extends AppBaseController
+class entrepriseController extends AppBaseController
 {
-    /** @var  EntrepriseRepository */
+    /** @var  entrepriseRepository */
     private $entrepriseRepository;
 
-    public function __construct(EntrepriseRepository $entrepriseRepo)
+    public function __construct(entrepriseRepository $entrepriseRepo)
     {
         $this->entrepriseRepository = $entrepriseRepo;
     }
 
     /**
-     * Display a listing of the Entreprise.
+     * Display a listing of the entreprise.
      *
-     * @param EntrepriseDataTable $entrepriseDataTable
+     * @param entrepriseDataTable $entrepriseDataTable
      * @return Response
      */
-    public function index(EntrepriseDataTable $entrepriseDataTable)
+    public function index(entrepriseDataTable $entrepriseDataTable)
     {
         return $entrepriseDataTable->render('entreprises.index');
     }
 
     /**
-     * Show the form for creating a new Entreprise.
+     * Show the form for creating a new entreprise.
      *
      * @return Response
      */
@@ -45,25 +43,25 @@ class EntrepriseController extends AppBaseController
     }
 
     /**
-     * Store a newly created Entreprise in storage.
+     * Store a newly created entreprise in storage.
      *
-     * @param CreateEntrepriseRequest $request
+     * @param CreateentrepriseRequest $request
      *
      * @return Response
      */
-    public function store(CreateEntrepriseRequest $request)
+    public function store(CreateentrepriseRequest $request)
     {
         $input = $request->all();
 
         $entreprise = $this->entrepriseRepository->create($input);
-        
+
         Flash::success(__('messages.saved', ['model' => __('models/entreprises.singular')]));
 
         return redirect(route('entreprises.index'));
     }
 
     /**
-     * Display the specified Entreprise.
+     * Display the specified entreprise.
      *
      * @param  int $id
      *
@@ -83,7 +81,7 @@ class EntrepriseController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified Entreprise.
+     * Show the form for editing the specified entreprise.
      *
      * @param  int $id
      *
@@ -103,14 +101,14 @@ class EntrepriseController extends AppBaseController
     }
 
     /**
-     * Update the specified Entreprise in storage.
+     * Update the specified entreprise in storage.
      *
      * @param  int              $id
-     * @param UpdateEntrepriseRequest $request
+     * @param UpdateentrepriseRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateEntrepriseRequest $request)
+    public function update($id, UpdateentrepriseRequest $request)
     {
         $entreprise = $this->entrepriseRepository->find($id);
 
@@ -128,7 +126,7 @@ class EntrepriseController extends AppBaseController
     }
 
     /**
-     * Remove the specified Entreprise from storage.
+     * Remove the specified entreprise from storage.
      *
      * @param  int $id
      *
