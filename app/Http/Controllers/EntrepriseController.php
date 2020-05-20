@@ -7,8 +7,10 @@ use App\Http\Requests;
 use App\Http\Requests\CreateEntrepriseRequest;
 use App\Http\Requests\UpdateEntrepriseRequest;
 use App\Repositories\EntrepriseRepository;
+//use illuminate\Http\Request;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+//use App\Models\Entreprise;
 use Response;
 
 class EntrepriseController extends AppBaseController
@@ -54,7 +56,7 @@ class EntrepriseController extends AppBaseController
         $input = $request->all();
 
         $entreprise = $this->entrepriseRepository->create($input);
-
+        
         Flash::success(__('messages.saved', ['model' => __('models/entreprises.singular')]));
 
         return redirect(route('entreprises.index'));
