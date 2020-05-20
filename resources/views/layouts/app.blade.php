@@ -25,6 +25,9 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
+    <!--CSS livewire -->
+    @livewireStyles
+
     @yield('css')
 </head>
 
@@ -152,6 +155,9 @@
     </div>
 @endif
 
+
+<!--script JS livewire -->
+    @livewireScripts
 <!-- jQuery 3.1.1 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
