@@ -1,5 +1,7 @@
 <?php
 
+use Livewire\Livewire;
+
 return [
 
     /*
@@ -42,7 +44,7 @@ return [
     |
     */
 
-    'asset_url'  => null,
+    'asset_url'  => '/adminlte_2020',
 
     /*
     |--------------------------------------------------------------------------
