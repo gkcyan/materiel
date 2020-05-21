@@ -21,6 +21,8 @@ class entrepriseRepository extends BaseRepository
         'actif'
     ];
 
+    
+
     /**
      * Return searchable fields
      *

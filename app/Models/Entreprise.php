@@ -29,7 +29,11 @@ class entreprise extends Model
 
     public $fillable = [
         'libelle',
-        'actif'
+        'actif',
+        'created_at',
+        'updated_at'
+        
+        
     ];
 
     /**

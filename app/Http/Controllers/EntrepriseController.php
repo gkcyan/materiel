@@ -9,6 +9,9 @@ use App\Http\Requests\UpdateentrepriseRequest;
 use App\Repositories\entrepriseRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\entreprise;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 use Response;
 
 class entrepriseController extends AppBaseController
@@ -47,16 +50,25 @@ class entrepriseController extends AppBaseController
      *
      * @param CreateentrepriseRequest $request
      *
+     *
      * @return Response
      */
     public function store(CreateentrepriseRequest $request)
     {
-        $input = $request->all();
 
-        $entreprise = $this->entrepriseRepository->create($input);
+       // $input = $request->all([]);
+            
+        if($request->libelle)
+        {
+           foreach($request->libelle as $element)
+           {
+               $entreprise = $this->entrepriseRepository->create(['libelle'=>$element['libelle']]);
+ 
+           }
+        }
 
+        
         Flash::success(__('messages.saved', ['model' => __('models/entreprises.singular')]));
-
         return redirect(route('entreprises.index'));
     }
 
