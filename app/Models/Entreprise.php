@@ -42,9 +42,7 @@ class entreprise extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'libelle' => 'string',
-        'actif' => 'string'
+        
     ];
 
     /**

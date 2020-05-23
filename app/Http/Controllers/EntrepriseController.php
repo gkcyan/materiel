@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\DataTables\entrepriseDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateentrepriseRequest;
@@ -57,19 +58,25 @@ class entrepriseController extends AppBaseController
     {
 
        // $input = $request->all([]);
-            
+
+       $c_libelle=$request->libelle;
+       $c_actif=$request->actif;
+
         if($request->libelle)
         {
-           foreach($request->libelle as $element)
+           foreach($c_libelle as $key=>$value)
            {
-               $entreprise = $this->entrepriseRepository->create(['libelle'=>$element['libelle']]);
- 
+               $entreprise = new entreprise;
+               $entreprise->actif=$c_actif[$key];
+               $entreprise->libelle=$value;
+               $entreprise->save();
+                
            }
         }
 
         
-        Flash::success(__('messages.saved', ['model' => __('models/entreprises.singular')]));
-        return redirect(route('entreprises.index'));
+                Flash::success(__('messages.saved', ['model' => __('models/entreprises.singular')]));
+                return redirect(route('entreprises.index'));
     }
 
     /**

@@ -8,7 +8,7 @@
                     <!-- Libelle Field -->
             <div class="form-group ">
                 {!! Form::label('libelle', __('models/entreprises.fields.libelle').':') !!}
-                {!! Form::text('libelle[][libelle]',null, ['class' => 'form-control']) !!}
+                {!! Form::text('libelle[]',null, ['class' => 'form-control']) !!}
 
                 
             
@@ -16,7 +16,7 @@
             <!-- Actif Field -->
             
                 {!! Form::label('actif', __('models/entreprises.fields.actif').':') !!}
-                {!! Form::text('actif[][actif]', "$value", ['class' => 'form-control']) !!}
+                {!! Form::text('actif[]', "$value", ['class' => 'form-control']) !!}
 
                 <span class="btn btn-warning " wire:click="removefields({{ $key }})"> Retirer </span>
             </div>
