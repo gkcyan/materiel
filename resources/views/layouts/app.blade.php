@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>{{ config('app.name', 'MTM') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <!-- Bootstrap 3.3.7 -->
@@ -39,7 +39,9 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>InfyOm</b>
+                <span class="logo-mini"><b>MT</b>M</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">{{ config('app.name', 'Laravel') }}</span>
             </a>
 
             <!-- Header Navbar -->
@@ -50,6 +52,7 @@
                 </a>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
+                    @include('layouts.notifbar')
                     <ul class="nav navbar-nav">
                         @include('layouts.langue')
                         <!-- User Account Menu -->
@@ -104,7 +107,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © 2020 <a href="#">Yannick G.</a>.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -124,21 +127,21 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    InfyOm Generator
+                    {{ config('app.name', 'Laravel') }}
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/home') }}">@lang('') @lang('messages.Home')</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ url('/login') }}">@lang('messages.login')</a></li>
+                    <li><a href="{{ url('/register') }}">@lang('messages.Register')</a></li>
                 </ul>
             </div>
         </div>

@@ -2,7 +2,8 @@
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
+        <!--menu de notification -->
+       
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">

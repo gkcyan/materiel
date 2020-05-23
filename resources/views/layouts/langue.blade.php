@@ -1,5 +1,5 @@
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Langues <span class="caret"></span></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i> <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
       
       <li><a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a></li>
