@@ -71,7 +71,7 @@ class Transporteur extends Model
         'interlo_cont' => 'required',
         'interlo_email' => 'required',
         'type' => 'required',
-        'statut' => 'null'
+        //'statut' => 'required'
     ];
 
     

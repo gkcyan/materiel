@@ -37,16 +37,14 @@
 <!-- Type Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('type', __('models/transporteurs.fields.type').':') !!}
-    {!! Form::select('type', ['0' => 'Particulier', '1' => 'Entreprise', '2' => 'Palmafrique'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('type', ['Particulier' => 'Particulier', 'Entreprise' => 'Entreprise', 'Palmafrique' => 'Palmafrique'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Statut Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('statut', __('models/transporteurs.fields.statut').':') !!}
-    <label class="checkbox-inline">
-        {!! Form::hidden('statut', 0) !!}
-        {!! Form::checkbox('statut', '1', null) !!} 1
-    </label>
+    {!! Form::select('statut', ['0' => 'Desactivé','1' => 'Activé', '2' => 'Bloqué'], null, ['class' => 'form-control']) !!}
+    
 </div>
 
 <!-- Submit Field -->

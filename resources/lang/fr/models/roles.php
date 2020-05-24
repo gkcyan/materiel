@@ -1,13 +1,15 @@
 <?php
 
 return array (
-  'singular' => 'Entreprise',
-  'plural' => 'Entreprises',
+  'singular' => 'Role',
+  'plural' => 'Roles',
   'fields' => 
   array (
     'id' => 'Id',
-    'libelle' => 'Entreprise',
-    'actif' => 'Actif',
+    'name' => 'Name',
+    'slug' => 'Slug',
+    'description' => 'Description',
+    'level' => 'Level',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'deleted_at' => 'Deleted At',

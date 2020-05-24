@@ -34,8 +34,3 @@
 <li class="{{ Request::is('transporteurs*') ? 'active' : '' }}">
     <a href="{{ route('transporteurs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/transporteurs.plural')</span></a>
 </li>
-
-<li class="{{ Request::is('transporteurs*') ? 'active' : '' }}">
-    <a href="{{ route('transporteurs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/transporteurs.plural')</span></a>
-</li>
-

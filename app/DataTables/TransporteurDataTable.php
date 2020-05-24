@@ -76,7 +76,32 @@ class TransporteurDataTable extends DataTable
                     ],
                 ],
                  'language' => [
-                   'url' => url('//cdn.datatables.net/plug-ins/1.10.12/i18n/English.json'),
+                   //'url' => url('http://cdn.datatables.net/plug-ins/1.10.12/i18n/French.json'),
+
+
+                   
+                    
+                    "sProcessing"=>     __('datatable.sProcessing'),
+                    "sSearch"=>        __('datatable.sSearch'),
+                    "sLengthMenu"=>     __('datatable.sLengthMenu'),
+                    "sInfo"=>          __('datatable.sInfo'),
+                    "sInfoEmpty"=>    __('datatable.sInfoEmpty'),
+                    "sInfoFiltered"=>  __('datatable.sInfoFiltered'),
+                    "sInfoPostFix"=>   __('datatable.sInfoPostFix'),
+                    "sLoadingRecords"=> __('datatable.sLoadingRecords'),
+                    "sZeroRecords"=>    __('datatable.sZeroRecords'),
+                    "sEmptyTable"=>    __('datatable.sEmptyTable'),
+                    "oPaginate"=>[
+                        "sFirst"=>      __('datatable.oPaginate.sFirst'),
+                        "sPrevious"=>   __('datatable.oPaginate.sPrevious'),
+                        "sNext"=>       __('datatable.oPaginate.sNext'),
+                        "sLast"=>       __('datatable.oPaginate.sLast')
+                                ],
+                    "oAria"=> [
+                        "sSortAscending"=> __('datatable.oAria.sSortAscending'),
+                        "sSortDescending"=>__('datatable.oAria.sSortDescending')
+                    ]
+                
                  ],
             ]);
     }
@@ -107,6 +132,6 @@ class TransporteurDataTable extends DataTable
      */
     protected function filename()
     {
-        return '$MODEL_NAME_PLURAL_SNAKE_$datatable_' . time();
+        return 'Transporteurs_' . time();
     }
 }

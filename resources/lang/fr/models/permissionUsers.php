@@ -1,13 +1,13 @@
 <?php
 
 return array (
-  'singular' => 'Entreprise',
-  'plural' => 'Entreprises',
+  'singular' => 'PermissionUser',
+  'plural' => 'PermissionUsers',
   'fields' => 
   array (
     'id' => 'Id',
-    'libelle' => 'Entreprise',
-    'actif' => 'Actif',
+    'permission_id' => 'Permission Id',
+    'user_id' => 'User Id',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'deleted_at' => 'Deleted At',
