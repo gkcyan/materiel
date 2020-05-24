@@ -64,3 +64,5 @@ Route::resource('permissionUsers', 'PermissionUserController');
 Route::resource('entreprises', 'EntrepriseController');
 
 Route::resource('agences', 'AgenceController');
+
+Route::resource('transporteurs', 'TransporteurController');
