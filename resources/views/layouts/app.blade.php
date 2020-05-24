@@ -25,7 +25,8 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
-    <!--CSS livewire -->
+        @include('layouts.head')
+          <!--CSS livewire -->
     @livewireStyles
 
     @yield('css')
@@ -174,6 +175,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 
+@include('layouts.script')
 @stack('scripts')
 </body>
 </html>
