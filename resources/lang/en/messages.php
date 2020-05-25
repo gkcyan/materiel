@@ -3,6 +3,7 @@
 return [
 
     'retrieved' => ':model retrieved successfully.',
+    'interface' => ':model ',
     'saved'     => ':model saved successfully.',
     'updated'   => ':model updated successfully.',
     'deleted'   => ':model deleted successfully.',
@@ -12,7 +13,14 @@ return [
     'Register' => 'Register',
     'Moyens_Generaux'=>'Supply Chain Manager',
     'Anglais'=>'English',
-    'Francais'=>'French'
+    'Francais'=>'French',
+    'interf_create'=>'Add data',
+    'interf_update'=>'Update data',
+    'formulaire'=>'Formular',
+    'liste_enregistrement'=>'Listing data',
+    'interface_creation'=>'Create Interface',
+    'interface_modification'=>'Update Interface',
+    'affichage_détails'=>'display details'
     
 
 ];

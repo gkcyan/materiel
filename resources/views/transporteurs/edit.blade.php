@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            @lang('models/transporteurs.singular')
+            @lang('models/transporteurs.singular')<small> >> @lang('messages.interface_modification')</small>
         </h1>
    </section>
    <div class="content">

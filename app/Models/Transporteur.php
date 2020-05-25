@@ -38,7 +38,9 @@ class Transporteur extends Model
         'interlo_cont',
         'interlo_email',
         'type',
-        'statut'
+        'statut',
+        'observations'
+        
     ];
 
     /**
@@ -55,7 +57,8 @@ class Transporteur extends Model
         'interlo_cont' => 'string',
         'interlo_email' => 'string',
         'type' => 'string',
-        'statut' => 'string'
+        'statut' => 'string',
+        'observations' => 'string'
     ];
 
     /**
@@ -71,6 +74,7 @@ class Transporteur extends Model
         'interlo_cont' => 'required',
         'interlo_email' => 'required',
         'type' => 'required',
+
         //'statut' => 'required'
     ];
 

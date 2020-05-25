@@ -24,7 +24,8 @@ class TransporteurRepository extends BaseRepository
         'interlo_cont',
         'interlo_email',
         'type',
-        'statut'
+        'statut',
+        'observations'
     ];
 
     /**

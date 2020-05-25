@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">
-            @lang('models/transporteurs.plural')
+            @lang('models/transporteurs.plural') <small> >> @lang('messages.liste_enregistrement')</small>{{-- Route::getCurrentRoute()->uri() --}}
         </h1>
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('transporteurs.create') }}">@lang('crud.add_new')</a>
