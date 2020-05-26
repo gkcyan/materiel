@@ -8,7 +8,7 @@ return array (
         'libelle' =>'Raison Sociale',
         'compte_cont' =>'Compte Contr.',
         'reg_com' =>'Registre Com.',
-        'interlocuteur' =>'Noms',
+        'interlocuteur' =>'Interlocuteur',
         'interlo_cont' =>'Contact',
         'interlo_email' =>'Email',
         'type' =>'Type',
