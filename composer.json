@@ -15,7 +15,9 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.5",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.4",
         "infyomlabs/adminlte-templates": "7.0.x-dev",
+        "infyomlabs/generator-builder": "dev-master",
         "infyomlabs/laravel-generator": "7.0.x-dev",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
@@ -25,8 +27,7 @@
         "wildbit/swiftmailer-postmark": "^3.1",
         "yajra/laravel-datatables-buttons": "^4.9",
         "yajra/laravel-datatables-html": "^4.25",
-        "yajra/laravel-datatables-oracle": "~9.0",
-        "infyomlabs/generator-builder": "dev-master"
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
