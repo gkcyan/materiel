@@ -42,9 +42,9 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <span class="logo-mini"><b>MT</b>M</span>
+                <span class="logo-mini"><b>Mat & Transp</b>M</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">{{ config('app.name', 'Laravel') }}</span>
+                <span class="logo-lg"><b>Mat & Transp</b> M</span>
             </a>
 
             <!-- Header Navbar -->
