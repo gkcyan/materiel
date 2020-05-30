@@ -1,6 +1,6 @@
 @extends('welcome')
 @section('content')
-    <div class="register-box-body">
+    
         <p class="login-box-msg"><h1>@lang('auth.registration.title')</h1></p>
 
         <form method="post" action="{{ url('/register') }}">
@@ -67,8 +67,6 @@
         </form>
 
         <br><a href="{{ url('/login') }}" class="text-center badge badge-warning">@lang('auth.registration.have_membership')</a>
-    </div>
-    <!-- /.form-box -->
-</div>
+    
 <!-- /.register-box -->
 @endsection
