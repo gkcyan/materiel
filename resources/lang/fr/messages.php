@@ -19,6 +19,16 @@ return [
     'liste_enregistrement'=>'Liste des enregistrements',
     'interface_creation'=>'Interface de creation',
     'interface_modification'=>'Interface de modification',
-    'affichage_détails'=>'Affichage des détails'
+    'affichage_détails'=>'Affichage des détails',
+    'planteur'=>'Exploitant Agricole',
+    'assitant_agricole'=>'Encadreur',
+    'transporteur'=>'Transporteur',
+    'carburant'=>"Carburant",
+    'maintenancier'=>'Maintenancier',
+    'pont_bascule'=>'Entreprôt',
+    'acheteur'=>'Acheteur',
+    'fournisseur'=>'Fournisseur',
+    'facturier'=>'Facturier',
+    'vente'=>'Commerciale'
 
 ];

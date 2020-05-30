@@ -15,14 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->middleware('verified');
+Route::get('/', 'HomeController@index')->middleware('verified');
 
 
 Route::resource('users', 'UserController')->middleware('auth');
@@ -36,33 +34,33 @@ Route::get('locale/{lang}', 'LocalizationController@setLang');
 
 
 
-Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
+Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder')->middleware('auth');;
 
-Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->name('io_field_template');
+Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->name('io_field_template')->middleware('auth');;
 
-Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')->name('io_relation_field_template');
+Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')->name('io_relation_field_template')->middleware('auth');;
 
-Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate');
+Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate')->middleware('auth');;
 
-Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback');
+Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback')->middleware('auth');;
 
 Route::post(
     'generator_builder/generate-from-file',
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
-)->name('io_generator_builder_generate_from_file');
+)->name('io_generator_builder_generate_from_file')->middleware('auth');;
 
-Route::resource('roles', 'RoleController');
+Route::resource('roles', 'RoleController')->middleware('auth');;
 
-Route::resource('permissions', 'PermissionController');
+Route::resource('permissions', 'PermissionController')->middleware('auth');;
 
-Route::resource('roleUsers', 'RoleUserController');
+Route::resource('roleUsers', 'RoleUserController')->middleware('auth');;
 
-Route::resource('permissionRoles', 'PermissionRoleController');
+Route::resource('permissionRoles', 'PermissionRoleController')->middleware('auth');;
 
-Route::resource('permissionUsers', 'PermissionUserController');
+Route::resource('permissionUsers', 'PermissionUserController')->middleware('auth');;
 
-Route::resource('entreprises', 'EntrepriseController');
+Route::resource('entreprises', 'EntrepriseController')->middleware('auth');;
 
-Route::resource('agences', 'AgenceController');
+Route::resource('agences', 'AgenceController')->middleware('auth');;
 
-Route::resource('transporteurs', 'TransporteurController');
+Route::resource('transporteurs', 'TransporteurController')->middleware('auth');;

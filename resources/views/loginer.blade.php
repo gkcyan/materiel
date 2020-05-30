@@ -46,5 +46,5 @@
                  <br><a href="{{ url('/password/reset') }}" class="badge badge-warning">@lang('auth.login.forgot_password')</a>
                  <br><br><a href="{{ url('/register') }}" class="btn btn-success btn-lg btn-block active" role="button" aria-pressed="true">@lang('auth.login.register_membership')</a>
                  
-                
+                 </div>
     @endsection

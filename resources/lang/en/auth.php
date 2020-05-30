@@ -27,12 +27,12 @@ return [
 
     'login' => [
         'title'               => 'Sign in to start your session',
-        'forgot_password'     => 'I forgot my password',
-        'register_membership' => 'Register a new membership',
+        'forgot_password'     => 'I forgot account ?',
+        'register_membership' => 'Create a New Account',
     ],
 
     'registration' => [
-        'title'           => 'Register a new membership',
+        'title'           => 'Create a New Account',
         'i_agree'         => 'I agree to',
         'terms'           => 'the terms',
         'have_membership' => 'I already have a membership',

@@ -19,38 +19,38 @@ return [
     'full_name'        => 'Nom',
     'email'            => 'Email',
     'password'         => 'Mot de passe',
-    'confirm_password' => 'Confirm Password',
-    'remember_me'      => 'Remember Me',
+    'confirm_password' => 'Confirmez le mot de passe',
+    'remember_me'      => 'Se souvenir de moi',
     'sign_in'          => 'Connexion',
     'sign_out'         => 'Deconnexion',
     'register'         => 'Inscription',
 
     'login' => [
         'title'               => 'Connectez vous',
-        'forgot_password'     => "J'ai oublié mon mot de passe",
-        'register_membership' => 'Créer mon compte',
+        'forgot_password'     => "Informations de compte oubliées ?",
+        'register_membership' => 'Créer un compte',
     ],
 
     'registration' => [
-        'title'           => 'Register a new membership',
-        'i_agree'         => 'I agree to',
-        'terms'           => 'the terms',
-        'have_membership' => 'I already have a membership',
+        'title'           => 'Créer un compte',
+        'i_agree'         => "J'accèpte",
+        'terms'           => 'les termes',
+        'have_membership' => "J'ai deja un compte",
     ],
 
     'forgot_password' => [
-        'title'          => 'Enter Email to reset password',
-        'send_pwd_reset' => 'Send Password Reset Link',
+        'title'          => "Entrez l'e-mail pour réinitialiser le mot de passe",
+        'send_pwd_reset' => 'Envoyer le lien de réinitialisation',
     ],
 
     'reset_password' => [
-        'title'         => 'Reset your password',
-        'reset_pwd_btn' => 'Reset Password',
+        'title'         => 'Réinitialise ton mot de passe',
+        'reset_pwd_btn' => 'Réinitier',
     ],
 
     'emails' => [
         'password' => [
-            'reset_link' => 'Click here to reset your password',
+            'reset_link' => 'Click ici pour réinitialiser ton mot de passe',
         ],
     ],
 
