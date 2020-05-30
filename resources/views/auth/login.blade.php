@@ -3,7 +3,8 @@
     
 
                
-                 <p class="login-box-msg"><h1>@lang('auth.login.title')</h1></p>
+                 <p class="login-box-msg"><h1 class="">@lang('messages.productif_msg')</h1></p>
+                 
          
                  <form method="post" action="{{ url('/login') }}" class="form-signin">
                      @csrf
@@ -45,6 +46,9 @@
                  </form>
                  <br><a href="{{ url('/password/reset') }}" class="badge badge-warning">@lang('auth.login.forgot_password')</a>
                  <br><br><a href="{{ url('/register') }}" class="btn btn-success btn-lg btn-block active" role="button" aria-pressed="true">@lang('auth.login.register_membership')</a>
-                 
+                 <h6><blockquote class="blockquote text-center"><br>
+                    <p class="mb-0">Tout ce qui n'est pas suivi au quotidien , n'est pas maitrisé.</p>
+                    <footer class="blockquote-footer">Monsieur Thierry Davaille <cite title="Source Title">DG - Palmafrique</cite></footer>
+                  </blockquote></h6>
                 
     @endsection

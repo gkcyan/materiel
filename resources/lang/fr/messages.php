@@ -29,6 +29,7 @@ return [
     'acheteur'=>'Acheteur',
     'fournisseur'=>'Fournisseur',
     'facturier'=>'Facturier',
-    'vente'=>'Commerciale'
+    'vente'=>'Commerciale',
+    'productif_msg'=>'Restez productif'
 
 ];

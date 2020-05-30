@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logo_agro.png') }}" />
 
-        <title>SCM</title>
+        <title>{{ config('app.name', 'MTM') }}</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <!-- Fonts -->
@@ -79,81 +80,75 @@
         @livewireStyles
     </head>
 
-    <body class>
+    <body>
                 
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-left links">
-                    <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/logo.jpg') }}" class="img-fluid" alt="logo entreprise"></a>
-                   
-                </div>
-                <div class="top-right links">
-                                      
-                    @auth
-                        <a href="{{ url('/home') }}">@lang('messages.Home')</a>|
-                         <a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a> |
-                            <a href="{{ url('locale/en') }}">@lang('messages.Anglais')</a>
-                    @else
-                    <a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a> |
-                    <a href="{{ url('locale/en') }}">@lang('messages.Anglais')</a></small></a>
-  
-                    @endauth
-                   
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="row m-b-md">
-               
-                    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                    <h1 class="display-4">
-                        
-                    </h1>
-                
-                
-                <div class="links">
-                    <a href=""> @lang('messages.planteur') </a>|
-                    <a href=""> @lang('messages.assitant_agricole')</a>|
-                    <a href=""> @lang('messages.transporteur') </a>|
-                    <a href=""> @lang('messages.carburant') </a>|
-                    <a href=""> @lang('messages.maintenancier') </a>|
-                    <a href=""> @lang('messages.pont_bascule')</a>|
-                    <a href=""> @lang('messages.acheteur') </a>|
-                    <a href=""> @lang('messages.fournisseur') </a>|
-                    <a href=""> @lang('messages.facturier')</a>|
-                    <a href=""> @lang('messages.vente')</a>
-                </br></br></br>
-            </div>
-                
-                      <div class="row">
-                        <div class="col-sm-9 col-md-9">
-                                <div class=""><img src="{{ asset('assets/images/background.png') }}" class="img-fluid " alt="Responsive image"></div> 
-                        </div>
-                        <div class=" col-md-3 text-center">
-                            @if (!Auth::guest())
-                            <blockquote class="blockquote">
-                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                              </blockquote>
-                            @else
-                            <div class="shadow-lg p-3 mb-5 bg-white rounded">
-                   
-                                <img src="{{ asset('assets/images/logo_agro.png') }}" class="img-fluid" alt="Responsive image">
-                                @yield('content')
-                            </div>
-                            @endif
-                        </div>
-
+         <div class="flex-center position-ref full-height">
+             <div class="row">
+                @if (Route::has('login'))
+                    <div class="top-left links">
+                        <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/logo.jpg') }}" class="img-fluid" alt="logo entreprise"></a>
+                    
                     </div>
+                    <div class="top-right links">
+                                        
+                        @auth
+                            <a href="{{ url('/home') }}">@lang('messages.Home')</a>|
+                            <a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a> |
+                                <a href="{{ url('locale/en') }}">@lang('messages.Anglais')</a>
+                        @else
+                        <a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a> |
+                        <a href="{{ url('locale/en') }}">@lang('messages.Anglais')</a></small></a>
+    
+                        @endauth
+                    
+                    </div>
+                @endif
 
-                             
+                <div class="content">
+                    <div class="row m-b-md">
+                        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+
+                            <div class="links">
+                                <a href=""> @lang('messages.planteur') </a>|
+                                <a href=""> @lang('messages.assitant_agricole')</a>|
+                                <a href=""> @lang('messages.transporteur') </a>|
+                                <a href=""> @lang('messages.carburant') </a>|
+                                <a href=""> @lang('messages.maintenancier') </a>|
+                                <a href=""> @lang('messages.pont_bascule')</a>|
+                                <a href=""> @lang('messages.acheteur') </a>|
+                                <a href=""> @lang('messages.fournisseur') </a>|
+                                <a href=""> @lang('messages.facturier')</a>|
+                                <a href=""> @lang('messages.vente')</a>
+                                </br></br></br>
+                            </div>
+                    
+                            <div class="row">
+                                    <div class="col-sm-9 col-md-9"><img src="{{ asset('assets/images/background.png') }}" class="img-fluid " alt="Responsive image"></div> 
+                                    
+                                    <div class=" col-md-3 text-center">
+                                        @if (!Auth::guest())
+                                        <blockquote class="blockquote">
+                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                                        </blockquote>
+                                        @else
+                                        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                            
+                                            <img src="{{ asset('assets/images/logo_agro.png') }}" class="img-fluid" alt="Responsive image">
+                                            @yield('content')
+                                        </div>
+                                        @endif
+                                    </div>
+
+                            </div>   
+                        </div>
+                    </div>
+                        <footer class="main-footer" style="max-height: 100px;text-align: center">
+                            <strong>Copyright © 2020 <a href="#"><img src="{{ asset('assets/images/logo_copy.png') }}" class="img-fluid" alt="Responsive image"></a></strong> All rights reserved. | KeaDouan
+                        </footer>
                 </div>
-                
-        </div>
-        <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2020 <a href="#">Yannick G.</a></strong> All rights reserved.
-        </footer>
-        </div>
+              </div>
+            </div>
         
         
         @livewireScripts

@@ -30,7 +30,8 @@ return [
     'acheteur'=>'Purchaser',
     'fournisseur'=>'Provider',
     'facturier'=>'Billers',
-    'vente'=>'Trader'
+    'vente'=>'Trader',
+    'productif_msg'=>'Stay productive'
     
     
 
