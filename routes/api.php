@@ -30,3 +30,5 @@ Route::resource('petroliers', 'PetrolierAPIController');
 Route::resource('stations', 'StationAPIController');
 
 Route::resource('pompistes', 'PompisteAPIController');
+
+Route::resource('categories', 'CategorieAPIController');

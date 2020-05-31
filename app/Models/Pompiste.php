@@ -66,7 +66,7 @@ class Pompiste extends Model
         'station_id' => 'required',
         'emploi' => 'required',
         'contrat' => 'required',
-        'code' => 'required'
+        'code' => 'required|max:10|unique:pompistes'
     ];
 
     /**

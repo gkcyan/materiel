@@ -46,7 +46,8 @@ class Agence extends Model
      * @var array
      */
     public static $rules = [
-        'libelle' => 'required'
+        
+        'libelle' => 'required|max:30|unique:agences'
     ];
 
     

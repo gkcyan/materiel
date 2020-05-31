@@ -71,3 +71,5 @@ Route::resource('petroliers', 'PetrolierController')->middleware('auth');
 Route::resource('stations', 'StationController')->middleware('auth');
 
 Route::resource('pompistes', 'PompisteController');
+
+Route::resource('categories', 'CategorieController');

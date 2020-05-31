@@ -43,7 +43,7 @@ class Petrolier extends Model
      * @var array
      */
     public static $rules = [
-        'petrolier' => 'required'
+        'petrolier' => 'required|max:30|unique:petroliers'
     ];
 
     

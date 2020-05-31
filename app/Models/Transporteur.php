@@ -68,8 +68,8 @@ class Transporteur extends Model
      */
     public static $rules = [
         'libelle' => 'required',
-        'compte_cont' => 'required',
-        'reg_com' => 'required',
+        'compte_cont' => 'required|max:10|unique:transporteurs',
+        'reg_com' => 'required|max:10|unique:transporteurs',
         'interlocuteur' => 'required',
         'interlo_cont' => 'required',
         'interlo_email' => 'required',
