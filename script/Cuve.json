@@ -1,4 +1,102 @@
 [
+    
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false,
+        "inView": true
+    },
+    {
+        "name": "cuve",
+        "dbType": "string:unique",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "capacite",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "contact",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "station_id",
+        "dbType": "integer:unsigned:foreign,stations,id",
+        "htmlType": "selectTable:stations:station,id",
+        "relation": "mt1,Station,station_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "emploi",
+        "dbType": "integer",
+        "htmlType": "select,Pompiste:1,Gerant:2,Proprietaire:3",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "contrat",
+        "dbType": "integer",
+        "htmlType": "select,Pompiste:1,Gerant:2,Proprietaire:3",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "code",
+        "dbType": "string:unique",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
     {
         "name": "created_at",
         "dbType": "timestamp",
@@ -22,53 +120,5 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    },
-    {
-        "name": "id",
-        "dbType": "increments",
-        "htmlType": "number",
-        "validations": "",
-        "searchable": false,
-        "fillable": false,
-        "primary": true,
-        "inForm": false,
-        "inIndex": false,
-        "inView": true
-    },
-    {
-        "name": "libelle",
-        "dbType": "char",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "type",
-        "dbType": "number",
-        "htmlType": "select,Pompiste:1,Gerant:2,Petrolier:3",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "entreprise_id",
-        "dbType": "text",
-        "htmlType": "selectTable:stations:libelle,id",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    }
+    }    
 ]

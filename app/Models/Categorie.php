@@ -52,9 +52,9 @@ class Categorie extends Model
      * @var array
      */
     public static $rules = [
-        'categorie' => 'required|max:30|unique:categories',
+        'categorie' => 'required|max:30',
         'statut' => 'required',
-        'code_prodtui' => 'required|max:10|unique:categories'
+        'code_prodtui' => 'required|max:10'
     ];
 
     
