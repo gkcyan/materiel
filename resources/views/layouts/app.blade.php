@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{ config('app.name', 'MTM') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logo_agro.png') }}" />
 
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
