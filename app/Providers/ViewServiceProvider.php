@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Produit;
+
 use App\Models\Categorie;
 use App\Models\Category;
 use App\Models\Station;
@@ -30,14 +32,19 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['cuves.fields'], function ($view) {
+            $produitItems = Produit::pluck('produit','id')->toArray();
+            $view->with('produitItems', $produitItems);
+        });
+        View::composer(['cuves.fields','pompistes.fields'], function ($view) {
+            $stationItems = Station::pluck('station','id')->toArray();
+            $view->with('stationItems', $stationItems);
+        });
         View::composer(['produits.fields'], function ($view) {
             $categoryItems = Categorie::pluck('categorie','id')->toArray();
             $view->with('categoryItems', $categoryItems);
         });
-        View::composer(['pompistes.fields'], function ($view) {
-            $stationItems = Station::pluck('station','id')->toArray();
-            $view->with('stationItems', $stationItems);
-        });
+        
         View::composer(['stations.fields'], function ($view) {
             $petrolierItems = Petrolier::pluck('petrolier','id')->toArray();
             $view->with('petrolierItems', $petrolierItems);

@@ -65,3 +65,7 @@
     <a href="{{ route('produits.index') }}"><i class="fa fa-edit"></i><span>@lang('models/produits.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('cuves*') ? 'active' : '' }}">
+    <a href="{{ route('cuves.index') }}"><i class="fa fa-edit"></i><span>@lang('models/cuves.plural')</span></a>
+</li>
+

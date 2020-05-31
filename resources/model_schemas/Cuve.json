@@ -1,5 +1,4 @@
 [
-    
     {
         "name": "id",
         "dbType": "increments",
@@ -60,12 +59,10 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "station_id",
         "dbType": "integer:unsigned:foreign,stations,id",
         "htmlType": "selectTable:stations:station,id",
-        "relation": "mt1,Station,station_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -78,7 +75,6 @@
         "name": "produit_id",
         "dbType": "integer:unsigned:foreign,produits,id",
         "htmlType": "selectTable:produits:produit,id",
-        "relation": "mt1,Produit,produit_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -87,7 +83,6 @@
         "inIndex": true,
         "inView": true
     },
-   
     {
         "name": "statut",
         "dbType": "integer",
@@ -100,7 +95,6 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "created_at",
         "dbType": "timestamp",
@@ -124,5 +118,13 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    }    
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Station,station_id"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Produit,produit_id"
+    }
 ]
