@@ -136,6 +136,7 @@
                             
                                             <img src="{{ asset('assets/images/logo_agro.png') }}" class="img-fluid" alt="Responsive image">
                                             @yield('content')
+                                            @livewire('counter')
                                         </div>
                                         @endif
                                     </div>

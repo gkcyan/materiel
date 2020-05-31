@@ -1,3 +1,5 @@
+@role('admin')
+
 <li class="{{ Request::is('users*') ? 'active' : '' }}">
     <a href="{!! route('users.index') !!}"><i class="fa fa-edit"></i><span>Users</span></a>
 </li>
@@ -22,6 +24,7 @@
     <a href="{{ route('permissionUsers.index') }}"><i class="fa fa-edit"></i><span>@lang('models/permissionUsers.plural')</span></a>
 </li>
 
+@endrole
 
 <li class="{{ Request::is('agences*') ? 'active' : '' }}">
     <a href="{{ route('agences.index') }}"><i class="fa fa-edit"></i><span>@lang('models/agences.plural')</span></a>
