@@ -1,5 +1,4 @@
 [
-    
     {
         "name": "id",
         "dbType": "increments",
@@ -36,12 +35,10 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "categorie_id",
         "dbType": "integer:unsigned:foreign,categories,id",
         "htmlType": "selectTable:categories:categorie,id",
-        "relation": "mt1,Categorie,categorie_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -50,7 +47,6 @@
         "inIndex": true,
         "inView": true
     },
-       
     {
         "name": "code",
         "dbType": "string:unique",
@@ -98,5 +94,9 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    }    
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Categorie,categorie_id"
+    }
 ]

@@ -61,3 +61,7 @@
     <a href="{{ route('categories.index') }}"><i class="fa fa-edit"></i><span>@lang('models/categories.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('produits*') ? 'active' : '' }}">
+    <a href="{{ route('produits.index') }}"><i class="fa fa-edit"></i><span>@lang('models/produits.plural')</span></a>
+</li>
+
