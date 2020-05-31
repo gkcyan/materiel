@@ -64,3 +64,5 @@ Route::resource('entreprises', 'EntrepriseController')->middleware('auth');;
 Route::resource('agences', 'AgenceController')->middleware('auth');;
 
 Route::resource('transporteurs', 'TransporteurController')->middleware('auth');;
+
+Route::resource('petroliers', 'PetrolierController');

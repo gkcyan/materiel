@@ -44,3 +44,7 @@
 
 
 
+<li class="{{ Request::is('petroliers*') ? 'active' : '' }}">
+    <a href="{{ route('petroliers.index') }}"><i class="fa fa-edit"></i><span>@lang('models/petroliers.plural')</span></a>
+</li>
+
