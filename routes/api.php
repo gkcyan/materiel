@@ -36,3 +36,5 @@ Route::resource('categories', 'CategorieAPIController');
 Route::resource('produits', 'ProduitAPIController');
 
 Route::resource('cuves', 'CuveAPIController');
+
+Route::resource('pompes', 'PompeAPIController');

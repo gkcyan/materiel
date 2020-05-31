@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Cuve;
+
 use App\Models\Produit;
 
 use App\Models\Categorie;
-use App\Models\Category;
+
 use App\Models\Station;
 use App\Models\Petrolier;
 use App\Models\Entreprise;
@@ -32,6 +34,18 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['pompes.fields'], function ($view) {
+            $cufeItems = Cuve::pluck('cuve','id')->toArray();
+            $view->with('cufeItems', $cufeItems);
+        });
+        View::composer(['pompes.fields'], function ($view) {
+            $produitItems = Produit::pluck('produit','id')->toArray();
+            $view->with('produitItems', $produitItems);
+        });
+        View::composer(['pompes.fields'], function ($view) {
+            $stationItems = Station::pluck('station','id')->toArray();
+            $view->with('stationItems', $stationItems);
+        });
         View::composer(['cuves.fields'], function ($view) {
             $produitItems = Produit::pluck('produit','id')->toArray();
             $view->with('produitItems', $produitItems);

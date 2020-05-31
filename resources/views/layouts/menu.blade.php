@@ -69,3 +69,7 @@
     <a href="{{ route('cuves.index') }}"><i class="fa fa-edit"></i><span>@lang('models/cuves.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('pompes*') ? 'active' : '' }}">
+    <a href="{{ route('pompes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/pompes.plural')</span></a>
+</li>
+

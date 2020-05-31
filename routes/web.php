@@ -77,3 +77,5 @@ Route::resource('categories', 'CategorieController')->middleware('auth');
 Route::resource('produits', 'ProduitController');
 
 Route::resource('cuves', 'CuveController');
+
+Route::resource('pompes', 'PompeController');
