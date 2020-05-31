@@ -70,6 +70,6 @@ Route::resource('petroliers', 'PetrolierController')->middleware('auth');
 
 Route::resource('stations', 'StationController')->middleware('auth');
 
-Route::resource('pompistes', 'PompisteController');
+Route::resource('pompistes', 'PompisteController')->middleware('auth');
 
-Route::resource('categories', 'CategorieController');
+Route::resource('categories', 'CategorieController')->middleware('auth');
