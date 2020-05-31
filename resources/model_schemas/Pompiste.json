@@ -1,5 +1,4 @@
 [
-    
     {
         "name": "id",
         "dbType": "increments",
@@ -52,7 +51,6 @@
         "name": "station_id",
         "dbType": "integer:unsigned:foreign,stations,id",
         "htmlType": "selectTable:stations:station,id",
-        "relation": "mt1,Station,station_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -120,5 +118,9 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    }    
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Station,station_id"
+    }
 ]

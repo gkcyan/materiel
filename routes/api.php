@@ -28,3 +28,5 @@ Route::resource('transporteurs', 'TransporteurAPIController');
 Route::resource('petroliers', 'PetrolierAPIController');
 
 Route::resource('stations', 'StationAPIController');
+
+Route::resource('pompistes', 'PompisteAPIController');

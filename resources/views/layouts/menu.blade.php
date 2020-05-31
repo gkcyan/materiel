@@ -53,3 +53,7 @@
             <a href="{{ route('stations.index') }}"><i class="fa fa-edit"></i><span>@lang('models/stations.plural')</span></a>
         </li>
 
+<li class="{{ Request::is('pompistes*') ? 'active' : '' }}">
+    <a href="{{ route('pompistes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/pompistes.plural')</span></a>
+</li>
+

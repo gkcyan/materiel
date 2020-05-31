@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\Station;
 use App\Models\Petrolier;
 use App\Models\Entreprise;
 
@@ -26,6 +27,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['pompistes.fields'], function ($view) {
+            $stationItems = Station::pluck('station','id')->toArray();
+            $view->with('stationItems', $stationItems);
+        });
         View::composer(['stations.fields'], function ($view) {
             $petrolierItems = Petrolier::pluck('petrolier','id')->toArray();
             $view->with('petrolierItems', $petrolierItems);

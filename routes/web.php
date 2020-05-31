@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->middleware('verified');
+Route::get('/home', 'HomeController@index')->middleware('verified');
 
 
 Route::resource('users', 'UserController')->middleware('auth');
@@ -34,37 +35,39 @@ Route::get('locale/{lang}', 'LocalizationController@setLang');
 
 
 
-Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder')->middleware('auth');;
+Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder')->middleware('auth');
 
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->name('io_field_template')->middleware('auth');;
 
-Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')->name('io_relation_field_template')->middleware('auth');;
+Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')->name('io_relation_field_template')->middleware('auth');
 
-Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate')->middleware('auth');;
+Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate')->middleware('auth');
 
-Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback')->middleware('auth');;
+Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback')->middleware('auth');
 
 Route::post(
     'generator_builder/generate-from-file',
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
-)->name('io_generator_builder_generate_from_file')->middleware('auth');;
+)->name('io_generator_builder_generate_from_file')->middleware('auth');
 
-Route::resource('roles', 'RoleController')->middleware('auth');;
+Route::resource('roles', 'RoleController')->middleware('auth');
 
-Route::resource('permissions', 'PermissionController')->middleware('auth');;
+Route::resource('permissions', 'PermissionController')->middleware('auth');
 
-Route::resource('roleUsers', 'RoleUserController')->middleware('auth');;
+Route::resource('roleUsers', 'RoleUserController')->middleware('auth');
 
-Route::resource('permissionRoles', 'PermissionRoleController')->middleware('auth');;
+Route::resource('permissionRoles', 'PermissionRoleController')->middleware('auth');
 
-Route::resource('permissionUsers', 'PermissionUserController')->middleware('auth');;
+Route::resource('permissionUsers', 'PermissionUserController')->middleware('auth');
 
-Route::resource('entreprises', 'EntrepriseController')->middleware('auth');;
+Route::resource('entreprises', 'EntrepriseController')->middleware('auth');
 
-Route::resource('agences', 'AgenceController')->middleware('auth');;
+Route::resource('agences', 'AgenceController')->middleware('auth');
 
-Route::resource('transporteurs', 'TransporteurController')->middleware('auth');;
+Route::resource('transporteurs', 'TransporteurController')->middleware('auth');
 
-Route::resource('petroliers', 'PetrolierController');
+Route::resource('petroliers', 'PetrolierController')->middleware('auth');
 
-Route::resource('stations', 'StationController');
+Route::resource('stations', 'StationController')->middleware('auth');
+
+Route::resource('pompistes', 'PompisteController');
