@@ -2,12 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\entreprise;
+use App\Models\Entreprise;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
 
-class entrepriseDataTable extends DataTable
+class EntrepriseDataTable extends DataTable
 {
     /**
      * Build DataTable class.

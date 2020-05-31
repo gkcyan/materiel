@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $libelle
  * @property string $actif
  */
-class entreprise extends Model
+class Entreprise extends Model
 {
     use SoftDeletes;
 

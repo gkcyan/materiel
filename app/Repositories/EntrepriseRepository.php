@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\entreprise;
+use App\Models\Entreprise;
 use App\Repositories\BaseRepository;
 
 /**
@@ -11,7 +11,7 @@ use App\Repositories\BaseRepository;
  * @version May 20, 2020, 11:51 am UTC
 */
 
-class entrepriseRepository extends BaseRepository
+class EntrepriseRepository extends BaseRepository
 {
     /**
      * @var array

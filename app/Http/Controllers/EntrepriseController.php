@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\DataTables\entrepriseDataTable;
+use App\DataTables\EntrepriseDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateentrepriseRequest;
 use App\Http\Requests\UpdateentrepriseRequest;
-use App\Repositories\entrepriseRepository;
+use App\Repositories\EntrepriseRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
-use App\Models\entreprise;
+use App\Models\Entreprise;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Response;
