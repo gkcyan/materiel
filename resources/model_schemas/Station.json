@@ -51,7 +51,6 @@
         "name": "petrolier_id",
         "dbType": "integer:unsigned:foreign,petroliers,id",
         "htmlType": "selectTable:petroliers:petrolier,id",
-        "relation": "mt1,Petrolier,petrolier_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -59,6 +58,9 @@
         "inForm": true,
         "inIndex": true,
         "inView": true
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Petrolier,petrolier_id"
     }
-    
 ]

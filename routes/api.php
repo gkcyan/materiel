@@ -26,3 +26,5 @@ Route::resource('agences', 'AgenceAPIController');
 Route::resource('transporteurs', 'TransporteurAPIController');
 
 Route::resource('petroliers', 'PetrolierAPIController');
+
+Route::resource('stations', 'StationAPIController');

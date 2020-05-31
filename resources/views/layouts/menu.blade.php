@@ -38,13 +38,18 @@
             <a href="{{ route('entreprises.index') }}"><i class="fa fa-edit"></i><span>@lang('models/entreprises.plural')</span></a>
         </li>
 
+    
         <li class="{{ Request::is('transporteurs*') ? 'active' : '' }}">
             <a href="{{ route('transporteurs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/transporteurs.plural')</span></a>
         </li>
 
+ <li class="header">PARAMETRAGE CARBURANT</li>
 
+        <li class="{{ Request::is('petroliers*') ? 'active' : '' }}">
+            <a href="{{ route('petroliers.index') }}"><i class="fa fa-edit"></i><span>@lang('models/petroliers.plural')</span></a>
+        </li>
 
-<li class="{{ Request::is('petroliers*') ? 'active' : '' }}">
-    <a href="{{ route('petroliers.index') }}"><i class="fa fa-edit"></i><span>@lang('models/petroliers.plural')</span></a>
-</li>
+        <li class="{{ Request::is('stations*') ? 'active' : '' }}">
+            <a href="{{ route('stations.index') }}"><i class="fa fa-edit"></i><span>@lang('models/stations.plural')</span></a>
+        </li>
 
