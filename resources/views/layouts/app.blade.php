@@ -35,7 +35,7 @@
     @yield('css')
 </head>
 
-<body class="sidebar-mini wysihtml5-supported skin-purple">
+<body class="sidebar-mini wysihtml5-supported skin-purple fixe">
 @if (!Auth::guest())
     <div class="wrapper">
         <!-- Main Header -->
