@@ -19,7 +19,7 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: auto;
+                height: 100vh;
                 margin: 0;
                 
             }
@@ -43,13 +43,13 @@
 
             .top-right {
                 position: absolute;
-                right: 0vh;
-                top: 0vh;
+                right: 10px;
+                top: 18px;
             }
             .top-left {
                 position: absolute;
-                left: 0vh;
-                top: 0vh;
+                left: 10px;
+                top: 18px;
             }
 
             .content {
@@ -96,7 +96,6 @@
                             <a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a> |
                                 <a href="{{ url('locale/en') }}">@lang('messages.Anglais')</a>
                         @else
-
                         <a href="{{ url('locale/fr') }}">@lang('messages.Francais')</a> |
                         <a href="{{ url('locale/en') }}">@lang('messages.Anglais')</a></small></a>
     
