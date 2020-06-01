@@ -1,5 +1,4 @@
 [
-    
     {
         "name": "id",
         "dbType": "increments",
@@ -16,7 +15,6 @@
         "name": "marque_id",
         "dbType": "integer:unsigned:foreign,engin_marques,id",
         "htmlType": "selectTable:engin_marques:marque,id",
-        "relation": "mt1,EnginMarque,marque_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -29,7 +27,6 @@
         "name": "modele_id",
         "dbType": "integer:unsigned:foreign,engin_modeles,id",
         "htmlType": "selectTable:engin_modeles:modele,id",
-        "relation": "mt1,EnginModel,modele_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -54,7 +51,6 @@
         "name": "type_id",
         "dbType": "integer:unsigned:foreign,engin_types,id",
         "htmlType": "selectTable:engin_types:type,id",
-        "relation": "mt1,EnginType,type_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -79,7 +75,6 @@
         "name": "energie_id",
         "dbType": "integer:unsigned:foreign,produits,id",
         "htmlType": "selectTable:produits:produit,id",
-        "relation": "mt1,Produit,produit_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -88,7 +83,6 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "chassis",
         "dbType": "string:unique",
@@ -221,7 +215,6 @@
         "inIndex": true,
         "inView": true
     },
-           
     {
         "name": "statut",
         "dbType": "integer",
@@ -234,7 +227,6 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "created_at",
         "dbType": "timestamp",
@@ -258,5 +250,21 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    }    
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,EnginMarque,marque_id"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,EnginModel,modele_id"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,EnginType,type_id"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Produit,produit_id"
+    }
 ]

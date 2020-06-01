@@ -1,5 +1,4 @@
 [
-    
     {
         "name": "id",
         "dbType": "increments",
@@ -24,7 +23,6 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "code",
         "dbType": "string:unique",
@@ -37,7 +35,6 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "statut",
         "dbType": "integer",
@@ -50,7 +47,6 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "created_at",
         "dbType": "timestamp",
@@ -74,5 +70,5 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    }    
+    }
 ]

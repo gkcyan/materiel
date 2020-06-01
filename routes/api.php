@@ -42,3 +42,7 @@ Route::resource('pompes', 'PompeAPIController');
 Route::resource('engin_marques', 'EnginMarqueAPIController');
 
 Route::resource('engin_modeles', 'EnginModeleAPIController');
+
+Route::resource('engin_types', 'EnginTypeAPIController');
+
+Route::resource('engins', 'EnginAPIController');

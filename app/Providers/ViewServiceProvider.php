@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\EnginType;
+use App\Models\EnginModele;
 use App\Models\EnginMarque;
 
 use App\Models\Cuve;
@@ -35,6 +37,22 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['engins.fields'], function ($view) {
+            $produitItems = Produit::pluck('produit','id')->toArray();
+            $view->with('produitItems', $produitItems);
+        });
+        View::composer(['engins.fields'], function ($view) {
+            $engin_typeItems = EnginType::pluck('type','id')->toArray();
+            $view->with('engin_typeItems', $engin_typeItems);
+        });
+        View::composer(['engins.fields'], function ($view) {
+            $engin_modeleItems = EnginModele::pluck('modele','id')->toArray();
+            $view->with('engin_modeleItems', $engin_modeleItems);
+        });
+        View::composer(['engins.fields'], function ($view) {
+            $engin_marqueItems = EnginMarque::pluck('marque','id')->toArray();
+            $view->with('engin_marqueItems', $engin_marqueItems);
+        });
         View::composer(['engin_modeles.fields'], function ($view) {
             $engin_marqueItems = EnginMarque::pluck('marque','id')->toArray();
             $view->with('engin_marqueItems', $engin_marqueItems);

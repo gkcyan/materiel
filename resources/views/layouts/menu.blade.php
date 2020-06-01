@@ -83,3 +83,11 @@
     <a href="{{ route('enginModeles.index') }}"><i class="fa fa-edit"></i><span>@lang('models/engin_modeles.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('enginTypes*') ? 'active' : '' }}">
+    <a href="{{ route('enginTypes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/engin_types.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('engins*') ? 'active' : '' }}">
+    <a href="{{ route('engins.index') }}"><i class="fa fa-edit"></i><span>@lang('models/engins.plural')</span></a>
+</li>
+
