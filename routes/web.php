@@ -74,16 +74,16 @@ Route::resource('pompistes', 'PompisteController')->middleware('auth');
 
 Route::resource('categories', 'CategorieController')->middleware('auth');
 
-Route::resource('produits', 'ProduitController');
+Route::resource('produits', 'ProduitController')->middleware('auth');
 
-Route::resource('cuves', 'CuveController');
+Route::resource('cuves', 'CuveController')->middleware('auth');
 
-Route::resource('pompes', 'PompeController');
+Route::resource('pompes', 'PompeController')->middleware('auth');
 
-Route::resource('enginMarques', 'EnginMarqueController');
+Route::resource('enginMarques', 'EnginMarqueController')->middleware('auth');
 
-Route::resource('enginModeles', 'EnginModeleController');
+Route::resource('enginModeles', 'EnginModeleController')->middleware('auth');
 
-Route::resource('enginTypes', 'EnginTypeController');
+Route::resource('enginTypes', 'EnginTypeController')->middleware('auth');
 
-Route::resource('engins', 'EnginController');
+Route::resource('engins', 'EnginController')->middleware('auth');

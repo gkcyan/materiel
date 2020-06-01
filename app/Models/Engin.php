@@ -112,7 +112,7 @@ class Engin extends Model
         'essieux' => 'required',
         'places' => 'required',
         'usage' => 'required',
-        'date_circ' => 'required',
+        //'date_circ' => 'required',
         'nb_roue' => 'required',
         'statut' => 'required'
     ];
