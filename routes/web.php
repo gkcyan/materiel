@@ -79,3 +79,7 @@ Route::resource('produits', 'ProduitController');
 Route::resource('cuves', 'CuveController');
 
 Route::resource('pompes', 'PompeController');
+
+Route::resource('enginMarques', 'EnginMarqueController');
+
+Route::resource('enginModeles', 'EnginModeleController');

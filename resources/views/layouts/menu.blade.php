@@ -73,3 +73,13 @@
     <a href="{{ route('pompes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/pompes.plural')</span></a>
 </li>
 
+<li class="header">PARAMETRAGE ENGINS</li>
+
+<li class="{{ Request::is('enginMarques*') ? 'active' : '' }}">
+    <a href="{{ route('enginMarques.index') }}"><i class="fa fa-edit"></i><span>@lang('models/engin_marques.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('enginModeles*') ? 'active' : '' }}">
+    <a href="{{ route('enginModeles.index') }}"><i class="fa fa-edit"></i><span>@lang('models/engin_modeles.plural')</span></a>
+</li>
+

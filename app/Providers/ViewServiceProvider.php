@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\EnginMarque;
 
 use App\Models\Cuve;
 
@@ -34,6 +35,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['engin_modeles.fields'], function ($view) {
+            $engin_marqueItems = EnginMarque::pluck('marque','id')->toArray();
+            $view->with('engin_marqueItems', $engin_marqueItems);
+        });
         View::composer(['pompes.fields'], function ($view) {
             $cufeItems = Cuve::pluck('cuve','id')->toArray();
             $view->with('cufeItems', $cufeItems);

@@ -38,3 +38,7 @@ Route::resource('produits', 'ProduitAPIController');
 Route::resource('cuves', 'CuveAPIController');
 
 Route::resource('pompes', 'PompeAPIController');
+
+Route::resource('engin_marques', 'EnginMarqueAPIController');
+
+Route::resource('engin_modeles', 'EnginModeleAPIController');

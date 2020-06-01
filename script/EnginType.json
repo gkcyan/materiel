@@ -1,0 +1,141 @@
+[
+    
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false,
+        "inView": true
+    },
+    {
+        "name": "pompe",
+        "dbType": "string:unique",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "marque",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "code",
+        "dbType": "string:unique",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "index_depart",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+       
+    {
+        "name": "station_id",
+        "dbType": "integer:unsigned:foreign,stations,id",
+        "htmlType": "selectTable:stations:station,id",
+        "relation": "mt1,Station,station_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "produit_id",
+        "dbType": "integer:unsigned:foreign,produits,id",
+        "htmlType": "selectTable:produits:produit,id",
+        "relation": "mt1,Produit,produit_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "cuve_id",
+        "dbType": "integer:unsigned:foreign,cuves,id",
+        "htmlType": "selectTable:cuves:cuve,id",
+        "relation": "mt1,Cuve,cuve_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+   
+    {
+        "name": "statut",
+        "dbType": "integer",
+        "htmlType": "select,Actif:1,Desactif:2,",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "date",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": true
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "date",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": true
+    }    
+]
