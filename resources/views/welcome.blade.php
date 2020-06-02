@@ -19,7 +19,7 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                /*height: 100vh;*/
                 margin: 0;
                 
             }
@@ -64,7 +64,7 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
+                padding: 0 50px;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
@@ -123,7 +123,7 @@
                             </div>
                     
                             <div class="row">
-                                    <div class="col-sm-9 col-md-9"><img src="{{ asset('assets/images/background.png') }}" class="img-fluid " alt="Responsive image"></div> 
+                                    <div class="col-sm-9 col-md-9 back"><img src="{{ asset('assets/images/background.png') }}" class="img-fluid " alt="Responsive image"></div> 
                                     
                                     <div class=" col-md-3 text-center">
                                         @if (!Auth::guest())

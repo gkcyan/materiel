@@ -1,5 +1,4 @@
 [
-    
     {
         "name": "id",
         "dbType": "increments",
@@ -13,11 +12,10 @@
         "inView": true
     },
     {
-        "name": "marque_id",
-        "dbType": "integer:unsigned:foreign,marques,id",
-        "htmlType": "selectTable:marques:marque,id",
-        "relation": "mt1,Marque,marque_id",
-        "validations": "required",
+        "name": "photo",
+        "dbType": "string",
+        "htmlType": "file",
+        "validations": "",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -26,98 +24,8 @@
         "inView": true
     },
     {
-        "name": "matricule_id",
-        "dbType": "integer:unsigned:foreign,engins,id",
-        "htmlType": "selectTable:engins:matricule,id",
-        "relation": "mt1,Engin,matricule_id",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "transporteur_id",
-        "dbType": "integer:unsigned:foreign,transporteurs,id",
-        "htmlType": "selectTable:transporteurs:libelle,id",
-        "relation": "mt1,EnginModel,modele_id",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "produit_id",
-        "dbType": "integer:unsigned:foreign,produits,id",
-        "htmlType": "selectTable:Produits:produit,id",
-        "relation": "mt1,Produit,produit_id",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "pompiste_id",
-        "dbType": "integer:unsigned:foreign,pompistes,id",
-        "htmlType": "selectTable:pompistes:nom,id",
-        "relation": "mt1,Pompiste,pompiste_id",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "pompe_id",
-        "dbType": "integer:unsigned:foreign,pompes,id",
-        "htmlType": "selectTable:pompes:pompe,id",
-        "relation": "mt1,Pompe,pompe_id",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "date",
-        "dbType": "timestamps",
-        "htmlType": "date",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "station_id",
-        "dbType": "integer:unsigned:foreign,stations,id",
-        "htmlType": "selectTable:stations:station,id",
-        "relation": "mt1,Station,station_id",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "quantite",
-        "dbType": "number",
+        "name": "nom",
+        "dbType": "string",
         "htmlType": "text",
         "validations": "required",
         "searchable": true,
@@ -128,10 +36,33 @@
         "inView": true
     },
     {
-        "name": "energie_id",
-        "dbType": "integer:unsigned:foreign,produits,id",
-        "htmlType": "selectTable:produits:produit,id",
-        "relation": "mt1,Produit,produit_id",
+        "name": "prenom",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "contact",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "entreprise_id",
+        "dbType": "integer:unsigned:foreign,entreprises,id",
+        "htmlType": "selectTable:entreprises:libelle,id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -140,9 +71,116 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
-        "name": "chassis",
+        "name": "contrat",
+        "dbType": "integer",
+        "htmlType": "select,,CDI:1,CDD:2,STAGE:3",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "date_contrat",
+        "dbType": "timestamp",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "date_naissance",
+        "dbType": "timestamp",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "lieu_naissance",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "ethnie",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "religion",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "sit_maritale",
+        "dbType": "string",
+        "htmlType": "select,,Mari\u00e9:mar,Celibataire:cel,Divorc\u00e9:divo,Veuf:Veuf",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "groupe_sang",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "nb_enfant",
+        "dbType": "number",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "cni_ref",
         "dbType": "string:unique",
         "htmlType": "text",
         "validations": "required",
@@ -154,7 +192,19 @@
         "inView": true
     },
     {
-        "name": "poids_vide",
+        "name": "permis_ref",
+        "dbType": "string:unique",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "residence",
         "dbType": "string",
         "htmlType": "text",
         "validations": "required",
@@ -166,118 +216,9 @@
         "inView": true
     },
     {
-        "name": "charge_utile",
-        "dbType": "string",
+        "name": "code",
+        "dbType": "string:unique",
         "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "poids_charge",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "km_depart",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "couleur",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "essieux",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "places",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "usage",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "date_circ",
-        "dbType": "date",
-        "htmlType": "date",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "nb_roue",
-        "dbType": "string",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-           
-    {
-        "name": "statut",
-        "dbType": "integer",
-        "htmlType": "select,Actif:1,Desactif:2,",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -310,7 +251,6 @@
         "inIndex": true,
         "inView": true
     },
-    
     {
         "name": "created_at",
         "dbType": "timestamp",
@@ -334,5 +274,9 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    }    
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Entreprise,entreprise_id"
+    }
 ]

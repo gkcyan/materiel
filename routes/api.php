@@ -46,3 +46,13 @@ Route::resource('engin_modeles', 'EnginModeleAPIController');
 Route::resource('engin_types', 'EnginTypeAPIController');
 
 Route::resource('engins', 'EnginAPIController');
+
+Route::resource('processes', 'ProcessAPIController');
+
+Route::resource('activites', 'ActiviteAPIController');
+
+Route::resource('chauffeurs', 'ChauffeurAPIController');
+
+Route::resource('chauffeur_permis', 'ChauffeurPermiAPIController');
+
+Route::resource('engin_kilometrages', 'EnginKilometrageAPIController');

@@ -87,3 +87,13 @@ Route::resource('enginModeles', 'EnginModeleController')->middleware('auth');
 Route::resource('enginTypes', 'EnginTypeController')->middleware('auth');
 
 Route::resource('engins', 'EnginController')->middleware('auth');
+
+Route::resource('processes', 'ProcessController')->middleware('auth');
+
+Route::resource('activites', 'ActiviteController')->middleware('auth');
+
+Route::resource('chauffeurs', 'ChauffeurController')->middleware('auth');
+
+Route::resource('chauffeurPermis', 'ChauffeurPermiController')->middleware('auth');
+
+Route::resource('enginKilometrages', 'EnginKilometrageController')->middleware('auth');

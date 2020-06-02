@@ -1,6 +1,13 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\Activite;
+use App\Models\Engin;
+
+
+
+
+use App\Models\Process;
 use App\Models\EnginType;
 use App\Models\EnginModele;
 use App\Models\EnginMarque;
@@ -37,6 +44,26 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['engin_kilometrages.fields'], function ($view) {
+            $stationItems = Station::pluck('station','id')->toArray();
+            $view->with('stationItems', $stationItems);
+        });
+        View::composer(['engin_kilometrages.fields'], function ($view) {
+            $activiteItems = Activite::pluck('activite','id')->toArray();
+            $view->with('activiteItems', $activiteItems);
+        });
+        View::composer(['engin_kilometrages.fields'], function ($view) {
+            $enginItems = Engin::pluck('matricule','id')->toArray();
+            $view->with('enginItems', $enginItems);
+        });
+        View::composer(['chauffeurs.fields'], function ($view) {
+            $entrepriseItems = Entreprise::pluck('libelle','id')->toArray();
+            $view->with('entrepriseItems', $entrepriseItems);
+        });
+        View::composer(['activites.fields'], function ($view) {
+            $processItems = Process::pluck('processus','id')->toArray();
+            $view->with('processItems', $processItems);
+        });
         View::composer(['engins.fields'], function ($view) {
             $produitItems = Produit::pluck('produit','id')->toArray();
             $view->with('produitItems', $produitItems);

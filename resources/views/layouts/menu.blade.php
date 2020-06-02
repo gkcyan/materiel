@@ -91,4 +91,24 @@
     <a href="{{ route('engins.index') }}"><i class="fa fa-edit"></i><span>@lang('models/engins.plural')</span></a>
 </li>
 
-<li class="header">GESTION CARBURANT</li>
+<li class="{{ Request::is('enginKilometrages*') ? 'active' : '' }}">
+    <a href="{{ route('enginKilometrages.index') }}"><i class="fa fa-edit"></i><span>@lang('models/engin_kilometrages.plural')</span></a>
+</li>
+
+
+<li class="header">PARAMETRAGE ACTIVITES</li><li class="{{ Request::is('processes*') ? 'active' : '' }}">
+    <a href="{{ route('processes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/processes.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('activites*') ? 'active' : '' }}">
+    <a href="{{ route('activites.index') }}"><i class="fa fa-edit"></i><span>@lang('models/activites.plural')</span></a>
+</li>
+<li class="header">PARAMETRAGE CHAUFFEURS</li><li class="{{ Request::is('processes*') ? 'active' : '' }}">
+<li class="{{ Request::is('chauffeurs*') ? 'active' : '' }}">
+    <a href="{{ route('chauffeurs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/chauffeurs.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('chauffeurPermis*') ? 'active' : '' }}">
+    <a href="{{ route('chauffeurPermis.index') }}"><i class="fa fa-edit"></i><span>@lang('models/chauffeur_permis.plural')</span></a>
+</li>
+<li class="header">GESTION CARBURANT</li><li class="{{ Request::is('processes*') ? 'active' : '' }}">
