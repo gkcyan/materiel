@@ -1,11 +1,17 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+
+
+
+
+
+
+
 use App\Models\Pompe;
 use App\Models\Pompiste;
 use App\Models\Chauffeur;
 use App\Models\Transporteur;
-use App\Models\Marque;
 use App\Models\Activite;
 use App\Models\Engin;
 
@@ -82,7 +88,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('enginItems', $enginItems);
         });
         View::composer(['vente_petroliers.fields'], function ($view) {
-            $marqueItems = Marque::pluck('marque','id')->toArray();
+            $marqueItems = EnginMarque::pluck('marque','id')->toArray();
             $view->with('marqueItems', $marqueItems);
         });
         View::composer(['engin_kilometrages.fields'], function ($view) {
