@@ -112,3 +112,7 @@
     <a href="{{ route('chauffeurPermis.index') }}"><i class="fa fa-edit"></i><span>@lang('models/chauffeur_permis.plural')</span></a>
 </li>
 <li class="header">GESTION CARBURANT</li><li class="{{ Request::is('processes*') ? 'active' : '' }}">
+<li class="{{ Request::is('ventePetroliers*') ? 'active' : '' }}">
+    <a href="{{ route('ventePetroliers.index') }}"><i class="fa fa-edit"></i><span>@lang('models/vente_petroliers.plural')</span></a>
+</li>
+

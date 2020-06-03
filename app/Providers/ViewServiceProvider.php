@@ -1,6 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\Pompe;
+use App\Models\Pompiste;
+use App\Models\Chauffeur;
+use App\Models\Transporteur;
+use App\Models\Marque;
 use App\Models\Activite;
 use App\Models\Engin;
 
@@ -44,6 +49,42 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $stationItems = Station::pluck('station','id')->toArray();
+            $view->with('stationItems', $stationItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $pompeItems = Pompe::pluck('pompe','id')->toArray();
+            $view->with('pompeItems', $pompeItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $pompisteItems = Pompiste::pluck('nom','id')->toArray();
+            $view->with('pompisteItems', $pompisteItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $activiteItems = Activite::pluck('activite','id')->toArray();
+            $view->with('activiteItems', $activiteItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $chauffeurItems = Chauffeur::pluck('nom','id')->toArray();
+            $view->with('chauffeurItems', $chauffeurItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $ProduitItems = Produit::pluck('produit','id')->toArray();
+            $view->with('ProduitItems', $ProduitItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $transporteurItems = Transporteur::pluck('libelle','id')->toArray();
+            $view->with('transporteurItems', $transporteurItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $enginItems = Engin::pluck('matricule','id')->toArray();
+            $view->with('enginItems', $enginItems);
+        });
+        View::composer(['vente_petroliers.fields'], function ($view) {
+            $marqueItems = Marque::pluck('marque','id')->toArray();
+            $view->with('marqueItems', $marqueItems);
+        });
         View::composer(['engin_kilometrages.fields'], function ($view) {
             $stationItems = Station::pluck('station','id')->toArray();
             $view->with('stationItems', $stationItems);

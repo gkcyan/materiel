@@ -56,3 +56,5 @@ Route::resource('chauffeurs', 'ChauffeurAPIController');
 Route::resource('chauffeur_permis', 'ChauffeurPermiAPIController');
 
 Route::resource('engin_kilometrages', 'EnginKilometrageAPIController');
+
+Route::resource('vente_petroliers', 'VentePetrolierAPIController');

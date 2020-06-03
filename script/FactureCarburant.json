@@ -13,6 +13,19 @@
         "inView": true
     },
     {
+        "name": "marque_id",
+        "dbType": "integer:unsigned:foreign,marques,id",
+        "htmlType": "selectTable:marques:marque,id",
+        "relation": "mt1,Marque,marque_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
         "name": "matricule_id",
         "dbType": "integer:unsigned:foreign,engins,id",
         "htmlType": "selectTable:engins:matricule,id",
@@ -25,10 +38,61 @@
         "inIndex": true,
         "inView": true
     },
-    
+    {
+        "name": "transporteur_id",
+        "dbType": "integer:unsigned:foreign,transporteurs,id",
+        "htmlType": "selectTable:transporteurs:libelle,id",
+        "relation": "mt1,EnginModel,modele_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "produit_id",
+        "dbType": "integer:unsigned:foreign,produits,id",
+        "htmlType": "selectTable:Produits:produit,id",
+        "relation": "mt1,Produit,produit_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "pompiste_id",
+        "dbType": "integer:unsigned:foreign,pompistes,id",
+        "htmlType": "selectTable:pompistes:nom,id",
+        "relation": "mt1,Pompiste,pompiste_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "pompe_id",
+        "dbType": "integer:unsigned:foreign,pompes,id",
+        "htmlType": "selectTable:pompes:pompe,id",
+        "relation": "mt1,Pompe,pompe_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
     {
         "name": "date",
-        "dbType": "timestamp",
+        "dbType": "date",
         "htmlType": "date",
         "validations": "required",
         "searchable": true,
@@ -38,46 +102,6 @@
         "inIndex": true,
         "inView": true
     },
-    
-    {
-        "name": "kilometrage",
-        "dbType": "string ",
-        "htmlType": "text",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-            
-    {
-        "name": "statut_compteur",
-        "dbType": "integer",
-        "htmlType": "select,HS:1,En marche:2,",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "activite_id",
-        "dbType": "integer:unsigned:foreign,activites,id",
-        "htmlType": "selectTable:activites:activite,id",
-        "relation": "mt1,Activite,activite_id",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-       
     {
         "name": "station_id",
         "dbType": "integer:unsigned:foreign,stations,id",
@@ -91,6 +115,32 @@
         "inIndex": true,
         "inView": true
     },
+    {
+        "name": "quantite",
+        "dbType": "number",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "energie_id",
+        "dbType": "integer:unsigned:foreign,produits,id",
+        "htmlType": "selectTable:produits:produit,id",
+        "relation": "mt1,Produit,produit_id",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    
     {
         "name": "autor_creat",
         "dbType": "string",
