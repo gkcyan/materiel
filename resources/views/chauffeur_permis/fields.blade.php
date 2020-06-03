@@ -17,12 +17,12 @@
 </div>
 
 @push('scripts')
-    <script type="text/javascript">
+    <!--script type="text/javascript">
         $('#date_validitie').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
             useCurrent: false
         })
-    </script>
+    </script-->
 @endpush
 
 <!-- Date Exp Field -->

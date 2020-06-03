@@ -11,12 +11,12 @@
 </div>
 
 @push('scripts')
-    <script type="text/javascript">
+    <!--script type="text/javascript">
         $('#date').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
             useCurrent: false
         })
-    </script>
+    </script-->
 @endpush
 
 <!-- Kilometrage Field -->
