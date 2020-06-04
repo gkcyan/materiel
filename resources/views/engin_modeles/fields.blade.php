@@ -23,12 +23,12 @@
 </div>
 
 @push('scripts')
-    <script type="text/javascript">
+    <!--script type="text/javascript">
         $('#annee').datetimepicker({
             format: 'YYYY-MM-DD HH:mm:ss',
             useCurrent: false
         })
-    </script>
+    </script-->
 @endpush
 
 <!-- Statut Field -->

@@ -43,9 +43,9 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <span class="logo-mini"><b<img src="{{ asset('assets/images/logo_copy.png') }}" class="img-fluid" alt="Responsive image"></span>
+                <span class="logo-mini"><img src="{{ asset('assets/images/logo_copy.png') }}" class="img-fluid" alt="Responsive image"></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b><img src="{{ asset('assets/images/logo_copy.png') }}" class="img-fluid" alt="Responsive image"></span>
+                <span class="logo-lg"><img src="{{ asset('assets/images/logo_copy.png') }}" class="img-fluid" alt="Responsive image"></span>
             </a>
 
             <!-- Header Navbar -->

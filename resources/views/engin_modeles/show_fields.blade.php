@@ -19,7 +19,7 @@
 <!-- Marque Id Field -->
 <div class="form-group">
     {!! Form::label('marque_id', __('models/engin_modeles.fields.marque_id').':') !!}
-    <p>{{ $enginModele->marque_id }}</p>
+    <p>{{ $enginModele->marque['marque'] }}</p>
 </div>
 
 <!-- Annee Field -->
@@ -31,7 +31,9 @@
 <!-- Statut Field -->
 <div class="form-group">
     {!! Form::label('statut', __('models/engin_modeles.fields.statut').':') !!}
-    <p>{{ $enginModele->statut }}</p>
+    <p>{{ $enginModele->statut='1'? 'actif' : 'Desactif' }}</p>
+
+   
 </div>
 
 <!-- Created At Field -->

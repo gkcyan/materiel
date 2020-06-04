@@ -23,7 +23,6 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->middleware('verified');
 Route::get('/home', 'HomeController@index')->middleware('verified');
 
-
 Route::resource('users', 'UserController')->middleware('auth');
 
 // Route qui permet de connaître la langue active
@@ -98,4 +97,4 @@ Route::resource('chauffeurPermis', 'ChauffeurPermiController')->middleware('auth
 
 Route::resource('enginKilometrages', 'EnginKilometrageController')->middleware('auth');
 
-Route::resource('ventePetroliers', 'VentePetrolierController');
+Route::resource('ventePetroliers', 'VentePetrolierController')->middleware('auth');

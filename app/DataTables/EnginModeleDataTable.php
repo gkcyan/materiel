@@ -30,7 +30,7 @@ class EnginModeleDataTable extends DataTable
      */
     public function query(EnginModele $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['marque']);
     }
 
     /**
@@ -111,7 +111,8 @@ class EnginModeleDataTable extends DataTable
         return [
             'modele' => new Column(['title' => __('models/engin_modeles.fields.modele'), 'data' => 'modele']),
             'code' => new Column(['title' => __('models/engin_modeles.fields.code'), 'data' => 'code']),
-            'marque_id' => new Column(['title' => __('models/engin_modeles.fields.marque_id'), 'data' => 'marque_id']),
+            'marque_id'=>new \Yajra\DataTables\Html\Column(['title' => __('models/engin_modeles.fields.marque_id'), 'data' => 'marque.marque', 'name' => 'marque.marque']),
+            //'marque_id' => new Column(['title' => __('models/engin_modeles.fields.marque_id'), 'data' => 'marque_id']),
             'annee' => new Column(['title' => __('models/engin_modeles.fields.annee'), 'data' => 'annee']),
             'statut' => new Column(['title' => __('models/engin_modeles.fields.statut'), 'data' => 'statut'])
         ];
