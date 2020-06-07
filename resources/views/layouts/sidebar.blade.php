@@ -5,21 +5,21 @@
         <!--menu de notification -->
        
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
+        <!--div class="user-panel">
             <div class="pull-left image">
                 <img src="{{ asset('assets/images/avatars/avatar.png') }}" class="img-circle"
                      alt="User Image"/>
             </div>
             <div class="pull-left info">
                 @if (Auth::guest())
-                <p>InfyOm</p>
+                <p></p>
                 @else
                     <p>{{ Auth::user()->name}}</p>
                 @endif
-                <!-- Status -->
+                <-- Status ->
                 <a href="#"><i class="fa fa-circle text-success"></i>@lang('auth.app.online')</a>
             </div>
-        </div>
+        </div-->
 
         <!-- search form (Optional) -->
         <form action="#" method="get" class="sidebar-form">

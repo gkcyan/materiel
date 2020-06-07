@@ -63,19 +63,19 @@
 </div>
 
 <!-- Statut Compteur Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-2">
     {!! Form::label('statut_compteur', __('models/vente_petroliers.fields.statut_compteur').':') !!}
     {!! Form::select('statut_compteur', ['1' => 'HS', '2' => 'En marche'], null, ['class' => 'form-control','placeholder' => '...']) !!}
 </div>
 
 <!-- Pompiste Id Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-2">
     {!! Form::label('pompiste_id', 'Pompiste Id:') !!}
     {!! Form::select('pompiste_id', $pompisteItems, null, ['class' => 'form-control','placeholder' => '...']) !!}
 </div>
 
 <!-- Pompe Id Field -->
-<div class="form-group col-sm-3">
+<div class="form-group col-sm-2">
     {!! Form::label('pompe_id', 'Pompe Id:') !!}
     {!! Form::select('pompe_id', $pompeItems, null, ['class' => 'form-control','placeholder' => '...']) !!}
 </div>
@@ -87,15 +87,15 @@
 </div>
 
 <!-- Autor Creat Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-3 hidden">
     {!! Form::label('autor_creat', __('models/vente_petroliers.fields.autor_creat').':') !!}
-    {!! Form::text('autor_creat', null, ['class' => 'form-control']) !!}
+    {!! Form::text('autor_creat',$value= Auth::user()->name, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Autor Update Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-3 hidden">
     {!! Form::label('autor_update', __('models/vente_petroliers.fields.autor_update').':') !!}
-    {!! Form::text('autor_update', null, ['class' => 'form-control']) !!}
+    {!! Form::text('autor_update',$value= Auth::user()->name, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
