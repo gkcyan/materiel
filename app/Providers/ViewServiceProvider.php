@@ -55,6 +55,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['produit_prixes.fields'], function ($view) {
+            $produitItems = Produit::pluck('produit','id')->toArray();
+            $view->with('produitItems', $produitItems);
+        });
         View::composer(['vente_petroliers.fields'], function ($view) {
             $stationItems = Station::pluck('station','id')->toArray();
             $view->with('stationItems', $stationItems);

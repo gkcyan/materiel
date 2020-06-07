@@ -130,6 +130,9 @@
             <li class="{{ Request::is('produits*') ? 'active' : '' }}">
                 <a href="{{ route('produits.index') }}"><i class="fa fa-edit"></i><span>@lang('models/produits.plural')</span></a>
             </li>
+            <li class="{{ Request::is('produitPrixes*') ? 'active' : '' }}">
+                <a href="{{ route('produitPrixes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/produit_prixes.plural')</span></a>
+            </li>
 
             <li class="{{ Request::is('cuves*') ? 'active' : '' }}">
                 <a href="{{ route('cuves.index') }}"><i class="fa fa-edit"></i><span>@lang('models/cuves.plural')</span></a>
@@ -229,3 +232,4 @@
         </ul>
     </ul>
 </li-->
+

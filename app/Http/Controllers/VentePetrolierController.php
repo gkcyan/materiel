@@ -55,7 +55,7 @@ class VentePetrolierController extends AppBaseController
 
         $ventePetrolier = $this->ventePetrolierRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/ventePetroliers.singular')]));
+        Flash::success(__('messages.saved', ['model' => __('models/vente_petroliers.singular')]));
 
         return redirect(route('ventePetroliers.index'));
     }
@@ -72,7 +72,7 @@ class VentePetrolierController extends AppBaseController
         $ventePetrolier = $this->ventePetrolierRepository->find($id);
 
         if (empty($ventePetrolier)) {
-            Flash::error(__('models/ventePetroliers.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/vente_petroliers.singular').' '.__('messages.not_found'));
 
             return redirect(route('ventePetroliers.index'));
         }
@@ -120,7 +120,7 @@ class VentePetrolierController extends AppBaseController
 
         $ventePetrolier = $this->ventePetrolierRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/ventePetroliers.singular')]));
+        Flash::success(__('messages.updated', ['model' => __('models/vente_petroliers.singular')]));
 
         return redirect(route('ventePetroliers.index'));
     }
@@ -137,14 +137,14 @@ class VentePetrolierController extends AppBaseController
         $ventePetrolier = $this->ventePetrolierRepository->find($id);
 
         if (empty($ventePetrolier)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/ventePetroliers.singular')]));
+            Flash::error(__('messages.not_found', ['model' => __('models/vente_petroliers.singular')]));
 
             return redirect(route('ventePetroliers.index'));
         }
 
         $this->ventePetrolierRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/ventePetroliers.singular')]));
+        Flash::success(__('messages.deleted', ['model' => __('models/vente_petroliers.singular')]));
 
         return redirect(route('ventePetroliers.index'));
     }

@@ -22,6 +22,8 @@ class VentePetrolierRepository extends BaseRepository
         'transporteur_id',
         'produit_id',
         'quantite',
+        'cout_remise',
+        'cout',
         'date',
         'chauffeur_id',
         'activite_id',

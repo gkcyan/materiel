@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Activite;
 use App\Models\VentePetrolier;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
@@ -30,7 +31,7 @@ class VentePetrolierDataTable extends DataTable
      */
     public function query(VentePetrolier $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['produit','transporteur','matricule','marque','chauffeur','pompiste','pompe','station','activite']);
     }
 
     /**
@@ -109,21 +110,25 @@ class VentePetrolierDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'marque_id' => new Column(['title' => __('models/vente_petroliers.fields.marque_id'), 'data' => 'marque_id']),
-            'matricule_id' => new Column(['title' => __('models/vente_petroliers.fields.matricule_id'), 'data' => 'matricule_id']),
-            'transporteur_id' => new Column(['title' => __('models/vente_petroliers.fields.transporteur_id'), 'data' => 'transporteur_id']),
-            'produit_id' => new Column(['title' => __('models/vente_petroliers.fields.produit_id'), 'data' => 'produit_id']),
+            'marque_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.marque_id'), 'data' => 'marque.marque']),
+            'matricule_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.matricule_id'), 'data' => 'matricule.matricule']),
+            //'transporteur_id' => new Column(['title' => __('models/vente_petroliers.fields.transporteur_id'), 'data' => 'transporteur_id']),
+            'transporteur_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.transporteur_id'), 'data' => 'transporteur.libelle', 'name' => 'transporteur.libelle']),
+            'produit_id'=>new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.produit_id'), 'data' => 'produit.produit', 'name' => 'produit.produit']),
+            //'produit_id' => new Column(['title' => __('models/vente_petroliers.fields.produit_id'), 'data' => 'produit_id']),
             'quantite' => new Column(['title' => __('models/vente_petroliers.fields.quantite'), 'data' => 'quantite']),
+            'cout' => new Column(['title' => __('models/vente_petroliers.fields.cout'), 'data' => 'cout']),
+            'cout_remise' => new Column(['title' => __('models/vente_petroliers.fields.cout_remise'), 'data' => 'cout_remise']),
             'date' => new Column(['title' => __('models/vente_petroliers.fields.date'), 'data' => 'date']),
-            'chauffeur_id' => new Column(['title' => __('models/vente_petroliers.fields.chauffeur_id'), 'data' => 'chauffeur_id']),
-            'activite_id' => new Column(['title' => __('models/vente_petroliers.fields.activite_id'), 'data' => 'activite_id']),
+            'chauffeur_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.chauffeur_id'), 'data' => 'chauffeur.nom']),
+            'activite_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.activite_id'), 'data' => 'activite.activite']),
             'kilometrage' => new Column(['title' => __('models/vente_petroliers.fields.kilometrage'), 'data' => 'kilometrage']),
             'statut_compteur' => new Column(['title' => __('models/vente_petroliers.fields.statut_compteur'), 'data' => 'statut_compteur']),
-            'pompiste_id' => new Column(['title' => __('models/vente_petroliers.fields.pompiste_id'), 'data' => 'pompiste_id']),
-            'pompe_id' => new Column(['title' => __('models/vente_petroliers.fields.pompe_id'), 'data' => 'pompe_id']),
-            'station_id' => new Column(['title' => __('models/vente_petroliers.fields.station_id'), 'data' => 'station_id']),
-            'autor_creat' => new Column(['title' => __('models/vente_petroliers.fields.autor_creat'), 'data' => 'autor_creat']),
-            'autor_update' => new Column(['title' => __('models/vente_petroliers.fields.autor_update'), 'data' => 'autor_update'])
+            'pompiste_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.pompiste_id'), 'data' => 'pompiste.nom']),
+            'pompe_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/vente_petroliers.fields.pompe_id'), 'data' => 'pompe.pompe']),
+            'station_id' => new Column(['title' => __('models/vente_petroliers.fields.station_id'), 'data' => 'station.station']),
+            //'autor_creat' => new Column(['title' => __('models/vente_petroliers.fields.autor_creat'), 'data' => 'autor_creat']),
+            //'autor_update' => new Column(['title' => __('models/vente_petroliers.fields.autor_update'), 'data' => 'autor_update'])
         ];
     }
 

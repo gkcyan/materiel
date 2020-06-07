@@ -52,6 +52,8 @@ class VentePetrolier extends Model
         'transporteur_id',
         'produit_id',
         'quantite',
+        'cout',
+        'cout_remise',
         'date',
         'chauffeur_id',
         'activite_id',
@@ -83,7 +85,9 @@ class VentePetrolier extends Model
         'pompe_id' => 'integer',
         'station_id' => 'integer',
         'autor_creat' => 'string',
-        'autor_update' => 'string'
+        'autor_update' => 'string',
+        'cout'=>'integer',
+        'cout_remise'=>'integer',
     ];
 
     /**
@@ -103,7 +107,8 @@ class VentePetrolier extends Model
         'kilometrage' => 'required',
         'pompiste_id' => 'required',
         'pompe_id' => 'required',
-        'station_id' => 'required'
+        'station_id' => 'required',
+        
     ];
 
     /**
@@ -111,7 +116,7 @@ class VentePetrolier extends Model
      **/
     public function marque()
     {
-        return $this->belongsTo(\App\Models\Marque::class, 'marque_id');
+        return $this->belongsTo(\App\Models\EnginMarque::class, 'marque_id');
     }
 
     /**
@@ -127,7 +132,7 @@ class VentePetrolier extends Model
      **/
     public function modele()
     {
-        return $this->belongsTo(\App\Models\EnginModel::class, 'modele_id');
+        return $this->belongsTo(\App\Models\EnginModele::class, 'modele_id');
     }
 
     /**
@@ -177,4 +182,10 @@ class VentePetrolier extends Model
     {
         return $this->belongsTo(\App\Models\Station::class, 'station_id');
     }
+
+    public function transporteur()
+    {
+        return $this->belongsTo(\App\Models\Transporteur::class, 'transporteur_id');
+    }
+    
 }

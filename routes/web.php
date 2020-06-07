@@ -98,3 +98,5 @@ Route::resource('chauffeurPermis', 'ChauffeurPermiController')->middleware('auth
 Route::resource('enginKilometrages', 'EnginKilometrageController')->middleware('auth');
 
 Route::resource('ventePetroliers', 'VentePetrolierController')->middleware('auth');
+
+Route::resource('produitPrixes', 'ProduitPrixController')->middleware('auth');

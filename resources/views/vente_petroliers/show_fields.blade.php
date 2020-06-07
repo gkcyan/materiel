@@ -7,31 +7,41 @@
 <!-- Marque Id Field -->
 <div class="form-group">
     {!! Form::label('marque_id', __('models/vente_petroliers.fields.marque_id').':') !!}
-    <p>{{ $ventePetrolier->marque_id }}</p>
+    <p>{{ $ventePetrolier->marque['marque'] }}</p>
 </div>
 
 <!-- Matricule Id Field -->
 <div class="form-group">
     {!! Form::label('matricule_id', __('models/vente_petroliers.fields.matricule_id').':') !!}
-    <p>{{ $ventePetrolier->matricule_id }}</p>
+    <p>{{ $ventePetrolier->matricule['matricule'] }}</p>
 </div>
 
 <!-- Transporteur Id Field -->
 <div class="form-group">
     {!! Form::label('transporteur_id', __('models/vente_petroliers.fields.transporteur_id').':') !!}
-    <p>{{ $ventePetrolier->transporteur_id }}</p>
+    <p>{{ $ventePetrolier->transporteur['libelle'] }}</p>
 </div>
 
 <!-- Produit Id Field -->
 <div class="form-group">
     {!! Form::label('produit_id', __('models/vente_petroliers.fields.produit_id').':') !!}
-    <p>{{ $ventePetrolier->produit_id }}</p>
+    <p>{{ $ventePetrolier->produit['produit'] }}</p>
 </div>
 
 <!-- Quantite Field -->
 <div class="form-group">
     {!! Form::label('quantite', __('models/vente_petroliers.fields.quantite').':') !!}
     <p>{{ $ventePetrolier->quantite }}</p>
+</div>
+<!-- cout Field -->
+<div class="form-group">
+    {!! Form::label('cout', __('models/vente_petroliers.fields.cout').':') !!}
+    <p>{{ $ventePetrolier->cout }}</p>
+</div>
+<!-- cout_remise Field -->
+<div class="form-group">
+    {!! Form::label('cout_remise', __('models/vente_petroliers.fields.cout_remise').':') !!}
+    <p>{{ $ventePetrolier->cout_remise }}</p>
 </div>
 
 <!-- Date Field -->
@@ -43,13 +53,13 @@
 <!-- Chauffeur Id Field -->
 <div class="form-group">
     {!! Form::label('chauffeur_id', __('models/vente_petroliers.fields.chauffeur_id').':') !!}
-    <p>{{ $ventePetrolier->chauffeur_id }}</p>
+    <p>{{ $ventePetrolier->chauffeur['nom'] }}</p>
 </div>
 
 <!-- Activite Id Field -->
 <div class="form-group">
     {!! Form::label('activite_id', __('models/vente_petroliers.fields.activite_id').':') !!}
-    <p>{{ $ventePetrolier->activite_id }}</p>
+    <p>{{ $ventePetrolier->activite['activite'] }}</p>
 </div>
 
 <!-- Kilometrage Field -->
@@ -61,25 +71,25 @@
 <!-- Statut Compteur Field -->
 <div class="form-group">
     {!! Form::label('statut_compteur', __('models/vente_petroliers.fields.statut_compteur').':') !!}
-    <p>{{ $ventePetrolier->statut_compteur }}</p>
+    <p>{{ $ventePetrolier->statut_compteur='1'? 'Marche' : 'Panne'}}</p>
 </div>
 
 <!-- Pompiste Id Field -->
 <div class="form-group">
     {!! Form::label('pompiste_id', __('models/vente_petroliers.fields.pompiste_id').':') !!}
-    <p>{{ $ventePetrolier->pompiste_id }}</p>
+    <p>{{ $ventePetrolier->pompiste['nom'] }}</p>
 </div>
 
 <!-- Pompe Id Field -->
 <div class="form-group">
     {!! Form::label('pompe_id', __('models/vente_petroliers.fields.pompe_id').':') !!}
-    <p>{{ $ventePetrolier->pompe_id }}</p>
+    <p>{{ $ventePetrolier->pompe['pompe'] }}</p>
 </div>
 
 <!-- Station Id Field -->
 <div class="form-group">
     {!! Form::label('station_id', __('models/vente_petroliers.fields.station_id').':') !!}
-    <p>{{ $ventePetrolier->station_id }}</p>
+    <p>{{ $ventePetrolier->station['station'] }}</p>
 </div>
 
 <!-- Autor Creat Field -->
