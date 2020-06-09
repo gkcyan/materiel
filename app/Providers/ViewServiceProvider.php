@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\ZoneCollecte;
+use App\Models\TypeZone;
 
 
 
@@ -55,6 +57,42 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['bareme_transports.fields'], function ($view) {
+            $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
+            $view->with('zone_collecteItems', $zone_collecteItems);
+        });
+        View::composer(['zone_collectes.fields'], function ($view) {
+            $type_zoneItems = TypeZone::pluck('type_zone','id')->toArray();
+            $view->with('type_zoneItems', $type_zoneItems);
+        });
         View::composer(['produit_prixes.fields'], function ($view) {
             $produitItems = Produit::pluck('produit','id')->toArray();
             $view->with('produitItems', $produitItems);

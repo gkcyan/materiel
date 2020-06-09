@@ -60,3 +60,17 @@ Route::resource('engin_kilometrages', 'EnginKilometrageAPIController');
 Route::resource('vente_petroliers', 'VentePetrolierAPIController');
 
 Route::resource('produit_prixes', 'ProduitPrixAPIController');
+
+Route::resource('bascules', 'BasculeAPIController');
+
+Route::resource('type_zones', 'TypeZoneAPIController');
+
+Route::resource('zone_collectes', 'ZoneCollecteAPIController');
+
+
+
+
+
+Route::resource('bareme_transports', 'BaremeTransportAPIController');
+
+Route::resource('bascule_datas', 'BasculeDataAPIController');

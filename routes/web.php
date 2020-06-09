@@ -100,3 +100,19 @@ Route::resource('enginKilometrages', 'EnginKilometrageController')->middleware('
 Route::resource('ventePetroliers', 'VentePetrolierController')->middleware('auth');
 
 Route::resource('produitPrixes', 'ProduitPrixController')->middleware('auth');
+
+Route::resource('bascules', 'BasculeController');
+
+Route::resource('typeZones', 'TypeZoneController');
+
+Route::resource('zoneCollectes', 'ZoneCollecteController');
+
+
+
+
+
+
+
+Route::resource('baremeTransports', 'BaremeTransportController');
+
+Route::resource('basculeDatas', 'BasculeDataController');

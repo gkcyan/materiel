@@ -216,6 +216,45 @@
         </ul>
     </ul>
 </li>
+<li class="treeview ">
+    <a href="#">
+    <i class="fa fa-dashboard"></i> <span>TRANSPORTS</span>
+    <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+    </span>
+    </a>
+    <ul class="treeview-menu">
+        
+        <!--ul class="sidebar-menu tree" data-widget="tree">
+            <li class="{{ Request::is('bascules*') ? 'active' : '' }}">
+                <a href="{{ route('bascules.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bascules.plural')</span></a>
+            </li-->
+            
+            <li class="{{ Request::is('typeZones*') ? 'active' : '' }}">
+                <a href="{{ route('typeZones.index') }}"><i class="fa fa-edit"></i><span>@lang('models/type_zones.plural')</span></a>
+            </li>
+            
+            <li class="{{ Request::is('zoneCollectes*') ? 'active' : '' }}">
+                <a href="{{ route('zoneCollectes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/zone_collectes.plural')</span></a>
+            </li>
+            
+            
+            
+            
+            <li class="{{ Request::is('baremeTransports*') ? 'active' : '' }}">
+                <a href="{{ route('baremeTransports.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bareme_transports.plural')</span></a>
+            </li>
+            
+            <li class="{{ Request::is('basculeDatas*') ? 'active' : '' }}">
+                <a href="{{ route('basculeDatas.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bascule_datas.plural')</span></a>
+            </li>
+
+        </ul>
+    </ul>
+</li>
+
+
+
 <!--li class="treeview ">
     <a href="#">
     <i class="fa fa-dashboard"></i> <span>STATION</span>
@@ -232,4 +271,3 @@
         </ul>
     </ul>
 </li-->
-

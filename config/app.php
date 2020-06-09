@@ -169,6 +169,9 @@ return [
 
         Yajra\DataTables\DataTablesServiceProvider::class,
         \InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -235,6 +238,10 @@ return [
         'Html'         => Collective\Html\HtmlFacade::class,
         'Flash'        => Laracasts\Flash\Flash::class,
         'DataTables'   => Yajra\DataTables\Facades\DataTables::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+       // 'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     ],
 
 ];
