@@ -20,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@index')->middleware('verified');
+Route::get('/', 'HomeController@index')->middleware('verified'); 
 Route::get('/home', 'HomeController@index')->middleware('verified');
+Route::get('/logout', 'HomeController@index')->middleware('verified');
 
 Route::resource('users', 'UserController')->middleware('auth');
 
@@ -101,18 +102,14 @@ Route::resource('ventePetroliers', 'VentePetrolierController')->middleware('auth
 
 Route::resource('produitPrixes', 'ProduitPrixController')->middleware('auth');
 
-Route::resource('bascules', 'BasculeController');
+Route::resource('bascules', 'BasculeController')->middleware('auth');
 
-Route::resource('typeZones', 'TypeZoneController');
+Route::resource('typeZones', 'TypeZoneController')->middleware('auth');
 
-Route::resource('zoneCollectes', 'ZoneCollecteController');
+Route::resource('zoneCollectes', 'ZoneCollecteController')->middleware('auth');
 
+Route::resource('baremeTransports', 'BaremeTransportController')->middleware('auth');
 
+Route::resource('basculeDatas', 'BasculeDataController')->middleware('auth');
 
-
-
-
-
-Route::resource('baremeTransports', 'BaremeTransportController');
-
-Route::resource('basculeDatas', 'BasculeDataController');
+Route::resource('baremePenaliteTransports', 'BaremePenaliteTransportController')->middleware('auth');

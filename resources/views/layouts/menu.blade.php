@@ -238,8 +238,7 @@
                 <a href="{{ route('zoneCollectes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/zone_collectes.plural')</span></a>
             </li>
             
-            
-            
+                     
             
             <li class="{{ Request::is('baremeTransports*') ? 'active' : '' }}">
                 <a href="{{ route('baremeTransports.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bareme_transports.plural')</span></a>
@@ -248,6 +247,11 @@
             <li class="{{ Request::is('basculeDatas*') ? 'active' : '' }}">
                 <a href="{{ route('basculeDatas.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bascule_datas.plural')</span></a>
             </li>
+
+            <li class="{{ Request::is('baremePenaliteTransports*') ? 'active' : '' }}">
+                <a href="{{ route('baremePenaliteTransports.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bareme_Penalite_Transports.plural')</span></a>
+            </li>
+            
 
         </ul>
     </ul>

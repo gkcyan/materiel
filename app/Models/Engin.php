@@ -120,17 +120,17 @@ class Engin extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function marque()
-    {
-        return $this->belongsTo(\App\Models\EnginMarque::class, 'marque_id');
-    }
+    //public function marque()
+   // {
+   //     return $this->belongsTo(\App\Models\EnginMarque::class, 'marque_id');
+    //}
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function modele()
     {
-        return $this->belongsTo(\App\Models\EnginModel::class, 'modele_id');
+        return $this->belongsTo(\App\Models\EnginModele::class, 'modele_id');
     }
 
     /**

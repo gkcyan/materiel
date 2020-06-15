@@ -74,3 +74,5 @@ Route::resource('zone_collectes', 'ZoneCollecteAPIController');
 Route::resource('bareme_transports', 'BaremeTransportAPIController');
 
 Route::resource('bascule_datas', 'BasculeDataAPIController');
+
+Route::resource('bareme_penalite_transports', 'BaremePenaliteTransportAPIController');

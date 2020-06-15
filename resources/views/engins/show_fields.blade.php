@@ -7,13 +7,13 @@
 <!-- Marque Id Field -->
 <div class="form-group">
     {!! Form::label('marque_id', __('models/engins.fields.marque_id').':') !!}
-    <p>{{ $engin->marque_id }}</p>
+    <p>{{ $engin->modele->marque['marque'] }}</p>
 </div>
 
 <!-- Modele Id Field -->
 <div class="form-group">
     {!! Form::label('modele_id', __('models/engins.fields.modele_id').':') !!}
-    <p>{{ $engin->modele_id }}</p>
+    <p>{{ $engin->modele['modele'] }}</p>
 </div>
 
 <!-- Matricule Field -->

@@ -148,4 +148,15 @@ class ZoneCollecteController extends AppBaseController
 
         return redirect(route('zoneCollectes.index'));
     }
+
+    
+    public function ZoneId($data)
+    {
+        $zoneids = ZoneCollecte::where('zone',$data )->get('id');
+        foreach ($zoneids as $zoneid)
+        {
+            return $zoneid->id;
+        }
+        
+    }
 }

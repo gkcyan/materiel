@@ -1,36 +1,23 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+
+
 use App\Models\ZoneCollecte;
 use App\Models\TypeZone;
-
-
-
-
-
-
-
 use App\Models\Pompe;
 use App\Models\Pompiste;
 use App\Models\Chauffeur;
 use App\Models\Transporteur;
 use App\Models\Activite;
 use App\Models\Engin;
-
-
-
-
 use App\Models\Process;
 use App\Models\EnginType;
 use App\Models\EnginModele;
 use App\Models\EnginMarque;
-
 use App\Models\Cuve;
-
 use App\Models\Produit;
-
 use App\Models\Categorie;
-
 use App\Models\Station;
 use App\Models\Petrolier;
 use App\Models\Entreprise;

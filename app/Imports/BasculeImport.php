@@ -2,12 +2,106 @@
 
 namespace App\Imports;
 
+
 use App\Models\BasculeData;
+use App\Models\BaremeTransport;
+use App\Models\ZoneCollecte;
+use App\Models\BaremePenaliteTransport;
+use Illuminate\Support\Facades\App;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class BasculeImport implements ToModel
-{
+{ 
+
+    /** recupération de l'identifiant de la zone ligne par ligne
+     * @param $origine_id 
+     * @param $destination_id,
+     * 
+     */
+    public function ZoneId($data)
+    {
+        $zoneids = ZoneCollecte::where('zone',$data )->get('id');
+        foreach ($zoneids as $zoneid)
+        {
+            return $zoneid->id;
+        }
+        
+    }
+
+
+    /** recupération du cout au km ligne par ligne
+     * @param $origine_id 
+     * @param $destination_id,
+     * 
+     */
+    public function coutKm($origine,$destination)
+    {
+        $couts = BaremeTransport::where('origine_id',$origine)->where('destination_id',$destination)->get();
+        foreach ($couts as $cout)
+        {
+            return $cout->cout;
+           
+        }
+    }
+
+    /** calcule du tarif par tonne  de la freinte ligne par ligne
+     * @param $date_entree 
+     * @param $date_sortie,
+     * @param $ecart 
+     */
+    public function PrixAiph($datedebut,$datefin)
+    {
+        $debutcorrecte= \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($datedebut)->format('Y-m-d');
+        $fincorrecte=\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($datefin)->format('Y-m-d');
+        $penalites = BaremePenaliteTransport::where('debut','<=',$debutcorrecte)->where('fin','>=',$fincorrecte)->get();
+        foreach ($penalites as $penalite)
+        {
+             return $penalite->prix_aiph*$penalite->coef;
+            
+        }
+    }
+
+    /** recupération de la freinte ligne par ligne
+     * @param $date_entree 
+     * @param $date_sortie,
+     * @param $ecart 
+     */
+    public function Freinte($datedebut,$datefin)
+    {
+        $debutcorrecte= \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($datedebut)->format('Y-m-d');
+        $fincorrecte=\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($datefin)->format('Y-m-d');
+        $penalites = BaremePenaliteTransport::where('debut','<=',$debutcorrecte)->where('fin','>=',$fincorrecte)->get();
+        foreach ($penalites as $penalite)
+        {
+            return $penalite->freinte;
+        }
+    }
+
+    /** valorisation des ecarts de poids
+     * @param $date_entree 
+     * @param $date_sortie,
+     * @param $ecart 
+     */
+    public function CalculeFreinte($debut,$fin,$ecart)
+    {
+        $debutcorrecte= \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($debut)->format('Y-m-d');
+        $fincorrecte=\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($fin)->format('Y-m-d');
+        $freintes = BaremePenaliteTransport::where('debut','<=',$debutcorrecte)->where('fin','>=',$fincorrecte)->get();
+        //dd($freintes);
+        if($ecart <='0')
+            { return 0;}
+        else
+        {
+            foreach ($freintes as $freinte)
+            {
+                return ($ecart-$freinte->freinte)*$freinte->prix_aiph*$freinte->coef;
+                
+            }
+        }
+        
+    }
     /**
+     * importation et traitement des données du fichier excel
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
@@ -16,15 +110,10 @@ class BasculeImport implements ToModel
     {
         return new BasculeData([
             'num_ticket'=> $row[0],
-            //print_r($row[0]),
-            //'date_sortie'=> ($row[1]-25569)*8640,
             'date_sortie'=> \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['1'])->format('Y-m-d'),
             'heure_sortie'=> \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['2'])->format('H:i:s'),
-            //'heure_sortie'=> ($row[2]*86400),
-            //'date_entree'=> ($row[3]-25569)*86400,
             'date_entree'=> \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['3'])->format('Y-m-d'),
             'heure_entree'=> \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['4'])->format('H:i:s'),
-            //'heure_entree'=> ($row[4]*86400),
             'camion'=> $row[5],
             'citerne'=> $row[6],
             'code_client'=> $row[7],
@@ -60,6 +149,16 @@ class BasculeImport implements ToModel
             'raison_sociale'=> $row[37],
             '1_peseur'=> $row[38],
             '2_peseur'=> $row[39],
+            'destination'=>substr($row[0],0,3),
+            'destination_id'=> $this->ZoneId(substr($row[0],0,3)),
+            'origine_id'=>$this->ZoneId($row[12]),
+            'cout_km'=>$this->coutKm($this->ZoneId($row[12]),$this->ZoneId(substr($row[0],0,3))),
+            'cout_ticket'=>$this->coutKm($this->ZoneId($row[12]),$this->ZoneId(substr($row[0],0,3)))*$row[32],
+            'ecart_freinte'=>$this->Freinte($row[1],$row[3]),
+            'ecart_penalite_tonne'=>$this->PrixAiph($row[1],$row[3]),
+            'ecart_penalite_cout'=>$this->CalculeFreinte($row[3],$row[1],$row[33]),
+           
+            
         ]);
     }
 }

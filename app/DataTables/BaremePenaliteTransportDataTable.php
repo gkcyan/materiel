@@ -2,12 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\Engin;
+use App\Models\BaremePenaliteTransport;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
 
-class EnginDataTable extends DataTable
+class BaremePenaliteTransportDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -19,18 +19,18 @@ class EnginDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'engins.datatables_actions');
+        return $dataTable->addColumn('action', 'bareme_penalite_transports.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Engin $model
+     * @param \App\Models\BaremePenaliteTransport $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Engin $model)
+    public function query(BaremePenaliteTransport $model)
     {
-        return $model->newQuery()->with(['modele','modele.marque']);
+        return $model->newQuery();
     }
 
     /**
@@ -102,32 +102,20 @@ class EnginDataTable extends DataTable
     }
 
     /**
-     * Get columns.44008766 SEHIBA
+     * Get columns.
      *
      * @return array
      */
     protected function getColumns()
     {
         return [
-            'marque_id' => new Column(['title' => __('models/engins.fields.marque_id'), 'data' => 'marque_id']),
-            'marque_id'=>new \Yajra\DataTables\Html\Column(['title' => __('models/engins.fields.marque_id'), 'data' => 'modele.marque.marque', 'name' => 'modele.marque.marque']),
-            'modele_id' => new \Yajra\DataTables\Html\Column(['title' => __('models/engins.fields.modele_id'), 'data' => 'modele.modele']),
-            'matricule' => new Column(['title' => __('models/engins.fields.matricule'), 'data' => 'matricule']),
-            'type_id' => new Column(['title' => __('models/engins.fields.type_id'), 'data' => 'type_id']),
-            'code' => new Column(['title' => __('models/engins.fields.code'), 'data' => 'code']),
-            'energie_id' => new Column(['title' => __('models/engins.fields.energie_id'), 'data' => 'energie_id']),
-            'chassis' => new Column(['title' => __('models/engins.fields.chassis'), 'data' => 'chassis']),
-            'poids_vide' => new Column(['title' => __('models/engins.fields.poids_vide'), 'data' => 'poids_vide']),
-            'charge_utile' => new Column(['title' => __('models/engins.fields.charge_utile'), 'data' => 'charge_utile']),
-            'poids_charge' => new Column(['title' => __('models/engins.fields.poids_charge'), 'data' => 'poids_charge']),
-            'km_depart' => new Column(['title' => __('models/engins.fields.km_depart'), 'data' => 'km_depart']),
-            'couleur' => new Column(['title' => __('models/engins.fields.couleur'), 'data' => 'couleur']),
-            'essieux' => new Column(['title' => __('models/engins.fields.essieux'), 'data' => 'essieux']),
-            'places' => new Column(['title' => __('models/engins.fields.places'), 'data' => 'places']),
-            'usage' => new Column(['title' => __('models/engins.fields.usage'), 'data' => 'usage']),
-            'date_circ' => new Column(['title' => __('models/engins.fields.date_circ'), 'data' => 'date_circ']),
-            'nb_roue' => new Column(['title' => __('models/engins.fields.nb_roue'), 'data' => 'nb_roue']),
-            'statut' => new Column(['title' => __('models/engins.fields.statut'), 'data' => 'statut'])
+            'freinte' => new Column(['title' => __('models/bareme_penalite_transports.fields.freinte'), 'data' => 'freinte']),
+            'prix_aiph' => new Column(['title' => __('models/bareme_penalite_transports.fields.prix_aiph'), 'data' => 'prix_aiph']),
+            'coef' => new Column(['title' => __('models/bareme_penalite_transports.fields.coef'), 'data' => 'coef']),
+            'penalite_tonne' => new Column(['title' => __('models/bareme_penalite_transports.fields.penalite_tonne'), 'data' => 'penalite_tonne']),
+            'debut' => new Column(['title' => __('models/bareme_penalite_transports.fields.debut'), 'data' => 'debut']),
+            'fin' => new Column(['title' => __('models/bareme_penalite_transports.fields.fin'), 'data' => 'fin']),
+            'statut' => new Column(['title' => __('models/bareme_penalite_transports.fields.statut'), 'data' => 'statut'])
         ];
     }
 

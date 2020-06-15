@@ -110,7 +110,13 @@ class BasculeData extends Model
         'cout_km',
         'cout_ticket',
         'autor_creat',
-        'autor_update'
+        'autor_update',
+        'destination',
+        'destination_id',
+        'origine_id',
+        'ecart_freinte',
+        'ecart_penalite_tonne',
+        'ecart_penalite_cout'
     ];
 
     /**
@@ -162,7 +168,13 @@ class BasculeData extends Model
         'cout_km' => 'string',
         'cout_ticket' => 'string',
         'autor_creat' => 'string',
-        'autor_update' => 'string'
+        'autor_update' => 'string',
+        'destination'=>'string',
+        'destination_id' => 'integer',
+        'origine_id' => 'integer',
+        'ecart_freinte'=>'integer',
+        'ecart_penalite_tonne'=>'integer',
+        'ecart_penalite_cout'=>'integer'
     ];
 
     /**

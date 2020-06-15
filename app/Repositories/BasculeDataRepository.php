@@ -60,7 +60,14 @@ class BasculeDataRepository extends BaseRepository
         'cout_km',
         'cout_ticket',
         'autor_creat',
-        'autor_update'
+        'autor_update',
+        'destination',
+        'destination_id',
+        'origine_id',
+        'ecart_freinte',
+        'ecart_penalite_tonne',
+        'ecart_penalite_cout'
+        
     ];
 
     /**

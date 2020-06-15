@@ -1,13 +1,13 @@
 <!-- Marque Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('marque_id', 'Marque Id:') !!}
-    {!! Form::select('marque_id', $engin_marqueItems, null, ['class' => 'form-control']) !!}
+    {!! Form::select('marque_id', $engin_marqueItems, null, ['class' => 'form-control', 'placeholder' => 'Pick a size...']) !!}
 </div>
 
 <!-- Modele Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('modele_id', 'Modele Id:') !!}
-    {!! Form::select('modele_id', $engin_modeleItems, null, ['class' => 'form-control']) !!}
+    {!! Form::select('modele_id', $engin_modeleItems, null, ['class' => 'form-control', 'placeholder' => 'Pick a size...']) !!}
 </div>
 
 <!-- Matricule Field -->
@@ -19,7 +19,7 @@
 <!-- Type Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('type_id', 'Type Id:') !!}
-    {!! Form::select('type_id', $engin_typeItems, null, ['class' => 'form-control']) !!}
+    {!! Form::select('type_id', $engin_typeItems, null, ['class' => 'form-control', 'placeholder' => 'Pick a size...']) !!}
 </div>
 
 <!-- Code Field -->
@@ -31,7 +31,7 @@
 <!-- Energie Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('energie_id', 'Energie Id:') !!}
-    {!! Form::select('energie_id', $produitItems, null, ['class' => 'form-control']) !!}
+    {!! Form::select('energie_id', $produitItems, null, ['class' => 'form-control', 'placeholder' => 'Pick a size...' ]) !!}
 </div>
 
 <!-- Chassis Field -->
