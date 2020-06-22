@@ -1,0 +1,2606 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : localhost:3306
+-- Généré le :  lun. 22 juin 2020 à 22:07
+-- Version du serveur :  5.7.24
+-- Version de PHP :  7.3.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `clod`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `accomptes`
+--
+
+CREATE TABLE `accomptes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type_accompte_id` int(10) UNSIGNED NOT NULL,
+  `fournisseur_id` int(10) UNSIGNED NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Montant` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `caisse` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `caissier` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `recup_par` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `accomptes`
+--
+
+INSERT INTO `accomptes` (`id`, `type_accompte_id`, `fournisseur_id`, `description`, `Montant`, `date`, `caisse`, `caissier`, `recup_par`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 'regelment de chargeuse', 1500, '2020-06-22', 'Yannick', 'Jean François', 'Yves Alain', NULL, NULL, '2020-06-22 21:25:50', '2020-06-22 21:25:50', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `activites`
+--
+
+CREATE TABLE `activites` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `process_id` int(10) UNSIGNED NOT NULL,
+  `activite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` int(11) NOT NULL,
+  `finalite` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pilote` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `controleur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `activites`
+--
+
+INSERT INTO `activites` (`id`, `process_id`, `activite`, `statut`, `finalite`, `pilote`, `controleur`, `code`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'precollecte', 1, 'regrouper les regimes d\'une zone', 'francois.kla@palmafrique.ci', 'yannick.gouede@palmafrique.ci', '0012', 'yannick', 'yannick', '2020-06-02 18:55:48', '2020-06-02 18:55:48', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `agences`
+--
+
+CREATE TABLE `agences` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `libelle` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `entreprise_id` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `agences`
+--
+
+INSERT INTO `agences` (`id`, `libelle`, `entreprise_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'bonoua', '2', '2020-05-20 11:19:06', '2020-05-20 11:19:06', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `bareme_penalite_transports`
+--
+
+CREATE TABLE `bareme_penalite_transports` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `freinte` int(11) NOT NULL,
+  `prix_aiph` int(11) NOT NULL,
+  `coef` int(11) NOT NULL,
+  `penalite_tonne` int(11) NOT NULL,
+  `debut` date NOT NULL,
+  `fin` date NOT NULL,
+  `statut` int(11) NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `bareme_penalite_transports`
+--
+
+INSERT INTO `bareme_penalite_transports` (`id`, `freinte`, `prix_aiph`, `coef`, `penalite_tonne`, `debut`, `fin`, `statut`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 40, 51, 2, 102, '2018-08-01', '2018-08-31', 1, NULL, NULL, '2020-06-15 11:49:31', '2020-06-15 11:49:31', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `bareme_transports`
+--
+
+CREATE TABLE `bareme_transports` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `origine_id` int(10) UNSIGNED NOT NULL,
+  `destination_id` int(10) UNSIGNED NOT NULL,
+  `distance` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cout` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `observation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `bareme_transports`
+--
+
+INSERT INTO `bareme_transports` (`id`, `origine_id`, `destination_id`, `distance`, `cout`, `observation`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 203, 222, '50', '1000', NULL, NULL, NULL, '2020-06-13 00:00:00', NULL, NULL),
+(2, 30, 222, '500', '2000', NULL, NULL, NULL, '2020-06-13 21:43:42', '2020-06-13 21:43:42', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `bascules`
+--
+
+CREATE TABLE `bascules` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `bascule` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `localisation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `responsable` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `bascules`
+--
+
+INSERT INTO `bascules` (`id`, `bascule`, `code`, `localisation`, `contact`, `responsable`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Elibou', 'ELI', 'Elibou, badassou', '65898745', 'Soro etienne', '2020-06-07 15:35:46', '2020-06-07 15:35:46', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `bascule_datas`
+--
+
+CREATE TABLE `bascule_datas` (
+  `id` int(11) NOT NULL,
+  `num_ticket` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_sortie` date DEFAULT NULL,
+  `heure_sortie` time DEFAULT NULL,
+  `date_entree` date DEFAULT NULL,
+  `heure_entree` time DEFAULT NULL,
+  `camion` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `citerne` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_client` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_produit` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `produit` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_destination` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `destination` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `destination_id` int(11) DEFAULT NULL,
+  `code_origine` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `origine` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `origine_id` int(11) DEFAULT NULL,
+  `origine_reelle` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_type_de_vehicule` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type_de_vehicule` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_nom_chaufffeur` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nom_chaufffeur` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_nom_transporteur` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nom_transporteur` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_type_operation` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type_operation` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `n_recette` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `n_bon_enlevement` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `n_liasse` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `n_facture` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nom_chauf_prive` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nom_client_part` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `poids_declare` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observation` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `poids_entree` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `poids_sortie` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `poids_net` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ecart` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ecart_freinte` int(11) DEFAULT NULL,
+  `ecart_penalite_tonne` int(11) DEFAULT NULL,
+  `ecart_penalite_cout` int(11) DEFAULT NULL,
+  `type_pesee` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `transaction` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code_societe` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `raison_sociale` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `1_peseur` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `2_peseur` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cout_km` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cout_ticket` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `statut` int(11) DEFAULT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `bascule_datas`
+--
+
+INSERT INTO `bascule_datas` (`id`, `num_ticket`, `date_sortie`, `heure_sortie`, `date_entree`, `heure_entree`, `camion`, `citerne`, `code_client`, `client`, `code_produit`, `produit`, `code_destination`, `destination`, `destination_id`, `code_origine`, `origine`, `origine_id`, `origine_reelle`, `code_type_de_vehicule`, `type_de_vehicule`, `code_nom_chaufffeur`, `nom_chaufffeur`, `code_nom_transporteur`, `nom_transporteur`, `code_type_operation`, `type_operation`, `n_recette`, `n_bon_enlevement`, `n_liasse`, `n_facture`, `nom_chauf_prive`, `nom_client_part`, `poids_declare`, `observation`, `poids_entree`, `poids_sortie`, `poids_net`, `ecart`, `ecart_freinte`, `ecart_penalite_tonne`, `ecart_penalite_cout`, `type_pesee`, `transaction`, `code_societe`, `raison_sociale`, `1_peseur`, `2_peseur`, `cout_km`, `cout_ticket`, `statut`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'ELI_180831_26307', '2018-08-31', '20:56:00', '2018-08-31', '20:37:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44001', 'TAABO', 203, NULL, '4', 'BENNE DE COLLECTE', '49', 'DON ALEXIS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'NASIROU', '0', NULL, '6620', '5440', '1180', '100', 40, 102, 6120, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', '1000', '1180000', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(2, 'ELI_180831_26306', '2018-08-31', '20:35:00', '2018-08-31', '20:34:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '90005', 'AUTRES ORIGINES ELIBOU', NULL, ' KPEBO', '4', 'BENNE DE COLLECTE', '49', 'DON ALEXIS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'COL YAO TOURE ALBERT', '0', NULL, '11260', '6620', '4640', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(3, 'ELI_180831_26305', '2018-08-31', '18:47:00', '2018-08-31', '18:41:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44012', 'AHOUANOU', 30, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ODJE  MAHO', 'JEAN CLAUDE DELAFOSSE', '0', NULL, '8700', '5640', '3060', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', '2000', '6120000', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(4, 'ELI_180831_26304', '2018-08-31', '18:42:00', '2018-08-31', '18:33:00', '1004B', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44032', 'SAHUYE', 189, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAWADOGO AMADOU', 'KABRAN APPIAH', '0', NULL, '7540', '6180', '1360', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(5, 'ELI_180831_26303', '2018-08-31', '18:39:00', '2018-08-31', '18:02:00', '164FX01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '4', 'BENNE DE COLLECTE', '44', 'TRAORE LAMOUSSA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'KOUADIO LAURENT', '0', NULL, '9080', '5540', '3540', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(6, 'ELI_180831_26302', '2018-08-31', '18:37:00', '2018-08-31', '15:13:00', '4094GX01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BARRO SALIFOU', NULL, '0', NULL, '6040', '20620', '14580', '0', 40, 102, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(7, 'ELI_180831_26301', '2018-08-31', '18:34:00', '2018-08-31', '18:22:00', '4337GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '51024', 'M\'BRIBO', 150, NULL, '4', 'BENNE DE COLLECTE', '46', 'AGRE LAZARE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'ENTP/ YATOU', '0', NULL, '6640', '5660', '980', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(8, 'ELI_180831_26300', '2018-08-31', '18:21:00', '2018-08-31', '18:04:00', '4337GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44090', 'N\'ZIANOUA', 169, NULL, '4', 'BENNE DE COLLECTE', '46', 'AGRE LAZARE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'ABINAN  K PASCAL', '0', NULL, '10000', '6640', '3360', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:00', '2020-06-15 20:45:00', NULL),
+(9, 'ELI_180831_26299', '2018-08-31', '17:24:00', '2018-08-31', '17:10:00', '495HK01', NULL, '43615', 'BROU KOFFI PATRICE', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '27280', '13780', '13500', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(10, 'ELI_180831_26298', '2018-08-31', '16:09:00', '2018-08-31', '08:31:00', '6289FF04', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIO ISSA', NULL, '0', NULL, '12300', '27680', '15380', '0', 40, 102, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(11, 'ELI_180831_26297', '2018-08-31', '16:07:00', '2018-08-31', '16:02:00', '8071GS01', NULL, '43326', 'MOULAUD ASSAMOI', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '1', 'TRACTEUR', '47', 'OBROU DONH MARTIAL', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'MOULAUD ASSAMOI ALBERIC', '0', NULL, '9640', '5840', '3800', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(12, 'ELI_180831_26296', '2018-08-31', '15:42:00', '2018-08-31', '15:37:00', '9037GR01', NULL, '43326', 'MOULAUD ASSAMOI', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ATTAGBA EMILE', 'MOULAUD ASSAMOI ALBERIC', '0', NULL, '18220', '8480', '9740', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(13, 'ELI_180831_26295', '2018-08-31', '14:35:00', '2018-08-31', '14:14:00', '4351GP01', NULL, '41393', 'SAHOUET BIZIE', '1', 'REGIMES', NULL, 'ELI', 222, '44067', 'KODIAKRO (SONGON)', 127, NULL, '4', 'BENNE DE COLLECTE', '11', 'MONNI ARNAUD', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'SAHOUET BIZIE', '0', NULL, '7860', '5660', '2200', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(14, 'ELI_180831_26294', '2018-08-31', '14:18:00', '2018-08-31', '09:53:00', '4499GJ01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '45', 'VOUE DENIS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '12760', '24320', '11560', '0', 40, 102, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(15, 'ELI_180831_26293', '2018-08-31', '13:29:00', '2018-08-31', '13:16:00', '2277ET01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44060', 'GUEBO 1', 114, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA ADAMA', 'KONE TOU BRAHIMA', '0', NULL, '4060', '2860', '1200', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(16, 'ELI_180831_26292', '2018-08-31', '12:57:00', '2018-08-31', '07:35:00', '2418EC01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA MOUSSA', NULL, '0', NULL, '14020', '30200', '16180', '0', 40, 102, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(17, 'ELI_180831_26291', '2018-08-31', '12:12:00', '2018-08-31', '12:05:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44033', 'SIKENSI', 192, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ODJE MAHO ', 'KONE POGNAN 2', '0', NULL, '8020', '5660', '2360', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(18, 'ELI_180831_26290', '2018-08-31', '12:05:00', '2018-08-31', '11:56:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44033', 'SIKENSI', 192, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ODJE MAHO', 'KONE POGNAN 1', '0', NULL, '8580', '8020', '560', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(19, 'ELI_180831_26289', '2018-08-31', '12:03:00', '2018-08-31', '11:58:00', '6060HK01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44060', 'GUEBO 1', 114, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SIRI YAYA', 'EBOHI JACQUES', '0', NULL, '9620', '4640', '4980', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:01', '2020-06-15 20:45:01', NULL),
+(20, 'ELI_180831_26288', '2018-08-31', '11:32:00', '2018-08-31', '11:12:00', '2277ET01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44060', 'GUEBO 1', 114, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA ADAMA', 'KONE TOU BRAHIMA', '0', NULL, '6300', '2860', '3440', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(21, 'ELI_180831_26287', '2018-08-31', '10:12:00', '2018-08-31', '10:01:00', '0272CH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ALLA SIMPLICE', 'GNANGORAN ABRO ', '0', NULL, '1220', '440', '780', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(22, 'ELI_180831_26286', '2018-08-31', '09:33:00', '2018-08-31', '09:21:00', '0272CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ALLA SIMPLICE', 'M\'BOUA KERE Q', '0', NULL, '1020', '440', '580', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(23, 'ELI_180831_26285', '2018-08-31', '09:30:00', '2018-08-29', '16:54:00', '9257FU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'TIENOU ALI', NULL, '0', NULL, '8740', '22140', '13400', '0', 40, 102, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(24, 'ELI_180831_26284', '2018-08-31', '09:12:00', '2018-08-31', '08:59:00', '4337GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '4', 'BENNE DE COLLECTE', '46', 'AGRE LAZARE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'Mme KOISSY EULALIE', '0', NULL, '7100', '5740', '1360', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(25, 'ELI_180831_26283', '2018-08-31', '08:48:00', '2018-08-31', '07:41:00', '4351GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '4', 'BENNE DE COLLECTE', '11', 'MONNI ARNAUD', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'DEUX PLANTEURS', '0', NULL, '12440', '5640', '6800', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(26, 'ELI_180831_26282', '2018-08-31', '08:46:00', '2018-08-31', '07:49:00', '164FX01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '90005', 'AUTRES ORIGINES ELIBOU', NULL, ' Nkpebo', '4', 'BENNE DE COLLECTE', '43', 'BAOULE DOMANPOULE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'COL YAO ALBERT', '0', NULL, '12240', '5600', '6640', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(27, 'ELI_180831_26281', '2018-08-31', '08:04:00', '2018-08-31', '07:57:00', '4302GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44080', 'GRAND YAPO', NULL, NULL, '2', 'CAMION', '4', 'KOFFI SYLVAIN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'KOUADIO MAHO', '0', NULL, '6200', '5580', '620', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(28, 'ELI_180831_26280', '2018-08-31', '07:55:00', '2018-08-31', '07:39:00', '4302GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '4', 'BENNE DE COLLECTE', '4', 'KOFFI SYLVAIN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'N\'DORY YIH HORTENSE', '0', NULL, '9380', '6200', '3180', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(29, 'ELI_180831_26279', '2018-08-31', '07:45:00', '2018-08-30', '09:05:00', '4094GX01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BARRO SALIFOU', NULL, '0', NULL, '6040', '20460', '14420', '0', 40, 102, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(30, 'ELI_180831_26278', '2018-08-31', '07:43:00', '2018-08-31', '07:33:00', '28001', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44058', 'BAGO', 59, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BELEEM OUSMANE', 'GUENNEGUEZ JOEL', '0', NULL, '10820', '5020', '5800', '0', 40, 102, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:02', '2020-06-15 20:45:02', NULL),
+(31, 'ELI_180831_26277', '2018-08-31', '07:37:00', '2018-08-29', '11:49:00', '1152HJ01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'LASSINA SANGARE', NULL, '0', NULL, '9460', '23360', '13900', '0', 40, 102, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(32, 'ELI_180731_25833', '2018-07-31', '21:27:00', '2018-07-31', '21:20:00', '8071GS01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44012', 'AHOUANOU', 30, NULL, '1', 'TRACTEUR', '47', 'OBROU DONH MARTIAL', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'AKA FELIX', '0', NULL, '9280', '5900', '3380', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', '2000', '6760000', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(33, 'ELI_180731_25832', '2018-07-31', '21:05:00', '2018-07-31', '20:35:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44012', 'AHOUANOU', 30, NULL, '4', 'BENNE DE COLLECTE', '48', 'BONI ARSENE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'AKA FELIX', NULL, '0', NULL, '11880', '5420', '6460', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', '2000', '12920000', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(34, 'ELI_180731_25831', '2018-07-31', '20:00:00', '2018-07-31', '19:21:00', '552JA01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44012', 'AHOUANOU', 30, NULL, '4', 'BENNE DE COLLECTE', '34', 'TIEMOKO', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'AKA FELIX', '0', NULL, '9120', '4120', '5000', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', '2000', '10000000', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(35, 'ELI_180731_25830', '2018-07-31', '19:38:00', '2018-07-31', '19:19:00', '86FJ01', NULL, '41504', 'GUENNEGUEZ JOEL', '1', 'REGIMES', NULL, 'ELI', 222, '44058', 'BAGO', 59, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'COMPAORE ADAMA', 'GUENNEGUEZ JOEL', '0', NULL, '7320', '2760', '4560', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(36, 'ELI_180731_25829', '2018-07-31', '19:16:00', '2018-07-31', '19:04:00', '723EN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44073', 'OGOUDOU', 172, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUEDRAOGO ABDOULAYE', 'OUEDRAOGO ABOU', '0', NULL, '16140', '8720', '7420', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(37, 'ELI_180731_25828', '2018-07-31', '18:52:00', '2018-07-31', '18:37:00', '4707JW', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44032', 'SAHUYE', 189, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MIESSI EDOUARD', 'KOFFI N\'GUESSAN SATURNIN', '0', NULL, '1280', '500', '780', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(38, 'ELI_180731_25827', '2018-07-31', '18:49:00', '2018-07-31', '18:40:00', '6060HK01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SIRI YAYA ', 'Mme KOISSY EULALIE', '0', NULL, '9920', '4620', '5300', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(39, 'ELI_180731_25826', '2018-07-31', '18:12:00', '2018-07-31', '17:58:00', '0624CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DEDI JUNIOR', 'GNANGORAN KOFFI PRINCE', '0', NULL, '1340', '520', '820', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(40, 'ELI_180731_25825', '2018-07-31', '18:04:00', '2018-07-31', '17:55:00', '4133CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOUASSI FERNAND', 'M\'BOUA N\'DRI HYPPOLITE', '0', NULL, '1200', '520', '680', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(41, 'ELI_180731_25824', '2018-07-31', '18:01:00', '2018-07-31', '17:52:00', '5226CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'N\'GUESSAN MARTIN', 'KACOU ROLAND', '0', NULL, '1000', '480', '520', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:03', '2020-06-15 20:45:03', NULL),
+(42, 'ELI_180731_25823', '2018-07-31', '17:59:00', '2018-07-31', '17:46:00', '0139CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44021', 'BADASSO', 58, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'N\'GUESSAN BOIDI', 'KAMENAN DAMIAN CYRIAQUE', '0', NULL, '760', '420', '340', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(43, 'ELI_180731_25822', '2018-07-31', '17:54:00', '2018-07-31', '17:48:00', '9037GR01', NULL, '43326', 'MOULAUD ASSAMOI', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ATTAGBA EMILE', 'MOULAUD ASSAMOI ALBERIC', '0', NULL, '15580', '8420', '7160', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(44, 'ELI_180731_25821', '2018-07-31', '17:01:00', '2018-07-31', '08:54:00', '3582GU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOGO DJAKARIDJA', NULL, '0', NULL, '11900', '25740', '13840', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(45, 'ELI_180731_25820', '2018-07-31', '14:58:00', '2018-07-31', '14:48:00', '0139CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44021', 'BADASSO', 58, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'N\'GUESSAN BOIDI', 'KOFFI ETTY JEAN', '0', NULL, '720', '420', '300', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(46, 'ELI_180731_25819', '2018-07-31', '14:55:00', '2018-07-31', '14:46:00', '9324HC01', NULL, '41393', 'SAHOUET BIZIE', '1', 'REGIMES', NULL, 'ELI', 222, '44067', 'KODIAKRO (SONGON)', 127, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAWADOGO ISSOUF', 'SAHOUET BIZIE', '0', NULL, '5200', '3700', '1500', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(47, 'ELI_180731_25818', '2018-07-31', '14:18:00', '2018-07-31', '13:44:00', '249EN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BORA KOUASSI', 'N\'DORY YIH HORTHENSE', '0', NULL, '8160', '4580', '3580', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(48, 'ELI_180731_25817', '2018-07-31', '13:43:00', '2018-07-31', '13:31:00', '249EN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BORA KOUASSI', NULL, '0', NULL, '8520', '8160', '360', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(49, 'ELI_180731_25816', '2018-07-31', '13:26:00', '2018-07-31', '13:14:00', '9495HK01', NULL, '43615', 'BROU KOFFI PATRICE', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOUAKOU JEAN', 'BROU KOFFI PATRICE', '0', NULL, '23500', '13760', '9740', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(50, 'ELI_180731_25815', '2018-07-31', '13:24:00', '2018-07-31', '13:17:00', '6060HK01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SIRI YAYA', 'KOUMAN ALPHONSE', '0', NULL, '6580', '4640', '1940', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(51, 'ELI_180731_25814', '2018-07-31', '13:19:00', '2018-07-31', '12:55:00', '2277ET01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44061', 'GUEBO 2', 115, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA ADAMA', 'KONE TOU BRAHIMA', '0', NULL, '4840', '2880', '1960', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(52, 'ELI_180731_25813', '2018-07-31', '12:53:00', '2018-07-31', '12:22:00', '552JA01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44061', 'GUEBO 2', 115, NULL, '4', 'BENNE DE COLLECTE', '34', 'TIEMOKO', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'SALIA PASCAL', '0', NULL, '8700', '4120', '4580', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(53, 'ELI_180731_25812', '2018-07-31', '12:51:00', '2018-07-31', '12:34:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44012', 'AHOUANOU', 30, NULL, '4', 'BENNE DE COLLECTE', '48', 'BONI ARSENE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'JEAN CLAUDE DELAFOSSE', '0', NULL, '8100', '5460', '2640', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', '2000', '5280000', NULL, NULL, NULL, '2020-06-15 20:45:04', '2020-06-15 20:45:04', NULL),
+(54, 'ELI_180731_25811', '2018-07-31', '12:14:00', '2018-07-30', '08:05:00', '8339CY01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA LAMINE', NULL, '0', NULL, '12880', '26460', '13580', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(55, 'ELI_180731_25810', '2018-07-31', '10:05:00', '2018-07-31', '10:00:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '1', 'TRACTEUR', '8', 'EBE DIDIER', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'DIOMADE ATTOBRA JEAN', '0', NULL, '7220', '5680', '1540', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(56, 'ELI_180531_24687', '2018-05-31', '20:19:00', '2018-05-31', '19:59:00', '4351GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44067', 'KODIAKRO (SONGON)', 127, NULL, '4', 'BENNE DE COLLECTE', '11', 'MONNI ARNAUD', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'KODIA ROMAIN', '0', NULL, '8360', '5740', '2620', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(57, 'ELI_180531_24686', '2018-05-31', '19:48:00', '2018-05-31', '18:18:00', '2096AY01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44073', 'OGOUDOU', 172, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'COULIBALY SALIFOU', 'KONE DRISSA', '0', NULL, '13760', '4520', '9240', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(58, 'ELI_180531_24685', '2018-05-31', '19:38:00', '2018-05-31', '19:03:00', '6423AS01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIOMANDE LAMINE', 'KONAN DJAHA PAULIN', '0', NULL, '6580', '4600', '1980', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(59, 'ELI_180531_24684', '2018-05-31', '19:06:00', '2018-05-31', '18:56:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44012', 'AHOUANOU', 30, NULL, '1', 'TRACTEUR', '8', 'EBE DIDIER', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'JEAN CLAUDE DELAFOSSE', '0', NULL, '11780', '5620', '6160', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', '2000', '12320000', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(60, 'ELI_180531_24683', '2018-05-31', '18:32:00', '2018-05-31', '18:23:00', '9324CH01', NULL, '40726', 'GNAMESSOU AKROMAN', '1', 'REGIMES', NULL, 'ELI', 222, '44085', 'BATERA', 63, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAWADOGO ISSOUF', 'GNAMESSOU AKROMA', '0', NULL, '5600', '3700', '1900', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(61, 'ELI_180531_24682', '2018-05-31', '18:02:00', '2018-05-31', '17:46:00', '3346WW01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOFFI KONAN ARMEL', 'KOUASSI KOUAKOU MARUIS', '0', NULL, '12040', '6040', '6000', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(62, 'ELI_180531_24681', '2018-05-31', '17:58:00', '2018-05-31', '17:50:00', 'CH7902', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44032', 'SAHUYE', 189, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ADANGBA MAXIME', 'GNANGORAN GATIEN', '0', NULL, '740', '420', '320', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(63, 'ELI_180531_24680', '2018-05-31', '17:56:00', '2018-05-31', '17:41:00', '4125CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'N\'GUESSAN MAURICE', 'N\'DRI LAURENT', '0', NULL, '1060', '480', '580', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(64, 'ELI_180531_24679', '2018-05-31', '17:48:00', '2018-05-31', '17:43:00', 'CH7902', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44032', 'SAHUYE', 189, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ADANGBA MAXIME', 'NIANGORAN NIANGORAN JEAN LUC', '0', NULL, '920', '740', '180', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:05', '2020-06-15 20:45:05', NULL),
+(65, 'ELI_180531_24678', '2018-05-31', '17:29:00', '2018-05-28', '14:56:00', '7849FN01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DOUMBIA HAMIDOU', NULL, '0', NULL, '13180', '29200', '16020', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(66, 'ELI_180531_24677', '2018-05-31', '17:10:00', '2018-05-31', '12:30:00', '1152HJ01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '46', 'AGRE LAZARE', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'LASSINE SANGARE', NULL, '0', NULL, '9420', '23240', '13820', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(67, 'ELI_180531_24676', '2018-05-31', '17:05:00', '2018-05-31', '16:49:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44075', 'ABOUDE', 9, NULL, '4', 'BENNE DE COLLECTE', '44', 'TRAORE LAMOUSSA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'KOUAME SERGE', '0', NULL, '6400', '5400', '1000', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(68, 'ELI_180531_24675', '2018-05-31', '17:02:00', '2018-05-31', '16:11:00', '4351GP01', NULL, '41504', 'GUENNEGUEZ JOEL', '1', 'REGIMES', NULL, 'ELI', 222, '44058', 'BAGO', 59, NULL, '4', 'BENNE DE COLLECTE', '11', 'MONNI ARNAUD', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'GUENNEGUEZ JOEL', '0', NULL, '14400', '5700', '8700', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(69, 'ELI_180531_24674', '2018-05-31', '16:48:00', '2018-05-31', '16:35:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44074', 'OFFOUMPO', NULL, NULL, '4', 'BENNE DE COLLECTE', '44', 'TRAORE LAMOUSSA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'TRAORE MAMADOU', '0', NULL, '7180', '6400', '780', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(70, 'ELI_180531_24673', '2018-05-31', '16:47:00', '2018-05-31', '16:40:00', '8071GS01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44012', 'AHOUANOU', 30, NULL, '1', 'TRACTEUR', '47', 'OBROU DONH MARTIAL', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'AKA FELIX', '0', NULL, '10000', '5900', '4100', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', '2000', '8200000', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(71, 'ELI_180531_24672', '2018-05-31', '16:45:00', '2018-05-31', '16:38:00', 'CH3435', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44021', 'BADASSO', 58, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'GBADJA ROBERT MARTIAL', 'ROAMBA YACOUBA', '0', NULL, '1200', '480', '720', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(72, 'ELI_180531_24671', '2018-05-31', '16:35:00', '2018-05-31', '16:25:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44074', 'OFFOUMPO', NULL, NULL, '4', 'BENNE DE COLLECTE', '44', 'TRAORE LAMOUSSA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'TRAORE SOULEYMANE', '0', NULL, '7540', '7180', '360', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(73, 'ELI_180531_24670', '2018-05-31', '16:20:00', '2018-05-31', '16:13:00', '4762HG01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOFFI JAURES', 'BERTE MOHAMED', '0', NULL, '6540', '4760', '1780', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(74, 'ELI_180531_24669', '2018-05-31', '16:14:00', '2018-05-31', '15:55:00', '86FJ01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44061', 'GUEBO 2', 115, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'COMPAORE ADAMA', 'DEGBA KOUAKOU', '0', NULL, '7520', '2740', '4780', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(75, 'ELI_180531_24668', '2018-05-31', '15:50:00', '2018-05-31', '15:43:00', '9037GR01', NULL, '43326', 'MOULAUD ASSAMOI', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ATTAGBA EMILE', 'MOULAUD ASSAMOI ALBERIC', '0', NULL, '15520', '8420', '7100', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(76, 'ELI_180531_24667', '2018-05-31', '15:28:00', '2018-05-31', '14:57:00', '4337GP01', NULL, '40726', 'GNAMESSOU AKROMAN', '1', 'REGIMES', NULL, 'ELI', 222, '44026', 'BINAO', 66, NULL, '4', 'BENNE DE COLLECTE', '46', 'AGRE LAZARE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'GNAMESSOU AKROMA', '0', NULL, '12900', '5660', '7240', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:06', '2020-06-15 20:45:06', NULL),
+(77, 'ELI_180531_24666', '2018-05-31', '15:17:00', '2018-05-31', '14:28:00', '51ER01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE DAOUDA', 'DEUX PLANTEURS', '0', NULL, '13760', '4460', '9300', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(78, 'ELI_180531_24665', '2018-05-31', '15:00:00', '2018-05-31', '14:50:00', '9324CH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAWADOGO ISSOUF', 'KOKOLA THEODORE', '0', NULL, '6980', '3700', '3280', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(79, 'ELI_180531_24664', '2018-05-31', '14:49:00', '2018-05-31', '14:40:00', '9324CH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAWADOGO ISSOUF', 'Mme COWPLI', '0', NULL, '7160', '6980', '180', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(80, 'ELI_180531_24663', '2018-05-31', '14:26:00', '2018-05-31', '13:52:00', '95AV01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '51013', 'DJEKANOU', 92, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BADO SALAM', 'KONE ZANGA', '0', NULL, '6980', '4600', '2380', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(81, 'ELI_180531_24662', '2018-05-31', '14:16:00', '2018-05-31', '13:46:00', '6819EL01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44067', 'KODIAKRO (SONGON)', 127, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE BABA', 'SAHOUET BIZIE', '0', NULL, '7840', '3340', '4500', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(82, 'ELI_180531_24661', '2018-05-31', '14:09:00', '2018-05-31', '14:02:00', '4133CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOUASSI FERNAND', 'BROU JOACHIM', '0', NULL, '840', '500', '340', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(83, 'ELI_180531_24660', '2018-05-31', '13:51:00', '2018-05-31', '12:58:00', '95AV01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44006', 'PACOBO', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BADO SALAM', 'YAO AFFOUET EPSE KOUADIO', '0', NULL, '10700', '6980', '3720', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(84, 'ELI_180531_24659', '2018-05-31', '13:47:00', '2018-05-31', '13:35:00', '249EN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44067', 'KODIAKRO (SONGON)', 127, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BORA KOUASSI', 'FALLY TIA PAUL', '0', NULL, '6860', '4640', '2220', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(85, 'ELI_180531_24658', '2018-05-31', '13:43:00', '2018-05-31', '13:31:00', '7190HF01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44026', 'BINAO', 66, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABATE S', 'BALLO KOFFI CELESTIN', '0', NULL, '9740', '4540', '5200', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(86, 'ELI_180531_24657', '2018-05-31', '13:38:00', '2018-05-30', '14:20:00', '2418EC01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA MOUSSA', NULL, '0', NULL, '14100', '30860', '16760', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(87, 'ELI_180531_24656', '2018-05-31', '12:43:00', '2018-05-31', '12:00:00', '5862CY01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44058', 'BAGO', 59, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DOUMBIA MOHAMED', 'GUENNEGUEZ JOEL', '0', NULL, '9580', '3280', '6300', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(88, 'ELI_180531_24655', '2018-05-31', '12:36:00', '2018-05-30', '15:09:00', '4094GX01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BARRO SALIFOU', NULL, '0', NULL, '5980', '21420', '15440', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:07', '2020-06-15 20:45:07', NULL),
+(89, 'ELI_180531_24654', '2018-05-31', '12:19:00', '2018-05-31', '12:06:00', 'CH200', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44021', 'BADASSO', 58, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOTCHI ANGE', 'ATTOUNOU WOULA  IRMA', '0', NULL, '980', '440', '540', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL);
+INSERT INTO `bascule_datas` (`id`, `num_ticket`, `date_sortie`, `heure_sortie`, `date_entree`, `heure_entree`, `camion`, `citerne`, `code_client`, `client`, `code_produit`, `produit`, `code_destination`, `destination`, `destination_id`, `code_origine`, `origine`, `origine_id`, `origine_reelle`, `code_type_de_vehicule`, `type_de_vehicule`, `code_nom_chaufffeur`, `nom_chaufffeur`, `code_nom_transporteur`, `nom_transporteur`, `code_type_operation`, `type_operation`, `n_recette`, `n_bon_enlevement`, `n_liasse`, `n_facture`, `nom_chauf_prive`, `nom_client_part`, `poids_declare`, `observation`, `poids_entree`, `poids_sortie`, `poids_net`, `ecart`, `ecart_freinte`, `ecart_penalite_tonne`, `ecart_penalite_cout`, `type_pesee`, `transaction`, `code_societe`, `raison_sociale`, `1_peseur`, `2_peseur`, `cout_km`, `cout_ticket`, `statut`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(90, 'ELI_180531_24653', '2018-05-31', '12:16:00', '2018-05-31', '12:08:00', '6060HK01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SIRI YAYA', 'BLEGA KOUAO', '0', NULL, '9160', '4720', '4440', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(91, 'ELI_180531_24652', '2018-05-31', '12:01:00', '2018-05-31', '10:53:00', '7642EY01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BAMBA IBRAHIM', 'OUATTARA ZELLE ZANA', '0', NULL, '6680', '3340', '3340', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(92, 'ELI_180531_24651', '2018-05-31', '11:32:00', '2018-05-30', '13:16:00', '9257FU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'TIENOU ALI', NULL, '0', NULL, '8800', '21880', '13080', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(93, 'ELI_180531_24650', '2018-05-31', '11:15:00', '2018-05-31', '11:12:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44032', 'SAHUYE', 189, NULL, '1', 'TRACTEUR', '8', 'EBE DIDIER', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'YAO KOUASSI ALEXIS', '0', NULL, '6580', '5640', '940', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(94, 'ELI_180531_24649', '2018-05-31', '09:48:00', '2018-05-31', '07:24:00', '1152HJ01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'LASSINE SANGARE', NULL, '0', NULL, '9440', '21480', '12040', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(95, 'ELI_180531_24648', '2018-05-31', '09:45:00', '2018-05-30', '14:12:00', '8544GF01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABY ALMAMY', NULL, '0', NULL, '15540', '40560', '25020', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(96, 'ELI_180531_24647', '2018-05-31', '08:21:00', '2018-05-31', '08:11:00', '723EN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44073', 'OGOUDOU', 172, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUEDRAOGO ABDOULAYE', 'OUEDRAOGO ABOU', '0', NULL, '17060', '8680', '8380', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(97, 'ELI_180531_24646', '2018-05-31', '08:06:00', '2018-05-29', '12:56:00', '6289FF04', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIO ISSA', NULL, '0', NULL, '12260', '27740', '15480', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(98, 'ELI_180331_22079', '2018-03-31', '21:03:00', '2018-03-31', '19:49:00', '8511FV01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44003', 'YAMOUSSOUKRO', 215, NULL, '4', 'BENNE DE COLLECTE', '49', 'DON ALEXIS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'PLUSIEURS PLANTEURS', '0', NULL, '13520', '5440', '8080', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(99, 'ELI_180331_22078', '2018-03-31', '20:02:00', '2018-03-31', '19:53:00', '8071GS01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '1', 'TRACTEUR', '47', 'OBROU DONH MARTIAL', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'TANOH FREDERIC', '0', NULL, '12500', '5940', '6560', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(100, 'ELI_180331_22077', '2018-03-31', '19:54:00', '2018-03-31', '19:21:00', '9963FE01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BORA KOUASSI', 'APPOH KOUADIO', '0', NULL, '4740', '2560', '2180', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:08', '2020-06-15 20:45:08', NULL),
+(101, 'ELI_180331_22076', '2018-03-31', '19:20:00', '2018-03-31', '19:01:00', '9963FE01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BORA KOUASSI', 'KOUAME ADINGRA', '0', NULL, '6380', '4740', '1640', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(102, 'ELI_180331_22075', '2018-03-31', '19:07:00', '2018-03-31', '18:30:00', '5862CY01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'TRAORE DRAMANE', 'KOUASSI KOUAKOU MARUIS', '0', NULL, '8160', '3200', '4960', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(103, 'ELI_180331_22074', '2018-03-31', '18:47:00', '2018-03-31', '18:37:00', '6060HK01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA ZIE', 'KOKOLA THEODORE', '0', NULL, '10000', '4700', '5300', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(104, 'ELI_180331_22073', '2018-03-31', '18:43:00', '2018-03-31', '18:35:00', '1034FU01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44067', 'KODIAKRO (SONGON)', 127, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIARRASSOUBA DRAMANE', 'FALLY TIA PAUL', '0', NULL, '8640', '3420', '5220', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(105, 'ELI_180331_22072', '2018-03-31', '18:32:00', '2018-03-31', '18:22:00', '3652FL01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BERTHE DAOUDA', 'TANOH FREDERIC', '0', NULL, '17380', '7060', '10320', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(106, 'ELI_180331_22071', '2018-03-31', '18:25:00', '2018-03-31', '17:54:00', '3461GR01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44073', 'OGOUDOU', 172, NULL, '4', 'BENNE DE COLLECTE', '34', 'TIEMOKO', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'KOUADIO KOUASSI FRANCK', '0', NULL, '8940', '5700', '3240', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(107, 'ELI_180331_22070', '2018-03-31', '18:19:00', '2018-03-31', '17:57:00', '7190HF01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE VAKABA', 'YAO N\'GUESSAN', '0', NULL, '12460', '4560', '7900', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(108, 'ELI_180331_22069', '2018-03-31', '18:05:00', '2018-03-31', '18:00:00', '9495HK01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOUAKOU JEAN', 'BROU KOFFI PATRICE', '0', NULL, '24340', '13700', '10640', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(109, 'ELI_180331_22068', '2018-03-31', '17:58:00', '2018-03-31', '17:19:00', '3983HH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '4', 'BENNE DE COLLECTE', '48', 'BONI ARSENE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'KAMA KAMA ROMUALD', '0', NULL, '10500', '5640', '4860', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(110, 'ELI_180331_22067', '2018-03-31', '17:48:00', '2018-03-31', '17:41:00', '3190HN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SOURA SALIF', 'N\'GBESSO N\'GBESSO', '0', NULL, '13520', '7680', '5840', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(111, 'ELI_180331_22066', '2018-03-31', '17:32:00', '2018-03-31', '12:23:00', '7631BH01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUEDRAOGO DIEUDONNE', NULL, '0', NULL, '7600', '22060', '14460', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(112, 'ELI_180331_22065', '2018-03-31', '17:14:00', '2018-03-31', '17:05:00', '8334CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44021', 'BADASSO', 58, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'N\'DRE DABIE JOSEPH', 'KAMENAN DAMIAN CYRIAQUE', '0', NULL, '980', '500', '480', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(113, 'ELI_180331_22064', '2018-03-31', '17:03:00', '2018-03-31', '16:55:00', '0236CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ODOH FRANCK', 'N\'DRI LAURENT', '0', NULL, '1160', '480', '680', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:09', '2020-06-15 20:45:09', NULL),
+(114, 'ELI_180331_22063', '2018-03-31', '17:00:00', '2018-03-31', '16:53:00', '5742CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DADI DIEUDONNE', 'GOSSOU CHARLES', '0', NULL, '860', '500', '360', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(115, 'ELI_180331_22062', '2018-03-31', '16:56:00', '2018-03-31', '16:42:00', '9324HC01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44076', 'AMANGBEU', 43, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAWADOGO ISSOUF', 'KAMA KAMA ROMUALD', '0', NULL, '9200', '3660', '5540', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(116, 'ELI_180331_22061', '2018-03-31', '16:29:00', '2018-03-31', '16:26:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44024', 'BECEDI', 65, NULL, '1', 'TRACTEUR', '8', 'EBE DIDIER', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'N\'GORAN N\'GUESSAN ROBERT', '0', NULL, '7240', '5600', '1640', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(117, 'ELI_180331_22060', '2018-03-31', '16:07:00', '2018-03-31', '15:57:00', '8334CH', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44021', 'BADASSO', 58, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'N\'DRE DABIE JOSEPH', 'DIARRA OUMAR', '0', NULL, '1280', '500', '780', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(118, 'ELI_180331_22059', '2018-03-31', '15:46:00', '2018-03-31', '15:34:00', 'GH1718', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44028', 'ELIBOU', 99, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BALDE MOHAMED', 'LATHRO LOHOUES YACHINTE', '0', NULL, '960', '400', '560', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'SAIH CYRILLE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(119, 'ELI_180331_22058', '2018-03-31', '15:41:00', '2018-03-31', '14:13:00', '1152HJ01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'CISSE MOUSSA', NULL, '0', NULL, '9580', '22860', '13280', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(120, 'ELI_180331_22057', '2018-03-31', '15:30:00', '2018-03-31', '15:22:00', '1034FU01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44058', 'BAGO', 59, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIARRASOUBA D', 'GUENNEGUEZ JOEL', '0', NULL, '9040', '3460', '5580', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(121, 'ELI_180331_22056', '2018-03-31', '15:25:00', '2018-03-31', '14:27:00', '4351GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44013', 'BRIKISSO', NULL, NULL, '4', 'BENNE DE COLLECTE', '44', 'TRAORE LAMOUSSA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'EAN CLAUDE DALAFOSSE', '0', NULL, '8120', '5720', '2400', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(122, 'ELI_180331_22055', '2018-03-31', '15:19:00', '2018-03-31', '14:48:00', '8759AZ01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44070', 'SOCROBO', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'COULIBALI', 'EKERMANE DENYS LUCIEN E', '0', NULL, '9620', '4240', '5380', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(123, 'ELI_180331_22054', '2018-03-31', '15:17:00', '2018-03-31', '14:59:00', '86FJ01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44067', 'KODIAKRO (SONGON)', 127, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'COMPAORE ADAMA ', 'SAHOUET BIZIE', '0', NULL, '6240', '2740', '3500', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(124, 'ELI_180331_22053', '2018-03-31', '15:10:00', '2018-03-31', '14:55:00', '8680FH01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44026', 'BINAO', 66, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'LIGUE GERMAIN', 'GNAMESSOU AKROMA', '0', NULL, '6960', '3160', '3800', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(125, 'ELI_180331_22052', '2018-03-31', '15:00:00', '2018-03-31', '14:54:00', '9037GR01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ATTAGBA EMILE', 'MOULAUD ASSAMOI ALBERIC', '0', NULL, '13720', '8540', '5180', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:10', '2020-06-15 20:45:10', NULL),
+(126, 'ELI_180331_22051', '2018-03-31', '14:47:00', '2018-03-31', '14:23:00', '8759AZ01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44070', 'SOCROBO', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'COULIBALY', 'NASSAR SAMI', '0', NULL, '12160', '9620', '2540', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(127, 'ELI_180331_22050', '2018-03-31', '14:45:00', '2018-03-31', '14:37:00', '4762HG01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KOFFI JAURES', 'KOKOLA THEODORE', '0', NULL, '10540', '4800', '5740', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(128, 'ELI_180331_22049', '2018-03-31', '14:38:00', '2018-03-30', '20:24:00', '3346WW01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44091', 'BODO 1', 69, NULL, '1', 'TRACTEUR', '11', 'MONNI ARNAUD', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'KOBENAN CASIMIR', '0', NULL, '8580', '6060', '2520', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'SAIH CYRILLE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(129, 'ELI_180331_22048', '2018-03-31', '14:26:00', '2018-03-31', '13:51:00', '4351GP01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44024', 'BECEDI', 65, NULL, '4', 'BENNE DE COLLECTE', '44', 'TRAORE LAMOUSSA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'BAZZE ALPHONSE', '0', NULL, '11340', '8120', '3220', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(130, 'ELI_180331_22047', '2018-03-31', '14:20:00', '2018-03-31', '14:12:00', 'MF440', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44060', 'GUEBO 1', 114, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BAKO ALPHONSE', 'MAHA BONFILS', '0', NULL, '8820', '5120', '3700', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(131, 'ELI_180331_22046', '2018-03-31', '14:17:00', '2018-03-31', '13:41:00', '6819EL01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44054', 'ASSINZE (TIASSALE)', 53, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE BABA', 'TANO FREDERIC', '0', NULL, '9160', '3200', '5960', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(132, 'ELI_180331_22045', '2018-03-31', '14:16:00', '2018-03-31', '14:08:00', '82373', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44032', 'SAHUYE', 189, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KAMBIRE ALBERT', 'N\'GUESSAN N\'GUESSAN ZEPHIRIN', '0', NULL, '1000', '340', '660', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(133, 'ELI_180331_22044', '2018-03-31', '13:59:00', '2018-03-31', '13:24:00', '9963FE01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44041', 'N\'DOUCI', 158, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BORA KOUASSI ', 'KOUAME ADINGRA', '0', NULL, '7120', '2540', '4580', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(134, 'ELI_180331_22043', '2018-03-31', '13:57:00', '2018-03-31', '12:06:00', '4534HA01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SANGARE LACINA', NULL, '0', NULL, '13800', '32000', '18200', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(135, 'ELI_180331_22042', '2018-03-31', '13:48:00', '2018-03-31', '11:32:00', '8954GA01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SOMAHORO BEMA', NULL, '0', NULL, '11660', '29120', '17460', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(136, 'ELI_180331_22041', '2018-03-31', '13:42:00', '2018-03-31', '13:10:00', '51ER01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE DAOUDA', 'DEUX PLANTEURS', '0', NULL, '8580', '4360', '4220', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(137, 'ELI_180331_22040', '2018-03-31', '13:34:00', '2018-03-31', '12:44:00', '2096AY01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44103', 'BLE', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'COULIBALY S', 'COULIBALY BRAHIMA', '0', NULL, '9920', '4500', '5420', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:11', '2020-06-15 20:45:11', NULL),
+(138, 'ELI_180331_22039', '2018-03-31', '13:32:00', '2018-03-31', '13:14:00', '6060HK01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA ZIE', 'ETTY KOUAO PAULIN', '0', NULL, '11740', '4740', '7000', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:12', '2020-06-15 20:45:12', NULL),
+(139, 'ELI_180331_22038', '2018-03-31', '13:09:00', '2018-03-31', '12:47:00', '51ER01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44038', 'AGBOVILLE', 26, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE DAOUDAA', 'AKO GBALE', '0', NULL, '11260', '8580', '2680', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:12', '2020-06-15 20:45:12', NULL),
+(140, 'ELI_180331_22037', '2018-03-31', '13:02:00', '2018-03-31', '12:49:00', '3190HN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SOURA SALIFOU', 'ASSI BENIE JOSEPH', '0', NULL, '13040', '7700', '5340', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:12', '2020-06-15 20:45:12', NULL),
+(141, 'ELI_180331_22036', '2018-03-31', '12:49:00', '2018-03-31', '12:25:00', '3190HN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44079', 'PETIT YAPO', 184, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SOURA SALIFOU', 'TRAORE MAMADOU', '0', NULL, '14360', '13040', '1320', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:12', '2020-06-15 20:45:12', NULL),
+(142, 'ELI_180331_22035', '2018-03-31', '12:13:00', '2018-03-31', '12:03:00', '7859GB01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'ELI', 222, '44060', 'GUEBO 1', 114, NULL, '1', 'TRACTEUR', '8', 'EBE DIDIER', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, 'EBOHI JACQUES', '0', NULL, '9120', '5600', '3520', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:12', '2020-06-15 20:45:12', NULL),
+(143, 'ELI_180331_22034', '2018-03-31', '12:11:00', '2018-03-31', '07:38:00', '2418EC01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUATTARA MOUSSA', NULL, '0', NULL, '14060', '30580', '16520', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:12', '2020-06-15 20:45:12', NULL),
+(144, 'ELI_180331_22033', '2018-03-31', '12:08:00', '2018-03-31', '07:20:00', '4094GX01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'ELI', 222, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BARRO SALIFOU', NULL, '0', NULL, '5920', '20840', '14920', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONDO ANNETTE', 'KONDO ANNETTE', NULL, '0', NULL, NULL, NULL, '2020-06-15 20:45:12', '2020-06-15 20:45:12', NULL),
+(145, 'YAS_200616_139099', '2020-06-16', '19:46:00', '2020-06-16', '19:41:00', '6849EK01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90111', 'PI_DA_B2_TE_98', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE', NULL, '0', NULL, '22220', '9140', '13080', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:30', '2020-06-17 08:55:30', NULL),
+(146, 'YAS_200616_139098', '2020-06-16', '19:38:00', '2020-06-16', '19:26:00', '9880EG01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90245', 'PI_AN_B3_V03_99', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'BOUKARY', NULL, '0', NULL, '21080', '8600', '12480', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:31', '2020-06-17 08:55:31', NULL),
+(147, 'YAS_200616_139097', '2020-06-16', '19:35:00', '2020-06-16', '19:08:00', '393EY01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90236', 'PI_AN_B4_V02_93', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'OUEDRAOGO', NULL, '0', NULL, '13840', '6220', '7620', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:31', '2020-06-17 08:55:31', NULL),
+(148, 'YAS_200616_139096', '2020-06-16', '19:14:00', '2020-06-16', '19:09:00', '3350WW01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '1', 'TRACTEUR', '47', 'MAIGA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '16340', '6600', '9740', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:31', '2020-06-17 08:55:31', NULL),
+(149, 'YAS_200616_139095', '2020-06-16', '19:02:00', '2020-06-16', '18:57:00', '8845B01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '4', 'BENNE DE COLLECTE', '48', 'DIABATE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '16120', '8260', '7860', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:31', '2020-06-17 08:55:31', NULL),
+(150, 'YAS_200616_139094', '2020-06-16', '18:38:00', '2020-06-16', '18:36:00', '1623JU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '4', 'BENNE DE COLLECTE', '10', 'KONE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '9780', '6920', '2860', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:31', '2020-06-17 08:55:31', NULL),
+(151, 'YAS_200616_139093', '2020-06-16', '18:34:00', '2020-06-16', '18:31:00', '5573EF01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '4', 'BENNE DE COLLECTE', '5', 'CAMARA ', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '8860', '7760', '1100', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:31', '2020-06-17 08:55:31', NULL),
+(152, 'YAS_200616_139092', '2020-06-16', '18:21:00', '2020-06-16', '16:57:00', '4424FG01', NULL, '43645', 'ETS-ODS', '1', 'REGIMES', NULL, 'YAS', NULL, '50022', 'DIVO', 91, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '80', 'ETS ODS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIAKITE', NULL, '0', NULL, '31700', '10080', '21620', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:31', '2020-06-17 08:55:31', NULL),
+(153, 'YAS_200616_139091', '2020-06-16', '18:16:00', '2020-06-16', '17:29:00', '4379EL01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90236', 'PI_AN_B4_V02_93', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'FOUSSENI', NULL, '18600', NULL, '29160', '10500', '18660', '60', NULL, NULL, NULL, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:32', '2020-06-17 08:55:32', NULL),
+(154, 'YAS_200616_139090', '2020-06-16', '18:06:00', '2020-06-16', '17:53:00', '9384JV01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE', NULL, '10880', NULL, '16360', '5620', '10740', '-140', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:32', '2020-06-17 08:55:32', NULL),
+(155, 'YAS_200616_139089', '2020-06-16', '18:02:00', '2020-06-16', '17:32:00', '8935FV01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '2', 'CAMION', '49', 'NGUESSAN ALBERT', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '12580', '5600', '6980', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:32', '2020-06-17 08:55:32', NULL),
+(156, 'YAS_200616_139088', '2020-06-16', '17:45:00', '2020-06-16', '17:40:00', '8339CY01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'LAMINE', NULL, '15240', NULL, '27900', '12760', '15140', '-100', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:32', '2020-06-17 08:55:32', NULL),
+(157, 'YAS_200616_139087', '2020-06-16', '17:44:00', '2020-06-16', '15:45:00', 'CH6856', NULL, '0', 'AUTRES CLIENTS', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ANICET', NULL, '0', NULL, '4620', '11620', '7000', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:32', '2020-06-17 08:55:32', NULL),
+(158, 'YAS_200616_139086', '2020-06-16', '17:34:00', '2020-06-16', '15:33:00', '596JC01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SANFO', NULL, '0', NULL, '12100', '27280', '15180', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:32', '2020-06-17 08:55:32', NULL),
+(159, 'YAS_200616_139085', '2020-06-16', '17:33:00', '2020-06-16', '17:23:00', 'TD802', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90118', 'PI_DA_B4_YL_03', NULL, NULL, '1', 'TRACTEUR', '43', 'SOME KONINIEN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '19540', '6240', '13300', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:32', '2020-06-17 08:55:32', NULL),
+(160, 'YAS_200616_139084', '2020-06-16', '17:26:00', '2020-06-16', '17:21:00', '5573EF01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90131', 'PI_DA_D5_DC_04', NULL, NULL, '4', 'BENNE DE COLLECTE', '5', 'CAMARA ', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '18340', '7760', '10580', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(161, 'YAS_200616_139083', '2020-06-16', '17:20:00', '2020-06-16', '17:13:00', '1623JU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90131', 'PI_DA_D5_DC_04', NULL, NULL, '4', 'BENNE DE COLLECTE', '10', 'KONE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '14920', '6900', '8020', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(162, 'YAS_200616_139082', '2020-06-16', '17:18:00', '2020-06-16', '17:08:00', '5273FU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90118', 'PI_DA_B4_YL_03', NULL, NULL, '4', 'BENNE DE COLLECTE', '6', 'HEIN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '12960', '7700', '5260', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(163, 'YAS_200616_139081', '2020-06-16', '17:16:00', '2020-06-16', '16:56:00', '4479EN01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'YAS', NULL, '41026', 'DABOU', 83, NULL, '3', 'BACHEE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MELESS', NULL, '0', NULL, '2720', '1720', '1000', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(164, 'YAS_200616_139080', '2020-06-16', '16:53:00', '2020-06-16', '16:45:00', '6256HJ01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90245', 'PI_AN_B3_V03_99', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DRAMANE', NULL, '0', NULL, '25000', '9280', '15720', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(165, 'YAS_200616_139079', '2020-06-16', '16:47:00', '2020-06-16', '16:42:00', '1152HJ01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SANGARE', NULL, '14980', NULL, '24260', '9500', '14760', '-220', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(166, 'YAS_200616_139078', '2020-06-16', '16:36:00', '2020-06-16', '16:22:00', '8443GC01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90245', 'PI_AN_B3_V03_99', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DRAMANE', NULL, '0', NULL, '27720', '13100', '14620', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(167, 'YAS_200616_139077', '2020-06-16', '16:28:00', '2020-06-16', '16:19:00', '1601JU01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'YAS', NULL, '90001', 'AUTRES ORIGINES DABOU', NULL, ' BOTRO', '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAVADOGO', NULL, '0', NULL, '25980', '14880', '11100', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:33', '2020-06-17 08:55:33', NULL),
+(168, 'YAS_200616_139076', '2020-06-16', '16:23:00', '2020-06-16', '16:16:00', '8845EB01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '4', 'BENNE DE COLLECTE', '48', 'DIABATE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '17500', '8260', '9240', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:34', '2020-06-17 08:55:34', NULL),
+(169, 'YAS_200616_139075', '2020-06-16', '16:00:00', '2020-06-16', '15:55:00', '3350WW01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90500', 'PI_DA_P1_AR_15', NULL, NULL, '1', 'TRACTEUR', '47', 'MAIGA', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '13580', '6600', '6980', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:34', '2020-06-17 08:55:34', NULL),
+(170, 'YAS_200616_139074', '2020-06-16', '15:55:00', '2020-06-16', '15:39:00', '2522HA01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'YAS', NULL, '42031', 'NOUVEL OUSROU', 167, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'FLORENTIN', NULL, '0', NULL, '1420', '480', '940', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:34', '2020-06-17 08:55:34', NULL),
+(171, 'YAS_200616_139073', '2020-06-16', '15:48:00', '2020-06-16', '14:27:00', '9530FE01', NULL, '1', 'PALMAFRIQUE', '5', 'RAFLES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MOUSSA', NULL, '0', NULL, '12680', '21780', '9100', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:34', '2020-06-17 08:55:34', NULL),
+(172, 'YAS_200616_139072', '2020-06-16', '15:40:00', '2020-06-16', '15:35:00', 'CH6455', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90119', 'PI_DA_A3_YL_08', NULL, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'GOLEY', NULL, '0', NULL, '2740', '1260', '1480', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:34', '2020-06-17 08:55:34', NULL),
+(173, 'YAS_200616_139071', '2020-06-16', '15:36:00', '2020-06-16', '15:29:00', '5273FU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90118', 'PI_DA_B4_YL_03', NULL, NULL, '4', 'BENNE DE COLLECTE', '6', 'HEIN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '17220', '7700', '9520', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:34', '2020-06-17 08:55:34', NULL),
+(174, 'YAS_200616_139070', '2020-06-16', '15:32:00', '2020-06-16', '13:57:00', 'CH6856', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ANICET', NULL, '0', NULL, '4620', '11720', '7100', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:35', '2020-06-17 08:55:35', NULL),
+(175, 'YAS_200616_139069', '2020-06-16', '15:19:00', '2020-06-16', '13:43:00', '4767EC02', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABY', NULL, '0', NULL, '12840', '23680', '10840', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:35', '2020-06-17 08:55:35', NULL),
+(176, 'YAS_200616_139068', '2020-06-16', '15:16:00', '2020-06-16', '14:34:00', '6989EH01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90115', 'PI_DA_A3_TO_98', NULL, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '9120', '3060', '6060', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:35', '2020-06-17 08:55:35', NULL),
+(177, 'YAS_200616_139067', '2020-06-16', '15:11:00', '2020-06-16', '14:30:00', '7477CL01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'YAS', NULL, '50020', 'IRA', 122, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DRAMANE', NULL, '0', NULL, '9240', '3220', '6020', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:35', '2020-06-17 08:55:35', NULL),
+(178, 'YAS_200616_139066', '2020-06-16', '15:03:00', '2020-06-16', '13:30:00', '3442CS01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'INOUSSA', NULL, '0', NULL, '13000', '22620', '9620', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:35', '2020-06-17 08:55:35', NULL);
+INSERT INTO `bascule_datas` (`id`, `num_ticket`, `date_sortie`, `heure_sortie`, `date_entree`, `heure_entree`, `camion`, `citerne`, `code_client`, `client`, `code_produit`, `produit`, `code_destination`, `destination`, `destination_id`, `code_origine`, `origine`, `origine_id`, `origine_reelle`, `code_type_de_vehicule`, `type_de_vehicule`, `code_nom_chaufffeur`, `nom_chaufffeur`, `code_nom_transporteur`, `nom_transporteur`, `code_type_operation`, `type_operation`, `n_recette`, `n_bon_enlevement`, `n_liasse`, `n_facture`, `nom_chauf_prive`, `nom_client_part`, `poids_declare`, `observation`, `poids_entree`, `poids_sortie`, `poids_net`, `ecart`, `ecart_freinte`, `ecart_penalite_tonne`, `ecart_penalite_cout`, `type_pesee`, `transaction`, `code_societe`, `raison_sociale`, `1_peseur`, `2_peseur`, `cout_km`, `cout_ticket`, `statut`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(179, 'YAS_200616_139065', '2020-06-16', '15:02:00', '2020-06-16', '14:50:00', 'HH200', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'YAS', NULL, '41026', 'DABOU', 83, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ESSOH', NULL, '0', NULL, '1280', '400', '880', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:35', '2020-06-17 08:55:35', NULL),
+(180, 'YAS_200616_139064', '2020-06-16', '14:46:00', '2020-06-16', '14:20:00', '8935FV01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '2', 'CAMION', '49', 'NGUESSAN ALBERT', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '12800', '5620', '7180', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:35', '2020-06-17 08:55:35', NULL),
+(181, 'YAS_200616_139063', '2020-06-16', '14:44:00', '2020-06-16', '13:21:00', '596JC01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SANFO', NULL, '0', NULL, '11940', '26900', '14960', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(182, 'YAS_200616_139062', '2020-06-16', '14:32:00', '2020-06-16', '14:24:00', '6849EK01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90115', 'PI_DA_A3_TO_98', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'KONE', NULL, '0', NULL, '21700', '9160', '12540', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(183, 'YAS_200616_139061', '2020-06-16', '14:29:00', '2020-06-16', '14:26:00', '1623JU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90131', 'PI_DA_D5_DC_04', NULL, NULL, '4', 'BENNE DE COLLECTE', '10', 'KONE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '14540', '6880', '7660', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KONE IBRAHIMA', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(184, 'YAS_200616_139060', '2020-06-16', '14:07:00', '2020-06-16', '14:00:00', 'CH6455', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90119', 'PI_DA_A3_YL_08', NULL, NULL, '9', 'TRICYCLE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'GOLEY', NULL, '0', NULL, '3580', '1280', '2300', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(185, 'YAS_200616_139059', '2020-06-16', '14:05:00', '2020-06-16', '13:09:00', '9530FE01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MOUSSA', NULL, '0', NULL, '12640', '22920', '10280', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KONE IBRAHIMA', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(186, 'YAS_200616_139058', '2020-06-16', '13:41:00', '2020-06-16', '12:47:00', 'CH6856', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ANICET', NULL, '0', NULL, '4620', '11480', '6860', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(187, 'YAS_200616_139057', '2020-06-16', '13:32:00', '2020-06-16', '12:11:00', '4767EC02', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABY', NULL, '0', NULL, '12820', '21320', '8500', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(188, 'YAS_200616_139056', '2020-06-16', '13:18:00', '2020-06-16', '11:53:00', '4094GX01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90054', 'USINE CARREAU ELIBOU', NULL, NULL, '2', 'CAMION', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DRISSA', NULL, '13600', NULL, '19880', '6480', '13400', '-200', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:36', '2020-06-17 08:55:36', NULL),
+(189, 'YAS_200616_139055', '2020-06-16', '13:17:00', '2020-06-16', '13:10:00', 'TD802', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90118', 'PI_DA_B4_YL_03', NULL, NULL, '1', 'TRACTEUR', '43', 'SOME KONINIEN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '19160', '6200', '12960', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:37', '2020-06-17 08:55:37', NULL),
+(190, 'YAS_200616_139054', '2020-06-16', '13:14:00', '2020-06-16', '11:59:00', '3442CS01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'INOUSSA', NULL, '0', NULL, '13000', '24920', '11920', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:37', '2020-06-17 08:55:37', NULL),
+(191, 'YAS_200616_139053', '2020-06-16', '13:06:00', '2020-06-16', '13:00:00', '5573EF01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90131', 'PI_DA_D5_DC_04', NULL, NULL, '4', 'BENNE DE COLLECTE', '5', 'CAMARA ', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '17540', '7760', '9780', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:37', '2020-06-17 08:55:37', NULL),
+(192, 'YAS_200616_139052', '2020-06-16', '12:53:00', '2020-06-16', '11:44:00', '9530FE01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MOUSSA', NULL, '0', NULL, '12620', '24780', '12160', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:37', '2020-06-17 08:55:37', NULL),
+(193, 'YAS_200616_139051', '2020-06-16', '12:50:00', '2020-06-16', '12:44:00', '8845EB01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '4', 'BENNE DE COLLECTE', '48', 'DIABATE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '17360', '8260', '9100', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:37', '2020-06-17 08:55:37', NULL),
+(194, 'YAS_200616_139050', '2020-06-16', '12:40:00', '2020-06-16', '12:14:00', '6446EV01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'YAS', NULL, '42031', 'NOUVEL OUSROU', 167, NULL, '6', 'CAMIONNETTE / KIA', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'CONSTANT', NULL, '0', NULL, '5260', '3180', '2080', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:37', '2020-06-17 08:55:37', NULL),
+(195, 'YAS_200616_139049', '2020-06-16', '12:35:00', '2020-06-16', '11:13:00', '596JC01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SANFO', NULL, '0', NULL, '11980', '26340', '14360', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:37', '2020-06-17 08:55:37', NULL),
+(196, 'YAS_200616_139048', '2020-06-16', '12:32:00', '2020-06-16', '12:25:00', '5273FU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90118', 'PI_DA_B4_YL_03', NULL, NULL, '4', 'BENNE DE COLLECTE', '6', 'HEIN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '16420', '7700', '8720', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(197, 'YAS_200616_139047', '2020-06-16', '12:07:00', '2020-06-16', '11:23:00', 'CH6856', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ANICET', NULL, '0', NULL, '4620', '12460', '7840', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(198, 'YAS_200616_139046', '2020-06-16', '12:06:00', '2020-06-16', '11:43:00', '8935FV01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90141', 'PI_DA_DC_C2_14', NULL, NULL, '2', 'CAMION', '49', 'NGUESSAN ALBERT', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '12620', '5620', '7000', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(199, 'YAS_200616_139045', '2020-06-16', '11:56:00', '2020-06-16', '11:50:00', 'CH6455', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90119', 'PI_DA_A3_YL_08', NULL, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'GOLEY', NULL, '0', NULL, '3480', '1260', '2220', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(200, 'YAS_200616_139044', '2020-06-16', '11:54:00', '2020-06-16', '10:30:00', '4767EC02', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABY', NULL, '0', NULL, '12740', '23620', '10880', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(201, 'YAS_200616_139043', '2020-06-16', '11:46:00', '2020-06-16', '11:42:00', '1623JU01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90131', 'PI_DA_D5_DC_04', NULL, NULL, '4', 'BENNE DE COLLECTE', '10', 'KONE', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '13900', '6900', '7000', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(202, 'YAS_200616_139042', '2020-06-16', '11:39:00', '2020-06-16', '10:21:00', '3442CS01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'INOUSSA', NULL, '0', NULL, '13000', '24440', '11440', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(203, 'YAS_200616_139041', '2020-06-16', '11:27:00', '2020-06-16', '10:04:00', '9530FE01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MOUSSA', NULL, '0', NULL, '12680', '24480', '11800', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:38', '2020-06-17 08:55:38', NULL),
+(204, 'YAS_200616_139040', '2020-06-16', '11:07:00', '2020-06-16', '09:52:00', 'CH6856', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ANICET', NULL, '0', NULL, '4620', '12700', '8080', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:39', '2020-06-17 08:55:39', NULL),
+(205, 'YAS_200616_139039', '2020-06-16', '11:04:00', '2020-06-16', '07:49:00', '7397HU01', NULL, '0', 'AUTRES CLIENTS', '1', 'REGIMES', NULL, 'YAS', NULL, '50028', 'ISSIA', NULL, NULL, '7', 'REMORQUE + TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'CISSE', NULL, '0', NULL, '49780', '16140', '33640', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:39', '2020-06-17 08:55:39', NULL),
+(206, 'YAS_200616_139038', '2020-06-16', '10:56:00', '2020-06-16', '09:40:00', '596JC01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SANFO', NULL, '0', NULL, '11900', '26000', '14100', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:39', '2020-06-17 08:55:39', NULL),
+(207, 'YAS_200616_139037', '2020-06-16', '10:28:00', '2020-06-16', '08:40:00', '1298JJ01', NULL, '43645', 'ETS-ODS', '1', 'REGIMES', NULL, 'YAS', NULL, '50045', 'SASSANDRA', 191, NULL, '7', 'REMORQUE + TRACTEUR', '0', 'AUTRES CHAUFFEURS', '80', 'ETS ODS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'SAWADOGO', NULL, '0', NULL, '34740', '14540', '20200', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:39', '2020-06-17 08:55:39', NULL),
+(208, 'YAS_200616_139036', '2020-06-16', '10:20:00', '2020-06-16', '09:36:00', '4767EC02', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABY', NULL, '0', NULL, '12760', '24820', '12060', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:39', '2020-06-17 08:55:39', NULL),
+(209, 'YAS_200616_139035', '2020-06-16', '10:06:00', '2020-06-16', '09:26:00', '3442CS01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'INOUSSA', NULL, '0', NULL, '13020', '27380', '14360', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:39', '2020-06-17 08:55:39', NULL),
+(210, 'YAS_200616_139034', '2020-06-16', '10:01:00', '2020-06-16', '09:46:00', '4472ER01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90056', 'USINE CARREAU ANGUEDEDOU PV', NULL, NULL, '4', 'BENNE DE COLLECTE', '18', 'OUMAR', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '16200', NULL, '29120', '13020', '16100', '-100', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:39', '2020-06-17 08:55:39', NULL),
+(211, 'YAS_200616_139033', '2020-06-16', '09:48:00', '2020-06-16', '09:12:00', '9530FE01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MOUSSA', NULL, '0', NULL, '12660', '24080', '11420', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(212, 'YAS_200616_139032', '2020-06-16', '09:41:00', '2020-06-16', '09:31:00', '2044JV01', NULL, '1', 'PALMAFRIQUE', '1', 'REGIMES', NULL, 'YAS', NULL, '90212', 'PI_AN_D3_V01_16', NULL, NULL, '4', 'BENNE DE COLLECTE', '50', 'NGUESSAN', '1', 'PALMAFRIQUE', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '5940', NULL, '12780', '6840', '5940', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(213, 'YAS_200616_139031', '2020-06-16', '09:34:00', '2020-06-16', '08:59:00', 'CH6856', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ANICET', NULL, '0', NULL, '4640', '12840', '8200', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(214, 'YAS_200616_139030', '2020-06-16', '09:24:00', '2020-06-16', '08:20:00', '4767EC02', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABY', NULL, '0', NULL, '12720', '25100', '12380', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(215, 'YAS_200616_139029', '2020-06-16', '09:10:00', '2020-06-12', '15:28:00', '3442CS01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'INOUSSA', NULL, '0', NULL, '12920', '26520', '13600', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(216, 'YAS_200616_139028', '2020-06-16', '08:57:00', '2020-06-16', '08:17:00', '9530FE01', NULL, '1', 'PALMAFRIQUE', '19', 'FIBRES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MOUSSA', NULL, '0', NULL, '12620', '27960', '15340', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(217, 'YAS_200616_139027', '2020-06-16', '08:05:00', '2020-06-16', '07:46:00', '6021HY01', NULL, '43645', 'ETS-ODS', '1', 'REGIMES', NULL, 'YAS', NULL, '50022', 'DIVO', 91, NULL, '4', 'BENNE DE COLLECTE', '9', 'ADAMA', '80', 'ETS ODS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, '33380', '11500', '21880', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(218, 'YAS_200616_139026', '2020-06-16', '07:53:00', '2020-06-16', '07:45:00', '9265HL01', NULL, '43645', 'ETS-ODS', '1', 'REGIMES', NULL, 'YAS', NULL, '50045', 'SASSANDRA', 191, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '80', 'ETS ODS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'MATHIEU', NULL, '0', NULL, '16820', '8280', '8540', '0', NULL, NULL, 0, 'PESEE', 'RECEPTION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:40', '2020-06-17 08:55:40', NULL),
+(219, 'YAS_200616_139025', '2020-06-16', '07:51:00', '2020-06-15', '10:42:00', '4767EC02', NULL, '1', 'PALMAFRIQUE', '5', 'RAFLES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '4', 'BENNE DE COLLECTE', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'DIABY', NULL, '0', NULL, '12760', '22400', '9640', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:41', '2020-06-17 08:55:41', NULL),
+(220, 'YAS_200616_139024', '2020-06-16', '07:38:00', '2020-06-15', '10:44:00', 'CH6856', NULL, '1', 'PALMAFRIQUE', '5', 'RAFLES', NULL, 'YAS', NULL, '90051', 'USINE CARREAU YASSAP', NULL, NULL, '1', 'TRACTEUR', '0', 'AUTRES CHAUFFEURS', '0', 'AUTRES TRANSPORTEURS', '1', 'RECEPTION TRANSFERT', NULL, NULL, NULL, NULL, 'ANICET', NULL, '0', NULL, '4600', '10460', '5860', '0', NULL, NULL, 0, 'PESEE', 'EXPEDITION', '1', 'PALMAFRIQUE', 'KOUAKOU THERESE', 'KOUAKOU THERESE', NULL, '0', NULL, NULL, NULL, '2020-06-17 08:55:41', '2020-06-17 08:55:41', NULL);
+
+--
+-- Déclencheurs `bascule_datas`
+--
+DELIMITER $$
+CREATE TRIGGER `after_insert_datas` AFTER INSERT ON `bascule_datas` FOR EACH ROW BEGIN
+
+INSERT INTO `bascule_transport` ( `num_ticket`, `destination`, `destination_id`, `origine`, `origine_id`, `poids_net`, `ecart`, `cout_km`, `cout_ticket`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES (new.num_ticket, new.destination, null, new.origine,null, new.poids_net,new.ecart, new.cout_km, new.poids_net*new.cout_km, null, Now(), NULL, NULL);
+
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `bascule_transport`
+--
+
+CREATE TABLE `bascule_transport` (
+  `id` int(11) NOT NULL,
+  `num_ticket` varchar(25) NOT NULL,
+  `destination` varchar(45) NOT NULL,
+  `destination_id` int(11) DEFAULT NULL,
+  `origine` varchar(45) NOT NULL,
+  `origine_id` int(11) DEFAULT NULL,
+  `poids_net` int(11) NOT NULL,
+  `ecart` int(11) NOT NULL,
+  `cout_km` int(11) DEFAULT NULL,
+  `cout_ticket` int(11) DEFAULT NULL,
+  `statut` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `bascule_transport`
+--
+
+INSERT INTO `bascule_transport` (`id`, `num_ticket`, `destination`, `destination_id`, `origine`, `origine_id`, `poids_net`, `ecart`, `cout_km`, `cout_ticket`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'ELI_180831_26307', 'ELI', NULL, 'TAABO', NULL, 1180, 100, 1000, 1180000, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(2, 'ELI_180831_26306', 'ELI', NULL, 'AUTRES ORIGINES ELIBOU', NULL, 4640, 0, NULL, NULL, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(3, 'ELI_180831_26305', 'ELI', NULL, 'AHOUANOU', NULL, 3060, 0, 2000, 6120000, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(4, 'ELI_180831_26304', 'ELI', NULL, 'SAHUYE', NULL, 1360, 0, NULL, NULL, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(5, 'ELI_180831_26303', 'ELI', NULL, 'N\'DOUCI', NULL, 3540, 0, NULL, NULL, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(6, 'ELI_180831_26302', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 14580, 0, NULL, NULL, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(7, 'ELI_180831_26301', 'ELI', NULL, 'M\'BRIBO', NULL, 980, 0, NULL, NULL, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(8, 'ELI_180831_26300', 'ELI', NULL, 'N\'ZIANOUA', NULL, 3360, 0, NULL, NULL, NULL, '2020-06-15 20:45:00', NULL, NULL),
+(9, 'ELI_180831_26299', 'ELI', NULL, 'AGBOVILLE', NULL, 13500, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(10, 'ELI_180831_26298', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 15380, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(11, 'ELI_180831_26297', 'ELI', NULL, 'N\'DOUCI', NULL, 3800, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(12, 'ELI_180831_26296', 'ELI', NULL, 'N\'DOUCI', NULL, 9740, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(13, 'ELI_180831_26295', 'ELI', NULL, 'KODIAKRO (SONGON)', NULL, 2200, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(14, 'ELI_180831_26294', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 11560, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(15, 'ELI_180831_26293', 'ELI', NULL, 'GUEBO 1', NULL, 1200, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(16, 'ELI_180831_26292', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 16180, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(17, 'ELI_180831_26291', 'ELI', NULL, 'SIKENSI', NULL, 2360, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(18, 'ELI_180831_26290', 'ELI', NULL, 'SIKENSI', NULL, 560, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(19, 'ELI_180831_26289', 'ELI', NULL, 'GUEBO 1', NULL, 4980, 0, NULL, NULL, NULL, '2020-06-15 20:45:01', NULL, NULL),
+(20, 'ELI_180831_26288', 'ELI', NULL, 'GUEBO 1', NULL, 3440, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(21, 'ELI_180831_26287', 'ELI', NULL, 'ELIBOU', NULL, 780, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(22, 'ELI_180831_26286', 'ELI', NULL, 'ELIBOU', NULL, 580, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(23, 'ELI_180831_26285', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 13400, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(24, 'ELI_180831_26284', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 1360, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(25, 'ELI_180831_26283', 'ELI', NULL, 'N\'DOUCI', NULL, 6800, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(26, 'ELI_180831_26282', 'ELI', NULL, 'AUTRES ORIGINES ELIBOU', NULL, 6640, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(27, 'ELI_180831_26281', 'ELI', NULL, 'GRAND YAPO', NULL, 620, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(28, 'ELI_180831_26280', 'ELI', NULL, 'AGBOVILLE', NULL, 3180, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(29, 'ELI_180831_26279', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 14420, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(30, 'ELI_180831_26278', 'ELI', NULL, 'BAGO', NULL, 5800, 0, NULL, NULL, NULL, '2020-06-15 20:45:02', NULL, NULL),
+(31, 'ELI_180831_26277', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 13900, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(32, 'ELI_180731_25833', 'ELI', NULL, 'AHOUANOU', NULL, 3380, 0, 2000, 6760000, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(33, 'ELI_180731_25832', 'ELI', NULL, 'AHOUANOU', NULL, 6460, 0, 2000, 12920000, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(34, 'ELI_180731_25831', 'ELI', NULL, 'AHOUANOU', NULL, 5000, 0, 2000, 10000000, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(35, 'ELI_180731_25830', 'ELI', NULL, 'BAGO', NULL, 4560, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(36, 'ELI_180731_25829', 'ELI', NULL, 'OGOUDOU', NULL, 7420, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(37, 'ELI_180731_25828', 'ELI', NULL, 'SAHUYE', NULL, 780, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(38, 'ELI_180731_25827', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 5300, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(39, 'ELI_180731_25826', 'ELI', NULL, 'ELIBOU', NULL, 820, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(40, 'ELI_180731_25825', 'ELI', NULL, 'ELIBOU', NULL, 680, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(41, 'ELI_180731_25824', 'ELI', NULL, 'ELIBOU', NULL, 520, 0, NULL, NULL, NULL, '2020-06-15 20:45:03', NULL, NULL),
+(42, 'ELI_180731_25823', 'ELI', NULL, 'BADASSO', NULL, 340, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(43, 'ELI_180731_25822', 'ELI', NULL, 'N\'DOUCI', NULL, 7160, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(44, 'ELI_180731_25821', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 13840, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(45, 'ELI_180731_25820', 'ELI', NULL, 'BADASSO', NULL, 300, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(46, 'ELI_180731_25819', 'ELI', NULL, 'KODIAKRO (SONGON)', NULL, 1500, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(47, 'ELI_180731_25818', 'ELI', NULL, 'AGBOVILLE', NULL, 3580, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(48, 'ELI_180731_25817', 'ELI', NULL, 'AGBOVILLE', NULL, 360, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(49, 'ELI_180731_25816', 'ELI', NULL, 'PETIT YAPO', NULL, 9740, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(50, 'ELI_180731_25815', 'ELI', NULL, 'N\'DOUCI', NULL, 1940, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(51, 'ELI_180731_25814', 'ELI', NULL, 'GUEBO 2', NULL, 1960, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(52, 'ELI_180731_25813', 'ELI', NULL, 'GUEBO 2', NULL, 4580, 0, NULL, NULL, NULL, '2020-06-15 20:45:04', NULL, NULL),
+(53, 'ELI_180731_25812', 'ELI', NULL, 'AHOUANOU', NULL, 2640, 0, 2000, 5280000, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(54, 'ELI_180731_25811', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 13580, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(55, 'ELI_180731_25810', 'ELI', NULL, 'ELIBOU', NULL, 1540, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(56, 'ELI_180531_24687', 'ELI', NULL, 'KODIAKRO (SONGON)', NULL, 2620, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(57, 'ELI_180531_24686', 'ELI', NULL, 'OGOUDOU', NULL, 9240, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(58, 'ELI_180531_24685', 'ELI', NULL, 'N\'DOUCI', NULL, 1980, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(59, 'ELI_180531_24684', 'ELI', NULL, 'AHOUANOU', NULL, 6160, 0, 2000, 12320000, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(60, 'ELI_180531_24683', 'ELI', NULL, 'BATERA', NULL, 1900, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(61, 'ELI_180531_24682', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 6000, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(62, 'ELI_180531_24681', 'ELI', NULL, 'SAHUYE', NULL, 320, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(63, 'ELI_180531_24680', 'ELI', NULL, 'ELIBOU', NULL, 580, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(64, 'ELI_180531_24679', 'ELI', NULL, 'SAHUYE', NULL, 180, 0, NULL, NULL, NULL, '2020-06-15 20:45:05', NULL, NULL),
+(65, 'ELI_180531_24678', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 16020, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(66, 'ELI_180531_24677', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 13820, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(67, 'ELI_180531_24676', 'ELI', NULL, 'ABOUDE', NULL, 1000, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(68, 'ELI_180531_24675', 'ELI', NULL, 'BAGO', NULL, 8700, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(69, 'ELI_180531_24674', 'ELI', NULL, 'OFFOUMPO', NULL, 780, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(70, 'ELI_180531_24673', 'ELI', NULL, 'AHOUANOU', NULL, 4100, 0, 2000, 8200000, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(71, 'ELI_180531_24672', 'ELI', NULL, 'BADASSO', NULL, 720, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(72, 'ELI_180531_24671', 'ELI', NULL, 'OFFOUMPO', NULL, 360, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(73, 'ELI_180531_24670', 'ELI', NULL, 'ELIBOU', NULL, 1780, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(74, 'ELI_180531_24669', 'ELI', NULL, 'GUEBO 2', NULL, 4780, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(75, 'ELI_180531_24668', 'ELI', NULL, 'N\'DOUCI', NULL, 7100, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(76, 'ELI_180531_24667', 'ELI', NULL, 'BINAO', NULL, 7240, 0, NULL, NULL, NULL, '2020-06-15 20:45:06', NULL, NULL),
+(77, 'ELI_180531_24666', 'ELI', NULL, 'AGBOVILLE', NULL, 9300, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(78, 'ELI_180531_24665', 'ELI', NULL, 'PETIT YAPO', NULL, 3280, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(79, 'ELI_180531_24664', 'ELI', NULL, 'PETIT YAPO', NULL, 180, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(80, 'ELI_180531_24663', 'ELI', NULL, 'DJEKANOU', NULL, 2380, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(81, 'ELI_180531_24662', 'ELI', NULL, 'KODIAKRO (SONGON)', NULL, 4500, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(82, 'ELI_180531_24661', 'ELI', NULL, 'ELIBOU', NULL, 340, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(83, 'ELI_180531_24660', 'ELI', NULL, 'PACOBO', NULL, 3720, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(84, 'ELI_180531_24659', 'ELI', NULL, 'KODIAKRO (SONGON)', NULL, 2220, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(85, 'ELI_180531_24658', 'ELI', NULL, 'BINAO', NULL, 5200, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(86, 'ELI_180531_24657', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 16760, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(87, 'ELI_180531_24656', 'ELI', NULL, 'BAGO', NULL, 6300, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(88, 'ELI_180531_24655', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 15440, 0, NULL, NULL, NULL, '2020-06-15 20:45:07', NULL, NULL),
+(89, 'ELI_180531_24654', 'ELI', NULL, 'BADASSO', NULL, 540, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(90, 'ELI_180531_24653', 'ELI', NULL, 'N\'DOUCI', NULL, 4440, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(91, 'ELI_180531_24652', 'ELI', NULL, 'N\'DOUCI', NULL, 3340, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(92, 'ELI_180531_24651', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 13080, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(93, 'ELI_180531_24650', 'ELI', NULL, 'SAHUYE', NULL, 940, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(94, 'ELI_180531_24649', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 12040, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(95, 'ELI_180531_24648', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 25020, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(96, 'ELI_180531_24647', 'ELI', NULL, 'OGOUDOU', NULL, 8380, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(97, 'ELI_180531_24646', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 15480, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(98, 'ELI_180331_22079', 'ELI', NULL, 'YAMOUSSOUKRO', NULL, 8080, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(99, 'ELI_180331_22078', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 6560, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(100, 'ELI_180331_22077', 'ELI', NULL, 'N\'DOUCI', NULL, 2180, 0, NULL, NULL, NULL, '2020-06-15 20:45:08', NULL, NULL),
+(101, 'ELI_180331_22076', 'ELI', NULL, 'N\'DOUCI', NULL, 1640, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(102, 'ELI_180331_22075', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 4960, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(103, 'ELI_180331_22074', 'ELI', NULL, 'PETIT YAPO', NULL, 5300, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(104, 'ELI_180331_22073', 'ELI', NULL, 'KODIAKRO (SONGON)', NULL, 5220, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(105, 'ELI_180331_22072', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 10320, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(106, 'ELI_180331_22071', 'ELI', NULL, 'OGOUDOU', NULL, 3240, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(107, 'ELI_180331_22070', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 7900, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(108, 'ELI_180331_22069', 'ELI', NULL, 'PETIT YAPO', NULL, 10640, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(109, 'ELI_180331_22068', 'ELI', NULL, 'AGBOVILLE', NULL, 4860, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(110, 'ELI_180331_22067', 'ELI', NULL, 'AGBOVILLE', NULL, 5840, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(111, 'ELI_180331_22066', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 14460, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(112, 'ELI_180331_22065', 'ELI', NULL, 'BADASSO', NULL, 480, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(113, 'ELI_180331_22064', 'ELI', NULL, 'ELIBOU', NULL, 680, 0, NULL, NULL, NULL, '2020-06-15 20:45:09', NULL, NULL),
+(114, 'ELI_180331_22063', 'ELI', NULL, 'ELIBOU', NULL, 360, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(115, 'ELI_180331_22062', 'ELI', NULL, 'AMANGBEU', NULL, 5540, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(116, 'ELI_180331_22061', 'ELI', NULL, 'BECEDI', NULL, 1640, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(117, 'ELI_180331_22060', 'ELI', NULL, 'BADASSO', NULL, 780, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(118, 'ELI_180331_22059', 'ELI', NULL, 'ELIBOU', NULL, 560, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(119, 'ELI_180331_22058', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 13280, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(120, 'ELI_180331_22057', 'ELI', NULL, 'BAGO', NULL, 5580, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(121, 'ELI_180331_22056', 'ELI', NULL, 'BRIKISSO', NULL, 2400, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(122, 'ELI_180331_22055', 'ELI', NULL, 'SOCROBO', NULL, 5380, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(123, 'ELI_180331_22054', 'ELI', NULL, 'KODIAKRO (SONGON)', NULL, 3500, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(124, 'ELI_180331_22053', 'ELI', NULL, 'BINAO', NULL, 3800, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(125, 'ELI_180331_22052', 'ELI', NULL, 'N\'DOUCI', NULL, 5180, 0, NULL, NULL, NULL, '2020-06-15 20:45:10', NULL, NULL),
+(126, 'ELI_180331_22051', 'ELI', NULL, 'SOCROBO', NULL, 2540, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(127, 'ELI_180331_22050', 'ELI', NULL, 'PETIT YAPO', NULL, 5740, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(128, 'ELI_180331_22049', 'ELI', NULL, 'BODO 1', NULL, 2520, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(129, 'ELI_180331_22048', 'ELI', NULL, 'BECEDI', NULL, 3220, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(130, 'ELI_180331_22047', 'ELI', NULL, 'GUEBO 1', NULL, 3700, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(131, 'ELI_180331_22046', 'ELI', NULL, 'ASSINZE (TIASSALE)', NULL, 5960, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(132, 'ELI_180331_22045', 'ELI', NULL, 'SAHUYE', NULL, 660, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(133, 'ELI_180331_22044', 'ELI', NULL, 'N\'DOUCI', NULL, 4580, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(134, 'ELI_180331_22043', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 18200, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(135, 'ELI_180331_22042', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 17460, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(136, 'ELI_180331_22041', 'ELI', NULL, 'AGBOVILLE', NULL, 4220, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(137, 'ELI_180331_22040', 'ELI', NULL, 'BLE', NULL, 5420, 0, NULL, NULL, NULL, '2020-06-15 20:45:11', NULL, NULL),
+(138, 'ELI_180331_22039', 'ELI', NULL, 'AGBOVILLE', NULL, 7000, 0, NULL, NULL, NULL, '2020-06-15 20:45:12', NULL, NULL),
+(139, 'ELI_180331_22038', 'ELI', NULL, 'AGBOVILLE', NULL, 2680, 0, NULL, NULL, NULL, '2020-06-15 20:45:12', NULL, NULL),
+(140, 'ELI_180331_22037', 'ELI', NULL, 'PETIT YAPO', NULL, 5340, 0, NULL, NULL, NULL, '2020-06-15 20:45:12', NULL, NULL),
+(141, 'ELI_180331_22036', 'ELI', NULL, 'PETIT YAPO', NULL, 1320, 0, NULL, NULL, NULL, '2020-06-15 20:45:12', NULL, NULL),
+(142, 'ELI_180331_22035', 'ELI', NULL, 'GUEBO 1', NULL, 3520, 0, NULL, NULL, NULL, '2020-06-15 20:45:12', NULL, NULL),
+(143, 'ELI_180331_22034', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 16520, 0, NULL, NULL, NULL, '2020-06-15 20:45:12', NULL, NULL),
+(144, 'ELI_180331_22033', 'ELI', NULL, 'USINE CARREAU ELIBOU', NULL, 14920, 0, NULL, NULL, NULL, '2020-06-15 20:45:12', NULL, NULL),
+(145, 'YAS_200616_139099', 'YAS', NULL, 'PI_DA_B2_TE_98', NULL, 13080, 0, NULL, NULL, NULL, '2020-06-17 08:55:30', NULL, NULL),
+(146, 'YAS_200616_139098', 'YAS', NULL, 'PI_AN_B3_V03_99', NULL, 12480, 0, NULL, NULL, NULL, '2020-06-17 08:55:31', NULL, NULL),
+(147, 'YAS_200616_139097', 'YAS', NULL, 'PI_AN_B4_V02_93', NULL, 7620, 0, NULL, NULL, NULL, '2020-06-17 08:55:31', NULL, NULL),
+(148, 'YAS_200616_139096', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 9740, 0, NULL, NULL, NULL, '2020-06-17 08:55:31', NULL, NULL),
+(149, 'YAS_200616_139095', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 7860, 0, NULL, NULL, NULL, '2020-06-17 08:55:31', NULL, NULL),
+(150, 'YAS_200616_139094', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 2860, 0, NULL, NULL, NULL, '2020-06-17 08:55:31', NULL, NULL),
+(151, 'YAS_200616_139093', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 1100, 0, NULL, NULL, NULL, '2020-06-17 08:55:31', NULL, NULL),
+(152, 'YAS_200616_139092', 'YAS', NULL, 'DIVO', NULL, 21620, 0, NULL, NULL, NULL, '2020-06-17 08:55:31', NULL, NULL),
+(153, 'YAS_200616_139091', 'YAS', NULL, 'PI_AN_B4_V02_93', NULL, 18660, 60, NULL, NULL, NULL, '2020-06-17 08:55:32', NULL, NULL),
+(154, 'YAS_200616_139090', 'YAS', NULL, 'USINE CARREAU ELIBOU', NULL, 10740, -140, NULL, NULL, NULL, '2020-06-17 08:55:32', NULL, NULL),
+(155, 'YAS_200616_139089', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 6980, 0, NULL, NULL, NULL, '2020-06-17 08:55:32', NULL, NULL),
+(156, 'YAS_200616_139088', 'YAS', NULL, 'USINE CARREAU ELIBOU', NULL, 15140, -100, NULL, NULL, NULL, '2020-06-17 08:55:32', NULL, NULL),
+(157, 'YAS_200616_139087', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 7000, 0, NULL, NULL, NULL, '2020-06-17 08:55:32', NULL, NULL),
+(158, 'YAS_200616_139086', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 15180, 0, NULL, NULL, NULL, '2020-06-17 08:55:32', NULL, NULL),
+(159, 'YAS_200616_139085', 'YAS', NULL, 'PI_DA_B4_YL_03', NULL, 13300, 0, NULL, NULL, NULL, '2020-06-17 08:55:32', NULL, NULL),
+(160, 'YAS_200616_139084', 'YAS', NULL, 'PI_DA_D5_DC_04', NULL, 10580, 0, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(161, 'YAS_200616_139083', 'YAS', NULL, 'PI_DA_D5_DC_04', NULL, 8020, 0, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(162, 'YAS_200616_139082', 'YAS', NULL, 'PI_DA_B4_YL_03', NULL, 5260, 0, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(163, 'YAS_200616_139081', 'YAS', NULL, 'DABOU', NULL, 1000, 0, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(164, 'YAS_200616_139080', 'YAS', NULL, 'PI_AN_B3_V03_99', NULL, 15720, 0, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(165, 'YAS_200616_139079', 'YAS', NULL, 'USINE CARREAU ELIBOU', NULL, 14760, -220, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(166, 'YAS_200616_139078', 'YAS', NULL, 'PI_AN_B3_V03_99', NULL, 14620, 0, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(167, 'YAS_200616_139077', 'YAS', NULL, 'AUTRES ORIGINES DABOU', NULL, 11100, 0, NULL, NULL, NULL, '2020-06-17 08:55:33', NULL, NULL),
+(168, 'YAS_200616_139076', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 9240, 0, NULL, NULL, NULL, '2020-06-17 08:55:34', NULL, NULL),
+(169, 'YAS_200616_139075', 'YAS', NULL, 'PI_DA_P1_AR_15', NULL, 6980, 0, NULL, NULL, NULL, '2020-06-17 08:55:34', NULL, NULL),
+(170, 'YAS_200616_139074', 'YAS', NULL, 'NOUVEL OUSROU', NULL, 940, 0, NULL, NULL, NULL, '2020-06-17 08:55:34', NULL, NULL),
+(171, 'YAS_200616_139073', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 9100, 0, NULL, NULL, NULL, '2020-06-17 08:55:34', NULL, NULL),
+(172, 'YAS_200616_139072', 'YAS', NULL, 'PI_DA_A3_YL_08', NULL, 1480, 0, NULL, NULL, NULL, '2020-06-17 08:55:34', NULL, NULL),
+(173, 'YAS_200616_139071', 'YAS', NULL, 'PI_DA_B4_YL_03', NULL, 9520, 0, NULL, NULL, NULL, '2020-06-17 08:55:34', NULL, NULL),
+(174, 'YAS_200616_139070', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 7100, 0, NULL, NULL, NULL, '2020-06-17 08:55:35', NULL, NULL),
+(175, 'YAS_200616_139069', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 10840, 0, NULL, NULL, NULL, '2020-06-17 08:55:35', NULL, NULL),
+(176, 'YAS_200616_139068', 'YAS', NULL, 'PI_DA_A3_TO_98', NULL, 6060, 0, NULL, NULL, NULL, '2020-06-17 08:55:35', NULL, NULL),
+(177, 'YAS_200616_139067', 'YAS', NULL, 'IRA', NULL, 6020, 0, NULL, NULL, NULL, '2020-06-17 08:55:35', NULL, NULL),
+(178, 'YAS_200616_139066', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 9620, 0, NULL, NULL, NULL, '2020-06-17 08:55:35', NULL, NULL),
+(179, 'YAS_200616_139065', 'YAS', NULL, 'DABOU', NULL, 880, 0, NULL, NULL, NULL, '2020-06-17 08:55:35', NULL, NULL),
+(180, 'YAS_200616_139064', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 7180, 0, NULL, NULL, NULL, '2020-06-17 08:55:35', NULL, NULL),
+(181, 'YAS_200616_139063', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 14960, 0, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(182, 'YAS_200616_139062', 'YAS', NULL, 'PI_DA_A3_TO_98', NULL, 12540, 0, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(183, 'YAS_200616_139061', 'YAS', NULL, 'PI_DA_D5_DC_04', NULL, 7660, 0, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(184, 'YAS_200616_139060', 'YAS', NULL, 'PI_DA_A3_YL_08', NULL, 2300, 0, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(185, 'YAS_200616_139059', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 10280, 0, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(186, 'YAS_200616_139058', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 6860, 0, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(187, 'YAS_200616_139057', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 8500, 0, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(188, 'YAS_200616_139056', 'YAS', NULL, 'USINE CARREAU ELIBOU', NULL, 13400, -200, NULL, NULL, NULL, '2020-06-17 08:55:36', NULL, NULL),
+(189, 'YAS_200616_139055', 'YAS', NULL, 'PI_DA_B4_YL_03', NULL, 12960, 0, NULL, NULL, NULL, '2020-06-17 08:55:37', NULL, NULL),
+(190, 'YAS_200616_139054', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 11920, 0, NULL, NULL, NULL, '2020-06-17 08:55:37', NULL, NULL),
+(191, 'YAS_200616_139053', 'YAS', NULL, 'PI_DA_D5_DC_04', NULL, 9780, 0, NULL, NULL, NULL, '2020-06-17 08:55:37', NULL, NULL),
+(192, 'YAS_200616_139052', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 12160, 0, NULL, NULL, NULL, '2020-06-17 08:55:37', NULL, NULL),
+(193, 'YAS_200616_139051', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 9100, 0, NULL, NULL, NULL, '2020-06-17 08:55:37', NULL, NULL),
+(194, 'YAS_200616_139050', 'YAS', NULL, 'NOUVEL OUSROU', NULL, 2080, 0, NULL, NULL, NULL, '2020-06-17 08:55:37', NULL, NULL),
+(195, 'YAS_200616_139049', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 14360, 0, NULL, NULL, NULL, '2020-06-17 08:55:37', NULL, NULL),
+(196, 'YAS_200616_139048', 'YAS', NULL, 'PI_DA_B4_YL_03', NULL, 8720, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(197, 'YAS_200616_139047', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 7840, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(198, 'YAS_200616_139046', 'YAS', NULL, 'PI_DA_DC_C2_14', NULL, 7000, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(199, 'YAS_200616_139045', 'YAS', NULL, 'PI_DA_A3_YL_08', NULL, 2220, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(200, 'YAS_200616_139044', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 10880, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(201, 'YAS_200616_139043', 'YAS', NULL, 'PI_DA_D5_DC_04', NULL, 7000, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(202, 'YAS_200616_139042', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 11440, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(203, 'YAS_200616_139041', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 11800, 0, NULL, NULL, NULL, '2020-06-17 08:55:38', NULL, NULL),
+(204, 'YAS_200616_139040', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 8080, 0, NULL, NULL, NULL, '2020-06-17 08:55:39', NULL, NULL),
+(205, 'YAS_200616_139039', 'YAS', NULL, 'ISSIA', NULL, 33640, 0, NULL, NULL, NULL, '2020-06-17 08:55:39', NULL, NULL),
+(206, 'YAS_200616_139038', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 14100, 0, NULL, NULL, NULL, '2020-06-17 08:55:39', NULL, NULL),
+(207, 'YAS_200616_139037', 'YAS', NULL, 'SASSANDRA', NULL, 20200, 0, NULL, NULL, NULL, '2020-06-17 08:55:39', NULL, NULL),
+(208, 'YAS_200616_139036', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 12060, 0, NULL, NULL, NULL, '2020-06-17 08:55:39', NULL, NULL),
+(209, 'YAS_200616_139035', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 14360, 0, NULL, NULL, NULL, '2020-06-17 08:55:39', NULL, NULL),
+(210, 'YAS_200616_139034', 'YAS', NULL, 'USINE CARREAU ANGUEDEDOU PV', NULL, 16100, -100, NULL, NULL, NULL, '2020-06-17 08:55:39', NULL, NULL),
+(211, 'YAS_200616_139033', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 11420, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(212, 'YAS_200616_139032', 'YAS', NULL, 'PI_AN_D3_V01_16', NULL, 5940, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(213, 'YAS_200616_139031', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 8200, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(214, 'YAS_200616_139030', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 12380, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(215, 'YAS_200616_139029', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 13600, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(216, 'YAS_200616_139028', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 15340, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(217, 'YAS_200616_139027', 'YAS', NULL, 'DIVO', NULL, 21880, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(218, 'YAS_200616_139026', 'YAS', NULL, 'SASSANDRA', NULL, 8540, 0, NULL, NULL, NULL, '2020-06-17 08:55:40', NULL, NULL),
+(219, 'YAS_200616_139025', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 9640, 0, NULL, NULL, NULL, '2020-06-17 08:55:41', NULL, NULL),
+(220, 'YAS_200616_139024', 'YAS', NULL, 'USINE CARREAU YASSAP', NULL, 5860, 0, NULL, NULL, NULL, '2020-06-17 08:55:41', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `categorie` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `statut` int(11) NOT NULL,
+  `code_prodtui` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `categorie`, `description`, `statut`, `code_prodtui`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'carburant', 'famille des fuels de des', 1, '123456781', '2020-05-31 19:58:11', '2020-05-31 21:01:27', NULL),
+(2, 'patte', 'tests', 1, '6541', '2020-05-31 21:09:04', '2020-05-31 21:23:07', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chauffeurs`
+--
+
+CREATE TABLE `chauffeurs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `entreprise_id` int(11) NOT NULL,
+  `contrat` int(11) NOT NULL,
+  `date_contrat` timestamp NOT NULL,
+  `date_naissance` timestamp NOT NULL,
+  `lieu_naissance` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ethnie` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `religion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sit_maritale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `groupe_sang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nb_enfant` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cni_ref` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `permis_ref` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `residence` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `chauffeurs`
+--
+
+INSERT INTO `chauffeurs` (`id`, `photo`, `nom`, `prenom`, `contact`, `entreprise_id`, `contrat`, `date_contrat`, `date_naissance`, `lieu_naissance`, `ethnie`, `religion`, `sit_maritale`, `groupe_sang`, `nb_enfant`, `cni_ref`, `permis_ref`, `residence`, `code`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '', 'Bieko', 'Steve', '45878996', 1, 1, '2020-06-01 00:00:00', '2020-06-17 00:00:00', 'Man', 'Yacouba', 'Musulman', 'Marie', 'O+', '2', '4587411', '65874121', 'Abobo', '458', 'Yannick', 'Yannick', '2020-06-08 00:00:00', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chauffeur_permis`
+--
+
+CREATE TABLE `chauffeur_permis` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `permis_ref` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categories` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_validitie` timestamp NOT NULL,
+  `date_exp` timestamp NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cuves`
+--
+
+CREATE TABLE `cuves` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cuve` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `capacite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hauteur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `station_id` int(10) UNSIGNED NOT NULL,
+  `produit_id` int(10) UNSIGNED NOT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `cuves`
+--
+
+INSERT INTO `cuves` (`id`, `cuve`, `code`, `capacite`, `hauteur`, `station_id`, `produit_id`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Gasoil 1', 'Cv_Go1', '15000', '3000', 1, 1, 1, '2020-05-31 22:37:41', '2020-05-31 22:37:41', NULL),
+(2, 'Super 1', 'Cv_Sp1', '20000', '4000', 1, 2, 1, '2020-05-31 22:38:40', '2020-05-31 22:38:40', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `engins`
+--
+
+CREATE TABLE `engins` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `marque_id` int(10) UNSIGNED NOT NULL,
+  `modele_id` int(10) UNSIGNED NOT NULL,
+  `matricule` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type_id` int(10) UNSIGNED NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `energie_id` int(10) UNSIGNED NOT NULL,
+  `chassis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `poids_vide` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `charge_utile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `poids_charge` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `km_depart` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `couleur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `essieux` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `places` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_circ` datetime DEFAULT NULL,
+  `nb_roue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `engin_kilometrages`
+--
+
+CREATE TABLE `engin_kilometrages` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `matricule_id` int(10) UNSIGNED NOT NULL,
+  `date_km` timestamp NOT NULL,
+  `kilometrage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activite_id` int(10) UNSIGNED NOT NULL,
+  `statut_compteur` int(11) NOT NULL,
+  `station_id` int(10) UNSIGNED NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `engin_marques`
+--
+
+CREATE TABLE `engin_marques` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `marque` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `engin_marques`
+--
+
+INSERT INTO `engin_marques` (`id`, `marque`, `code`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Toyota', 'Toyota', 1, '2020-06-01 00:06:25', '2020-06-01 00:06:25', NULL),
+(2, 'Renault', 'Rnlt', 1, '2020-06-01 00:06:55', '2020-06-01 00:06:55', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `engin_modeles`
+--
+
+CREATE TABLE `engin_modeles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `modele` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marque_id` int(10) UNSIGNED NOT NULL,
+  `annee` date DEFAULT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `engin_modeles`
+--
+
+INSERT INTO `engin_modeles` (`id`, `modele`, `code`, `marque_id`, `annee`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Rav4', 'rav4', 1, NULL, 1, '2020-06-01 00:27:45', '2020-06-01 00:27:45', NULL),
+(2, 'TRM2000', 'TRM', 2, '2020-06-04', 1, '2020-06-01 00:28:23', '2020-06-04 15:57:21', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `engin_types`
+--
+
+CREATE TABLE `engin_types` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `engin_types`
+--
+
+INSERT INTO `engin_types` (`id`, `type`, `code`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Tracteur Agricole', 'TA', 1, '2020-06-01 02:42:21', '2020-06-01 02:42:21', NULL),
+(2, 'Camionnette', 'Cam', 1, '2020-06-01 02:44:01', '2020-06-01 02:44:01', NULL),
+(3, 'Camion Benne', 'CB', 1, '2020-06-01 02:44:46', '2020-06-01 02:44:46', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `entreprises`
+--
+
+CREATE TABLE `entreprises` (
+  `id` int(11) NOT NULL,
+  `libelle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `actif` varchar(225) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fournisseurs`
+--
+
+CREATE TABLE `fournisseurs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `raison_so` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `compte_contr` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reg_com` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `interlocuteur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` int(11) NOT NULL,
+  `siege` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type_fournisseur_id` int(10) UNSIGNED NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `fournisseurs`
+--
+
+INSERT INTO `fournisseurs` (`id`, `raison_so`, `compte_contr`, `reg_com`, `interlocuteur`, `contact`, `email`, `statut`, `siege`, `observation`, `type_fournisseur_id`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'No Limit', '15652FX01', '45451151', 'Timite Adama', '48975233', 'geka@levi.com', 1, 'Marcory', 'RAS', 1, 'yannick', 'yannick', '2020-06-22 20:42:10', '2020-06-22 20:42:10', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2020_05_15_155747_create_sessions_table', 1),
+(5, '2020_05_15_213933_create_sites_table', 2),
+(6, '2016_01_15_105324_create_roles_table', 3),
+(7, '2016_01_15_114412_create_role_user_table', 3),
+(8, '2016_01_26_115212_create_permissions_table', 3),
+(9, '2016_01_26_115523_create_permission_role_table', 3),
+(10, '2016_02_09_132439_create_permission_user_table', 3),
+(11, '2020_05_16_234909_create_entreprises_table', 4),
+(12, '2020_05_17_000916_create_agences_table', 5),
+(13, '2020_05_24_140412_create_transporteurs_table', 6),
+(14, '2020_05_31_144751_create_petroliers_table', 7),
+(15, '2020_05_31_153639_create_stations_table', 8),
+(16, '2020_05_31_163045_create_pompistes_table', 9),
+(17, '2020_05_31_195331_create_categories_table', 10),
+(18, '2020_05_31_215116_create_produits_table', 11),
+(19, '2020_05_31_222823_create_cuves_table', 12),
+(20, '2020_05_31_224932_create_pompes_table', 13),
+(21, '2020_05_31_235952_create_engin_marques_table', 14),
+(22, '2020_06_01_002016_create_engin_modeles_table', 15),
+(23, '2020_06_01_023339_create_engin_types_table', 16),
+(24, '2020_06_01_035351_create_engins_table', 17),
+(25, '2020_06_02_150249_create_processes_table', 18),
+(27, '2020_06_02_150639_create_activites_table', 19),
+(29, '2020_06_02_155810_create_chauffeur_permis_table', 20),
+(32, '2020_06_02_151919_create_chauffeurs_table', 21),
+(33, '2020_06_02_185117_create_engin_kilometrages_table', 21),
+(34, '2020_06_03_002741_create_vente_petroliers_table', 22),
+(35, '2020_06_05_095423_create_produit_prixes_table', 23),
+(36, '2020_06_07_153249_create_bascules_table', 24),
+(37, '2020_06_07_162526_create_type_zones_table', 25),
+(38, '2020_06_07_165003_create_zone_collectes_table', 26),
+(39, '2020_06_07_181123_create_bareme_transports_table', 27),
+(40, '2020_06_07_181912_create_bascule_datas_table', 28),
+(41, '2020_06_15_112919_create_bareme_penalite_transports_table', 29),
+(42, '2020_06_22_154328_create_type_fournisseurs_table', 30),
+(43, '2020_06_22_161727_create_type_accomptes_table', 31),
+(44, '2020_06_22_200230_create_fournisseurs_table', 32),
+(45, '2020_06_22_211852_create_accomptes_table', 33);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('cygouede@gmail.com', '$2y$10$jFRhZGAfQXKvpEM0mYNzV.TKW3e/qx.EjyTWOZ1HrkTweYbp/5m.q', '2020-05-30 18:41:29');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `slug`, `description`, `model`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Can View Users', 'view.users', 'Can view users', 'Permission', '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(2, 'Can Create Users', 'create.users', 'Can create new users', 'Permission', '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(3, 'Can Edit Users', 'edit.users', 'Can edit users', 'Permission', '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(4, 'Can Delete Users', 'delete.users', 'Can delete users', 'Permission', '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `permission_role`
+--
+
+CREATE TABLE `permission_role` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `permission_role`
+--
+
+INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(2, 2, 1, '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(3, 3, 1, '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(4, 4, 1, '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `permission_user`
+--
+
+CREATE TABLE `permission_user` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `permission_user`
+--
+
+INSERT INTO `permission_user` (`id`, `permission_id`, `user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 2, NULL, NULL, NULL),
+(2, 3, 2, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `petroliers`
+--
+
+CREATE TABLE `petroliers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `petrolier` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `petroliers`
+--
+
+INSERT INTO `petroliers` (`id`, `petrolier`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Total', '2020-05-31 15:39:45', '2020-05-31 16:10:45', NULL),
+(2, 'PetroIvoire', '2020-05-31 16:43:35', '2020-05-31 16:43:35', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pompes`
+--
+
+CREATE TABLE `pompes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `pompe` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marque` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `index_depart` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `station_id` int(10) UNSIGNED NOT NULL,
+  `produit_id` int(10) UNSIGNED NOT NULL,
+  `cuve_id` int(10) UNSIGNED NOT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `pompes`
+--
+
+INSERT INTO `pompes` (`id`, `pompe`, `marque`, `code`, `index_depart`, `station_id`, `produit_id`, `cuve_id`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'P_Gasoil1', 'Tokeime', 'PGO1', '15105', 1, 1, 1, 1, '2020-05-31 23:23:30', '2020-05-31 23:23:30', NULL),
+(2, 'P_Super1', 'Tokeime', 'PSp1', '12304', 1, 2, 2, 1, '2020-05-31 23:26:09', '2020-05-31 23:26:09', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pompistes`
+--
+
+CREATE TABLE `pompistes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `station_id` int(10) UNSIGNED NOT NULL,
+  `emploi` int(11) NOT NULL,
+  `contrat` int(11) NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `pompistes`
+--
+
+INSERT INTO `pompistes` (`id`, `nom`, `prenom`, `contact`, `station_id`, `emploi`, `contrat`, `code`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Ble', 'Jonasi', '48975233', 3, 1, 1, '1234506', '2020-05-31 16:34:57', '2020-05-31 21:28:12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `processes`
+--
+
+CREATE TABLE `processes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `processus` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `finalite` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pilote` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `controleur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `processes`
+--
+
+INSERT INTO `processes` (`id`, `processus`, `finalite`, `pilote`, `controleur`, `code`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'collecte PV', 'collecte de regime PV', 'francois.kla@palmafrique.ci', 'yannick.gouede@palmafrique.ci', 'Col_PV', 'yannick', 'yannick', '2020-06-02 18:54:07', '2020-06-02 18:54:07', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produits`
+--
+
+CREATE TABLE `produits` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `produit` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categorie_id` int(10) UNSIGNED NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `produits`
+--
+
+INSERT INTO `produits` (`id`, `produit`, `description`, `categorie_id`, `code`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'gasoil', 'gasoil cote d\'ivoire', 1, 'Go', 1, '2020-05-31 22:07:50', '2020-05-31 22:07:50', NULL),
+(2, 'Super', 'Gestoci', 1, 'Sp', 1, '2020-05-31 22:28:56', '2020-05-31 22:28:56', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produit_prixes`
+--
+
+CREATE TABLE `produit_prixes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `produit_id` int(10) UNSIGNED NOT NULL,
+  `prix` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prix_remise` int(11) DEFAULT NULL,
+  `debut` date NOT NULL,
+  `fin` date NOT NULL,
+  `statut` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `produit_prixes`
+--
+
+INSERT INTO `produit_prixes` (`id`, `produit_id`, `prix`, `prix_remise`, `debut`, `fin`, `statut`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, '580', 30, '2020-06-05', '2020-06-30', 1, '2020-06-05 10:01:23', '2020-06-05 10:01:23', NULL),
+(2, 2, '580', 25, '2020-06-01', '2020-06-30', 1, '2020-06-05 10:01:44', '2020-06-05 10:01:44', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `level` int(11) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `level`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Admin', 'admin', 'Admin Role', 5, '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(2, 'User', 'user', 'User Role', 1, '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL),
+(3, 'Unverified', 'unverified', 'Unverified Role', 0, '2020-05-15 23:31:13', '2020-05-15 23:31:13', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `role_user`
+--
+
+CREATE TABLE `role_user` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `role_user`
+--
+
+INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 2, '2020-05-16 15:52:24', '2020-05-16 15:52:24', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sites`
+--
+
+CREATE TABLE `sites` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `sites`
+--
+
+INSERT INTO `sites` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Abidjan', '2020-05-15 21:52:43', '2020-05-15 21:52:43', NULL),
+(2, 'Man', '2020-05-15 22:10:50', '2020-05-15 22:10:50', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `stations`
+--
+
+CREATE TABLE `stations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `station` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `petrolier_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `stations`
+--
+
+INSERT INTO `stations` (`id`, `station`, `petrolier_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Gesco', 1, '2020-05-31 16:00:26', '2020-05-31 16:00:26', NULL),
+(3, 'Marcory', 1, '2020-05-31 16:04:02', '2020-05-31 16:04:02', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `transporteurs`
+--
+
+CREATE TABLE `transporteurs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `libelle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `compte_cont` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reg_com` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `interlocuteur` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `interlo_cont` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `interlo_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observations` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `transporteurs`
+--
+
+INSERT INTO `transporteurs` (`id`, `libelle`, `compte_cont`, `reg_com`, `interlocuteur`, `interlo_cont`, `interlo_email`, `type`, `statut`, `observations`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(7, 'motobe', '54654654654', '45451151', '446464', '44449848', 'qsdsqs@hgjh.com', 'Particulier', '0', NULL, '2020-05-24 20:10:53', '2020-05-24 20:10:53', NULL),
+(8, '45', '454', '5454', '5454', '5454', '5454@gamil.com', 'Particulier', '0', NULL, '2020-05-24 21:22:29', '2020-05-26 16:40:29', '2020-05-26 16:40:29'),
+(9, 'palmafrique', '200', '5454', 'ytgytg', '6541564', '1165@lklkj.com', 'Particulier', '0', NULL, '2020-05-26 20:46:43', '2020-05-26 20:46:43', NULL),
+(10, 'PALCI', '200', '5454', 'ytgytg', '6541564', '1165@lklkj.com', 'Particulier', '0', NULL, '2020-05-26 21:33:39', '2020-05-26 21:33:39', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type_accomptes`
+--
+
+CREATE TABLE `type_accomptes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type_accompte` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code_type_accompte` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut` int(11) NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `type_accomptes`
+--
+
+INSERT INTO `type_accomptes` (`id`, `type_accompte`, `code_type_accompte`, `description`, `statut`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'chargeuse', 'chg125X', 'frais de chargement', 1, NULL, NULL, '2020-06-22 21:21:04', '2020-06-22 21:21:04', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type_fournisseurs`
+--
+
+CREATE TABLE `type_fournisseurs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type_fournisseur` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code_type_fournisseur` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `observation` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `type_fournisseurs`
+--
+
+INSERT INTO `type_fournisseurs` (`id`, `type_fournisseur`, `code_type_fournisseur`, `observation`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Transporteur', 'Transp', 'Transporteur de regimes', NULL, NULL, '2020-06-22 20:07:02', '2020-06-22 20:07:02', NULL),
+(2, 'Transporteur citerne', 'transp_cit', 'Transporteur d\'huile', NULL, NULL, '2020-06-22 20:10:26', '2020-06-22 20:10:26', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type_zones`
+--
+
+CREATE TABLE `type_zones` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type_zone` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code_type_zone` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `observation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `type_zones`
+--
+
+INSERT INTO `type_zones` (`id`, `type_zone`, `code_type_zone`, `observation`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Plantation', 'Plant', 'intérieur d\'une plantation', NULL, NULL, '2020-06-07 16:31:50', '2020-06-07 16:36:15', NULL),
+(2, 'Prepese', 'Prepese', 'Point de regroupement', NULL, NULL, '2020-06-07 16:35:33', '2020-06-07 16:35:33', NULL),
+(3, 'Bascule', 'Pbascule', 'pont de transite', NULL, NULL, '2020-06-07 17:12:55', '2020-06-07 17:12:55', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_actif` int(2) DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `is_actif`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Yannick GOUEDE', 'cygouede@gmail.com', NULL, '$2y$10$fGAE2ZlVXZMw500jFmBFN.hFdnkZ7/CqPvd1i9dK.n7RZXHAQS7/W', NULL, NULL, '2020-05-16 00:19:50', '2020-05-16 00:19:50'),
+(3, 'admin', 'admin@admin.com', NULL, '$2y$10$crRnGTK5LVIWaMNDCQn7Ju9F9fUOE7ThjQAld8A2vFJv58DinciGe', NULL, NULL, '2020-05-16 15:52:24', '2020-05-16 15:52:24'),
+(4, 'marie', 'marie@louise.com', NULL, '$2y$10$4dIepsbDwOvPZuKPzGVdkOo3h29Wi7zcCswB7degw/Zgw9cubNeje', NULL, NULL, '2020-05-31 10:33:03', '2020-05-31 10:33:03');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vente_petroliers`
+--
+
+CREATE TABLE `vente_petroliers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `marque_id` int(10) UNSIGNED NOT NULL,
+  `matricule_id` int(10) UNSIGNED NOT NULL,
+  `transporteur_id` int(10) UNSIGNED NOT NULL,
+  `produit_id` int(10) UNSIGNED NOT NULL,
+  `quantite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `chauffeur_id` int(10) UNSIGNED NOT NULL,
+  `activite_id` int(10) UNSIGNED NOT NULL,
+  `kilometrage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statut_compteur` int(11) NOT NULL,
+  `pompiste_id` int(10) UNSIGNED NOT NULL,
+  `pompe_id` int(10) UNSIGNED NOT NULL,
+  `station_id` int(10) UNSIGNED NOT NULL,
+  `cout` int(11) DEFAULT NULL,
+  `cout_remise` int(11) DEFAULT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `zone_collectes`
+--
+
+CREATE TABLE `zone_collectes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `zone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code_zone` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type_zone_id` int(10) UNSIGNED DEFAULT NULL,
+  `rayon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gps_coord` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_creat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autor_update` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `zone_collectes`
+--
+
+INSERT INTO `zone_collectes` (`id`, `zone`, `code_zone`, `type_zone_id`, `rayon`, `gps_coord`, `observation`, `autor_creat`, `autor_update`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'ABADJIN-KOUTE', '1', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'ABBEY BEGNINI', '2', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'ABENGOUROU', '3', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'ABIEHOU', '4', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'ABOBO BAOULE', '5', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'ABOBO TE', '6', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'ABOISSO', '7', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'ABOISSO COMOE', '8', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'ABOUDE', '9', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'ABROTCHI', '10', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'ACHOKOI', '11', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'ADANGBAKRO', '12', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'ADATTIE', '13', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'ADEROME', '14', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'ADIAKE', '15', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'ADIAPOTE', '16', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'ADIAPOTO 1', '17', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'ADIAPOTO 2', '18', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, 'ADIOPO-DOUME', '19', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, 'ADJAME-BINGERVILLE', '20', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 'ADONKOI 1', '21', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, 'ADONKOI 2', '22', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, 'ADZOPE', '23', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, 'AGBAILE', '24', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(25, 'AGBAN', '25', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(26, 'AGBOVILLE', '26', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(27, 'AGHIEN', '27', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(28, 'AGHIEN TELEGRAPHE', '28', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(29, 'AGNEBY', '29', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(30, 'AHOUANOU', '30', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(31, 'AHOUE', '31', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(32, 'AHOUTOUE', '32', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(33, 'AHOUYA', '33', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(34, 'AKAKRO', '34', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(35, 'AKANDJE', '35', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(36, 'AKEIKOI', '36', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(37, 'AKOUPE', '37', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(38, 'AKOURE', '38', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(39, 'AKOUYATE', '39', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(40, 'AKRADIO', '40', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(41, 'ALEPE', '41', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(42, 'ALLUI', '42', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(43, 'AMANGBEU', '43', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(44, 'ANANDA', '44', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(45, 'ANDEPO', '45', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(46, 'ANGUEDEDOU', '46', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(47, 'ANNA', '47', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(48, 'ANYAMA', '48', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(49, 'ANYAMA ADJAME', '49', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(50, 'ANYAMA-DEBARCADERE', '50', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(51, 'ARMEBE', '51', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(52, 'ARRAH', '52', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(53, 'ASSINZE (TIASSALE)', '53', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(54, 'ATTINGUIE', '54', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(55, 'AYEHOUAYI', '55', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(56, 'AZAGUIE BLIDA', '56', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(57, 'AZAGUIE-AHOUA', '57', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(58, 'BADASSO', '58', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(59, 'BAGO', '59', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(60, 'BAKANOU A', '60', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(61, 'BAKANOU B', '61', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(62, 'BANGAKOI', '62', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(63, 'BATERA', '63', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(64, 'BEBAKOI', '64', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(65, 'BECEDI', '65', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(66, 'BINAO', '66', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(67, 'BINGERVILLE', '67', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(68, 'BOCANDA', '68', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(69, 'BODO 1', '69', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(70, 'BODO 2', '70', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(71, 'BODOU', '71', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(72, 'BOKAOHO', '72', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(73, 'BONGOUANOU', '73', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(74, 'BONHE', '74', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(75, 'BONON', '75', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(76, 'BONOUA', '76', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(77, 'BOTINDE', '77', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(78, 'BOUAFLE', '78', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(79, 'BRAFFOUEBY', '79', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(80, 'BROFODOUME', '80', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(81, 'CAMPEMENT KOFFI BROU', '81', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(82, 'CAMPEMENT YACE', '84', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(83, 'DABOU', '85', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(84, 'DABRE', '86', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(85, 'DAINGUIRA 1', '87', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(86, 'DAINGUIRA 2', '88', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(87, 'DAOUKRO', '89', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(88, 'DEBRIMOU', '90', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(89, 'DENGBE', '91', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(90, 'DIMBOKRO', '92', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 'DIVO', '93', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(92, 'DJEKANOU', '94', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(93, 'DJIBY', '95', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(94, 'DJOROGOBITE', '96', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(95, 'DOMOLON', '97', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(96, 'EBIMPE', '98', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(97, 'EBRAH', '99', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(98, 'EGNIMANGBO', '100', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(99, 'ELIBOU', '101', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100, 'ELOKA', '102', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(101, 'ELOKA BAC', '103', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(102, 'ELOKATE', '104', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(103, 'ELOKATO', '105', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(104, 'ETROKRO', '106', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(105, 'FRESCO', '107', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(106, 'GBALEKRO', '108', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(107, 'GBEBY', '109', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(108, 'GBOUGBO', '110', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(109, 'GODOUME', '111', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(110, 'GOMON', '112', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(111, 'GRAND ALEPE', '113', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(112, 'GRAND BOUBOURY', '114', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(113, 'GRAND MORIE', '115', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(114, 'GUEBO 1', '116', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(115, 'GUEBO 2', '117', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(116, 'GUESSIGUIE', '118', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(117, 'GUEYO', '119', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(118, 'GUITRY', '120', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(119, 'HEREMANKONO', '121', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(120, 'HIRE', '122', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(121, 'INGRAKON', '123', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(122, 'IRA', '124', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(123, 'IROBO', '125', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(124, 'KAKA', '126', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(125, 'KASSASSO', '127', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(126, 'KATADJI', '128', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(127, 'KODIAKRO (SONGON)', '129', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(128, 'KODIOSSOU', '130', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(129, 'KOFFIKRO', '131', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(130, 'KONEFLA', '132', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(131, 'KONGOFON', '133', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(132, 'KOSSIHOUEN', '134', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(133, 'KOTOKODJI', '135', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(134, 'KOYEKRO', '136', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(135, 'KROUFIAN', '137', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(136, 'LAHOU', '138', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(137, 'LAKOTA', '139', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(138, 'LAYO', '140', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(139, 'LOPOU', '141', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(140, 'LOPOULY', '142', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(141, 'LOVIGUIE (AGBOVILLE)', '143', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(142, 'M\'BAHIAKRO', '144', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(143, 'M\'BATTO', '145', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(144, 'M\'BATTO BOUAKE', '146', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(145, 'M\'BOHOIN', '147', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(146, 'M\'BONOUA', '148', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(147, 'M\'BORON', '149', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(148, 'M\'BRAGO 1', '150', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(149, 'M\'BRAGO 2', '151', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(150, 'M\'BRIBO', '152', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(151, 'MEMNI', '153', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(152, 'MONGA', '154', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(153, 'MONTEZO', '155', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(154, 'MOPOYEM', '156', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(155, 'MOTOBE', '157', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(156, 'M\'PODY', '158', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(157, 'N\'DENOU', '159', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(158, 'N\'DOUCI', '160', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(159, 'N\'DOUMIKRO', '161', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(160, 'N\'GATTY', '162', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(161, 'NIAMIABO', '163', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(162, 'NIANDA', '164', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(163, 'NIGUIASSOKO', '165', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(164, 'NIGUINANOU', '166', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(165, 'NIGUISSAF', '167', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(166, 'NONKOUAGON', '168', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(167, 'NOUVEL OUSROU', '169', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(168, 'N\'ZEKREZESSOU', '170', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(169, 'N\'ZIANOUA', '171', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(170, 'N\'ZODJI', '172', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(171, 'OFFA', '173', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(172, 'OGOUDOU', '174', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(173, 'OGUEDOUME', '175', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(174, 'OPOYOUNEM', '176', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(175, 'ORBAFF', '177', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(176, 'ORESS-GROBOU', '178', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(177, 'OTTOPE 1', '179', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(178, 'OTTOPE 2', '180', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(179, 'OUELE', '181', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(180, 'OUME', '182', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(181, 'P.V.M.3 ATTINGUIE', '183', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(182, 'PANDAH', '184', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(183, 'PASS', '185', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(184, 'PETIT YAPO', '186', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(185, 'PRIKRO', '187', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(186, 'PVM3+V2', '188', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(187, 'QUATRE CROIX', '189', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(188, 'RUBINO', '190', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(189, 'SAHUYE', '191', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(190, 'SANTE', '192', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(191, 'SASSANDRA', '193', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(192, 'SIKENSI', '194', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(193, 'SINFRA', '195', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(194, 'SONGON', '196', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(195, 'SONGON AGBAN ATTIE', '197', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(196, 'SONGON DAGBE', '198', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(197, 'SONGON KASSEMBLE', '199', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(198, 'SONGON M\'BRATHE', '200', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(199, 'SONGON TE', '201', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(200, 'SONGON-AGBAN', '202', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(201, 'SOUKOUKRO', '203', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(202, 'SPT-TAPEKRO', '204', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(203, 'TAABO', '205', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(204, 'TIAHA', '206', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(205, 'TIASSALE', '207', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(206, 'TIEBISSOU', '208', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(207, 'TIEGBA', '209', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(208, 'TOUMODI', '210', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(209, 'TOUPAH', '211', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(210, 'V4', '212', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(211, 'VIEIL OUSROU', '213', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(212, 'VIEIL-AKLODJ', '214', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(213, 'VITRE', '215', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(214, 'YAKASSE', '216', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(215, 'YAMOUSSOUKRO', '217', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(216, 'YAOBOU', '218', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(217, 'YAPOKOI', '219', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(218, 'YAPOKOI/TEKE', '220', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(219, 'YASSAP', '221', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(220, 'YOCOBOUE', '222', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(221, 'YOUHOULIL', '223', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(222, 'ELI', 'Eli', 3, '50', NULL, NULL, NULL, NULL, '2020-06-13 21:42:31', '2020-06-13 21:42:31', NULL);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `accomptes`
+--
+ALTER TABLE `accomptes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `accomptes_type_accompte_id_foreign` (`type_accompte_id`),
+  ADD KEY `accomptes_fournisseur_id_foreign` (`fournisseur_id`);
+
+--
+-- Index pour la table `activites`
+--
+ALTER TABLE `activites`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `activites_code_unique` (`code`),
+  ADD KEY `activites_process_id_foreign` (`process_id`);
+
+--
+-- Index pour la table `agences`
+--
+ALTER TABLE `agences`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `bareme_penalite_transports`
+--
+ALTER TABLE `bareme_penalite_transports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `bareme_transports`
+--
+ALTER TABLE `bareme_transports`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bareme_transports_origine_id_foreign` (`origine_id`),
+  ADD KEY `bareme_transports_destination_id_foreign` (`destination_id`);
+
+--
+-- Index pour la table `bascules`
+--
+ALTER TABLE `bascules`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `bascules_code_unique` (`code`);
+
+--
+-- Index pour la table `bascule_datas`
+--
+ALTER TABLE `bascule_datas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `bascule_transport`
+--
+ALTER TABLE `bascule_transport`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `num_ticket` (`num_ticket`);
+
+--
+-- Index pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `categories_categorie_unique` (`categorie`),
+  ADD UNIQUE KEY `categories_code_prodtui_unique` (`code_prodtui`);
+
+--
+-- Index pour la table `chauffeurs`
+--
+ALTER TABLE `chauffeurs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `chauffeurs_cni_ref_unique` (`cni_ref`),
+  ADD UNIQUE KEY `chauffeurs_permis_ref_unique` (`permis_ref`),
+  ADD UNIQUE KEY `chauffeurs_code_unique` (`code`);
+
+--
+-- Index pour la table `chauffeur_permis`
+--
+ALTER TABLE `chauffeur_permis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `cuves`
+--
+ALTER TABLE `cuves`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cuves_cuve_unique` (`cuve`),
+  ADD UNIQUE KEY `cuves_code_unique` (`code`),
+  ADD KEY `cuves_station_id_foreign` (`station_id`),
+  ADD KEY `cuves_produit_id_foreign` (`produit_id`);
+
+--
+-- Index pour la table `engins`
+--
+ALTER TABLE `engins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `engins_matricule_unique` (`matricule`),
+  ADD UNIQUE KEY `engins_chassis_unique` (`chassis`),
+  ADD KEY `engins_marque_id_foreign` (`marque_id`),
+  ADD KEY `engins_modele_id_foreign` (`modele_id`),
+  ADD KEY `engins_type_id_foreign` (`type_id`),
+  ADD KEY `engins_energie_id_foreign` (`energie_id`);
+
+--
+-- Index pour la table `engin_kilometrages`
+--
+ALTER TABLE `engin_kilometrages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `engin_kilometrages_matricule_id_foreign` (`matricule_id`),
+  ADD KEY `engin_kilometrages_activite_id_foreign` (`activite_id`),
+  ADD KEY `engin_kilometrages_station_id_foreign` (`station_id`);
+
+--
+-- Index pour la table `engin_marques`
+--
+ALTER TABLE `engin_marques`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `engin_marques_marque_unique` (`marque`),
+  ADD UNIQUE KEY `engin_marques_code_unique` (`code`);
+
+--
+-- Index pour la table `engin_modeles`
+--
+ALTER TABLE `engin_modeles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `engin_modeles_modele_unique` (`modele`),
+  ADD UNIQUE KEY `engin_modeles_code_unique` (`code`),
+  ADD KEY `engin_modeles_marque_id_foreign` (`marque_id`);
+
+--
+-- Index pour la table `engin_types`
+--
+ALTER TABLE `engin_types`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `engin_types_type_unique` (`type`),
+  ADD UNIQUE KEY `engin_types_code_unique` (`code`);
+
+--
+-- Index pour la table `entreprises`
+--
+ALTER TABLE `entreprises`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `libelle` (`libelle`);
+
+--
+-- Index pour la table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `fournisseurs`
+--
+ALTER TABLE `fournisseurs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `fournisseurs_raison_so_unique` (`raison_so`),
+  ADD UNIQUE KEY `fournisseurs_compte_contr_unique` (`compte_contr`),
+  ADD UNIQUE KEY `fournisseurs_reg_com_unique` (`reg_com`),
+  ADD KEY `fournisseurs_type_fournisseur_id_foreign` (`type_fournisseur_id`);
+
+--
+-- Index pour la table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Index pour la table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_slug_unique` (`slug`);
+
+--
+-- Index pour la table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permission_role_permission_id_index` (`permission_id`),
+  ADD KEY `permission_role_role_id_index` (`role_id`);
+
+--
+-- Index pour la table `permission_user`
+--
+ALTER TABLE `permission_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permission_user_permission_id_index` (`permission_id`),
+  ADD KEY `permission_user_user_id_index` (`user_id`);
+
+--
+-- Index pour la table `petroliers`
+--
+ALTER TABLE `petroliers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `pompes`
+--
+ALTER TABLE `pompes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pompes_pompe_unique` (`pompe`),
+  ADD UNIQUE KEY `pompes_code_unique` (`code`),
+  ADD KEY `pompes_station_id_foreign` (`station_id`),
+  ADD KEY `pompes_produit_id_foreign` (`produit_id`),
+  ADD KEY `pompes_cuve_id_foreign` (`cuve_id`);
+
+--
+-- Index pour la table `pompistes`
+--
+ALTER TABLE `pompistes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pompistes_code_unique` (`code`),
+  ADD KEY `pompistes_station_id_foreign` (`station_id`);
+
+--
+-- Index pour la table `processes`
+--
+ALTER TABLE `processes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `processes_code_unique` (`code`);
+
+--
+-- Index pour la table `produits`
+--
+ALTER TABLE `produits`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `produits_produit_unique` (`produit`),
+  ADD UNIQUE KEY `produits_code_unique` (`code`),
+  ADD KEY `produits_categorie_id_foreign` (`categorie_id`);
+
+--
+-- Index pour la table `produit_prixes`
+--
+ALTER TABLE `produit_prixes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produit_prixes_produit_id_foreign` (`produit_id`);
+
+--
+-- Index pour la table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_slug_unique` (`slug`);
+
+--
+-- Index pour la table `role_user`
+--
+ALTER TABLE `role_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_user_role_id_index` (`role_id`),
+  ADD KEY `role_user_user_id_index` (`user_id`);
+
+--
+-- Index pour la table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD UNIQUE KEY `sessions_id_unique` (`id`);
+
+--
+-- Index pour la table `sites`
+--
+ALTER TABLE `sites`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `stations`
+--
+ALTER TABLE `stations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `stations_station_unique` (`station`),
+  ADD KEY `stations_petrolier_id_foreign` (`petrolier_id`);
+
+--
+-- Index pour la table `transporteurs`
+--
+ALTER TABLE `transporteurs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `type_accomptes`
+--
+ALTER TABLE `type_accomptes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `type_accomptes_type_accompte_unique` (`type_accompte`),
+  ADD UNIQUE KEY `type_accomptes_code_type_accompte_unique` (`code_type_accompte`);
+
+--
+-- Index pour la table `type_fournisseurs`
+--
+ALTER TABLE `type_fournisseurs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `type_fournisseurs_type_fournisseur_unique` (`type_fournisseur`),
+  ADD UNIQUE KEY `type_fournisseurs_code_type_fournisseur_unique` (`code_type_fournisseur`);
+
+--
+-- Index pour la table `type_zones`
+--
+ALTER TABLE `type_zones`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `type_zones_type_zone_unique` (`type_zone`),
+  ADD UNIQUE KEY `type_zones_code_type_zone_unique` (`code_type_zone`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Index pour la table `vente_petroliers`
+--
+ALTER TABLE `vente_petroliers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vente_petroliers_marque_id_foreign` (`marque_id`),
+  ADD KEY `vente_petroliers_matricule_id_foreign` (`matricule_id`),
+  ADD KEY `vente_petroliers_transporteur_id_foreign` (`transporteur_id`),
+  ADD KEY `vente_petroliers_produit_id_foreign` (`produit_id`),
+  ADD KEY `vente_petroliers_chauffeur_id_foreign` (`chauffeur_id`),
+  ADD KEY `vente_petroliers_activite_id_foreign` (`activite_id`),
+  ADD KEY `vente_petroliers_pompiste_id_foreign` (`pompiste_id`),
+  ADD KEY `vente_petroliers_pompe_id_foreign` (`pompe_id`),
+  ADD KEY `vente_petroliers_station_id_foreign` (`station_id`);
+
+--
+-- Index pour la table `zone_collectes`
+--
+ALTER TABLE `zone_collectes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `zone_collectes_zone_unique` (`zone`),
+  ADD UNIQUE KEY `zone_collectes_code_zone_unique` (`code_zone`),
+  ADD KEY `zone_collectes_type_zone_id_foreign` (`type_zone_id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `accomptes`
+--
+ALTER TABLE `accomptes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `activites`
+--
+ALTER TABLE `activites`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `agences`
+--
+ALTER TABLE `agences`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `bareme_penalite_transports`
+--
+ALTER TABLE `bareme_penalite_transports`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `bareme_transports`
+--
+ALTER TABLE `bareme_transports`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `bascules`
+--
+ALTER TABLE `bascules`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `bascule_datas`
+--
+ALTER TABLE `bascule_datas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+
+--
+-- AUTO_INCREMENT pour la table `bascule_transport`
+--
+ALTER TABLE `bascule_transport`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+
+--
+-- AUTO_INCREMENT pour la table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `chauffeurs`
+--
+ALTER TABLE `chauffeurs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `chauffeur_permis`
+--
+ALTER TABLE `chauffeur_permis`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `cuves`
+--
+ALTER TABLE `cuves`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `engins`
+--
+ALTER TABLE `engins`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `engin_kilometrages`
+--
+ALTER TABLE `engin_kilometrages`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `engin_marques`
+--
+ALTER TABLE `engin_marques`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `engin_modeles`
+--
+ALTER TABLE `engin_modeles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `engin_types`
+--
+ALTER TABLE `engin_types`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `entreprises`
+--
+ALTER TABLE `entreprises`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `fournisseurs`
+--
+ALTER TABLE `fournisseurs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT pour la table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `permission_role`
+--
+ALTER TABLE `permission_role`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `permission_user`
+--
+ALTER TABLE `permission_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `petroliers`
+--
+ALTER TABLE `petroliers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `pompes`
+--
+ALTER TABLE `pompes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `pompistes`
+--
+ALTER TABLE `pompistes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `processes`
+--
+ALTER TABLE `processes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `produits`
+--
+ALTER TABLE `produits`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `produit_prixes`
+--
+ALTER TABLE `produit_prixes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `role_user`
+--
+ALTER TABLE `role_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `sites`
+--
+ALTER TABLE `sites`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `stations`
+--
+ALTER TABLE `stations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `transporteurs`
+--
+ALTER TABLE `transporteurs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `type_accomptes`
+--
+ALTER TABLE `type_accomptes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `type_fournisseurs`
+--
+ALTER TABLE `type_fournisseurs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `type_zones`
+--
+ALTER TABLE `type_zones`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `vente_petroliers`
+--
+ALTER TABLE `vente_petroliers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `zone_collectes`
+--
+ALTER TABLE `zone_collectes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `accomptes`
+--
+ALTER TABLE `accomptes`
+  ADD CONSTRAINT `accomptes_fournisseur_id_foreign` FOREIGN KEY (`fournisseur_id`) REFERENCES `fournisseurs` (`id`),
+  ADD CONSTRAINT `accomptes_type_accompte_id_foreign` FOREIGN KEY (`type_accompte_id`) REFERENCES `type_accomptes` (`id`);
+
+--
+-- Contraintes pour la table `activites`
+--
+ALTER TABLE `activites`
+  ADD CONSTRAINT `activites_process_id_foreign` FOREIGN KEY (`process_id`) REFERENCES `processes` (`id`);
+
+--
+-- Contraintes pour la table `bareme_transports`
+--
+ALTER TABLE `bareme_transports`
+  ADD CONSTRAINT `bareme_transports_destination_id_foreign` FOREIGN KEY (`destination_id`) REFERENCES `zone_collectes` (`id`),
+  ADD CONSTRAINT `bareme_transports_origine_id_foreign` FOREIGN KEY (`origine_id`) REFERENCES `zone_collectes` (`id`);
+
+--
+-- Contraintes pour la table `cuves`
+--
+ALTER TABLE `cuves`
+  ADD CONSTRAINT `cuves_produit_id_foreign` FOREIGN KEY (`produit_id`) REFERENCES `produits` (`id`),
+  ADD CONSTRAINT `cuves_station_id_foreign` FOREIGN KEY (`station_id`) REFERENCES `stations` (`id`);
+
+--
+-- Contraintes pour la table `engins`
+--
+ALTER TABLE `engins`
+  ADD CONSTRAINT `engins_energie_id_foreign` FOREIGN KEY (`energie_id`) REFERENCES `produits` (`id`),
+  ADD CONSTRAINT `engins_marque_id_foreign` FOREIGN KEY (`marque_id`) REFERENCES `engin_marques` (`id`),
+  ADD CONSTRAINT `engins_modele_id_foreign` FOREIGN KEY (`modele_id`) REFERENCES `engin_modeles` (`id`),
+  ADD CONSTRAINT `engins_type_id_foreign` FOREIGN KEY (`type_id`) REFERENCES `engin_types` (`id`);
+
+--
+-- Contraintes pour la table `engin_kilometrages`
+--
+ALTER TABLE `engin_kilometrages`
+  ADD CONSTRAINT `engin_kilometrages_activite_id_foreign` FOREIGN KEY (`activite_id`) REFERENCES `activites` (`id`),
+  ADD CONSTRAINT `engin_kilometrages_matricule_id_foreign` FOREIGN KEY (`matricule_id`) REFERENCES `engins` (`id`),
+  ADD CONSTRAINT `engin_kilometrages_station_id_foreign` FOREIGN KEY (`station_id`) REFERENCES `stations` (`id`);
+
+--
+-- Contraintes pour la table `engin_modeles`
+--
+ALTER TABLE `engin_modeles`
+  ADD CONSTRAINT `engin_modeles_marque_id_foreign` FOREIGN KEY (`marque_id`) REFERENCES `engin_marques` (`id`);
+
+--
+-- Contraintes pour la table `fournisseurs`
+--
+ALTER TABLE `fournisseurs`
+  ADD CONSTRAINT `fournisseurs_type_fournisseur_id_foreign` FOREIGN KEY (`type_fournisseur_id`) REFERENCES `type_fournisseurs` (`id`);
+
+--
+-- Contraintes pour la table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `permission_user`
+--
+ALTER TABLE `permission_user`
+  ADD CONSTRAINT `permission_user_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `permission_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `pompes`
+--
+ALTER TABLE `pompes`
+  ADD CONSTRAINT `pompes_cuve_id_foreign` FOREIGN KEY (`cuve_id`) REFERENCES `cuves` (`id`),
+  ADD CONSTRAINT `pompes_produit_id_foreign` FOREIGN KEY (`produit_id`) REFERENCES `produits` (`id`),
+  ADD CONSTRAINT `pompes_station_id_foreign` FOREIGN KEY (`station_id`) REFERENCES `stations` (`id`);
+
+--
+-- Contraintes pour la table `pompistes`
+--
+ALTER TABLE `pompistes`
+  ADD CONSTRAINT `pompistes_station_id_foreign` FOREIGN KEY (`station_id`) REFERENCES `stations` (`id`);
+
+--
+-- Contraintes pour la table `produits`
+--
+ALTER TABLE `produits`
+  ADD CONSTRAINT `produits_categorie_id_foreign` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`);
+
+--
+-- Contraintes pour la table `produit_prixes`
+--
+ALTER TABLE `produit_prixes`
+  ADD CONSTRAINT `produit_prixes_produit_id_foreign` FOREIGN KEY (`produit_id`) REFERENCES `produits` (`id`);
+
+--
+-- Contraintes pour la table `role_user`
+--
+ALTER TABLE `role_user`
+  ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `stations`
+--
+ALTER TABLE `stations`
+  ADD CONSTRAINT `stations_petrolier_id_foreign` FOREIGN KEY (`petrolier_id`) REFERENCES `petroliers` (`id`);
+
+--
+-- Contraintes pour la table `vente_petroliers`
+--
+ALTER TABLE `vente_petroliers`
+  ADD CONSTRAINT `vente_petroliers_activite_id_foreign` FOREIGN KEY (`activite_id`) REFERENCES `activites` (`id`),
+  ADD CONSTRAINT `vente_petroliers_chauffeur_id_foreign` FOREIGN KEY (`chauffeur_id`) REFERENCES `chauffeurs` (`id`),
+  ADD CONSTRAINT `vente_petroliers_marque_id_foreign` FOREIGN KEY (`marque_id`) REFERENCES `engin_marques` (`id`),
+  ADD CONSTRAINT `vente_petroliers_matricule_id_foreign` FOREIGN KEY (`matricule_id`) REFERENCES `engins` (`id`),
+  ADD CONSTRAINT `vente_petroliers_pompe_id_foreign` FOREIGN KEY (`pompe_id`) REFERENCES `pompes` (`id`),
+  ADD CONSTRAINT `vente_petroliers_pompiste_id_foreign` FOREIGN KEY (`pompiste_id`) REFERENCES `pompistes` (`id`),
+  ADD CONSTRAINT `vente_petroliers_produit_id_foreign` FOREIGN KEY (`produit_id`) REFERENCES `produits` (`id`),
+  ADD CONSTRAINT `vente_petroliers_station_id_foreign` FOREIGN KEY (`station_id`) REFERENCES `stations` (`id`),
+  ADD CONSTRAINT `vente_petroliers_transporteur_id_foreign` FOREIGN KEY (`transporteur_id`) REFERENCES `transporteurs` (`id`);
+
+--
+-- Contraintes pour la table `zone_collectes`
+--
+ALTER TABLE `zone_collectes`
+  ADD CONSTRAINT `zone_collectes_type_zone_id_foreign` FOREIGN KEY (`type_zone_id`) REFERENCES `type_zones` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
