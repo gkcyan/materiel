@@ -76,3 +76,11 @@ Route::resource('bareme_transports', 'BaremeTransportAPIController');
 Route::resource('bascule_datas', 'BasculeDataAPIController');
 
 Route::resource('bareme_penalite_transports', 'BaremePenaliteTransportAPIController');
+
+Route::resource('type_fournisseurs', 'TypeFournisseurAPIController');
+
+Route::resource('type_accomptes', 'TypeAccompteAPIController');
+
+Route::resource('fournisseurs', 'FournisseurAPIController');
+
+Route::resource('accomptes', 'AccompteAPIController');

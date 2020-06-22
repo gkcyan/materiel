@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\Fournisseur;
+use App\Models\TypeAccompte;
+use App\Models\TypeFournisseur;
 
 
 use App\Models\ZoneCollecte;
@@ -44,6 +47,18 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['accomptes.fields'], function ($view) {
+            $fournisseurItems = Fournisseur::pluck('raison_so','id')->toArray();
+            $view->with('fournisseurItems', $fournisseurItems);
+        });
+        View::composer(['accomptes.fields'], function ($view) {
+            $type_accompteItems = TypeAccompte::pluck('type_accompte','id')->toArray();
+            $view->with('type_accompteItems', $type_accompteItems);
+        });
+        View::composer(['fournisseurs.fields'], function ($view) {
+            $type_fournisseurItems = TypeFournisseur::pluck('type_fournisseur','id')->toArray();
+            $view->with('type_fournisseurItems', $type_fournisseurItems);
+        });
         View::composer(['bareme_transports.fields'], function ($view) {
             $zone_collecteItems = ZoneCollecte::pluck('zone','id')->toArray();
             $view->with('zone_collecteItems', $zone_collecteItems);

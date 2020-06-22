@@ -94,7 +94,7 @@ class BasculeImport implements ToModel
         {
             foreach ($freintes as $freinte)
             {
-                return ($ecart-$freinte->freinte)*$freinte->prix_aiph*$freinte->coef;
+                return ($ecart+$freinte->freinte)*$freinte->prix_aiph*$freinte->coef;
                 
             }
         }
@@ -158,7 +158,6 @@ class BasculeImport implements ToModel
             'ecart_penalite_tonne'=>$this->PrixAiph($row[1],$row[3]),
             'ecart_penalite_cout'=>$this->CalculeFreinte($row[3],$row[1],$row[33]),
            
-            
         ]);
     }
 }

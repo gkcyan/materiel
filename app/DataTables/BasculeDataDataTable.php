@@ -30,7 +30,9 @@ class BasculeDataDataTable extends DataTable
      */
     public function query(BasculeData $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()
+                    ->where('cout_ticket','0');
+                    
     }
 
     /**
@@ -126,7 +128,7 @@ class BasculeDataDataTable extends DataTable
            // 'code_type_de_vehicule' => new Column(['title' => __('models/bascule_datas.fields.code_type_de_vehicule'), 'data' => 'code_type_de_vehicule']),
            // 'type_de_vehicule' => new Column(['title' => __('models/bascule_datas.fields.type_de_vehicule'), 'data' => 'type_de_vehicule']),
            // 'code_nom_chaufffeur' => new Column(['title' => __('models/bascule_datas.fields.code_nom_chaufffeur'), 'data' => 'code_nom_chaufffeur']),
-            'nom_chaufffeur' => new Column(['title' => __('models/bascule_datas.fields.nom_chaufffeur'), 'data' => 'nom_chaufffeur']),
+            //'nom_chaufffeur' => new Column(['title' => __('models/bascule_datas.fields.nom_chaufffeur'), 'data' => 'nom_chaufffeur']),
             //'code_nom_transporteur' => new Column(['title' => __('models/bascule_datas.fields.code_nom_transporteur'), 'data' => 'code_nom_transporteur']),
             'nom_transporteur' => new Column(['title' => __('models/bascule_datas.fields.nom_transporteur'), 'data' => 'nom_transporteur']),
            // 'code_type_operation' => new Column(['title' => __('models/bascule_datas.fields.code_type_operation'), 'data' => 'code_type_operation']),
@@ -139,8 +141,8 @@ class BasculeDataDataTable extends DataTable
            // 'nom_client_part' => new Column(['title' => __('models/bascule_datas.fields.nom_client_part'), 'data' => 'nom_client_part']),
             'poids_declare' => new Column(['title' => __('models/bascule_datas.fields.poids_declare'), 'data' => 'poids_declare']),
             //'observation' => new Column(['title' => __('models/bascule_datas.fields.observation'), 'data' => 'observation']),
-            'poids_entree' => new Column(['title' => __('models/bascule_datas.fields.poids_entree'), 'data' => 'poids_entree']),
-            'poids_sortie' => new Column(['title' => __('models/bascule_datas.fields.poids_sortie'), 'data' => 'poids_sortie']),
+            //'poids_entree' => new Column(['title' => __('models/bascule_datas.fields.poids_entree'), 'data' => 'poids_entree']),
+            //'poids_sortie' => new Column(['title' => __('models/bascule_datas.fields.poids_sortie'), 'data' => 'poids_sortie']),
             'poids_net' => new Column(['title' => __('models/bascule_datas.fields.poids_net'), 'data' => 'poids_net']),
             'ecart' => new Column(['title' => __('models/bascule_datas.fields.ecart'), 'data' => 'ecart']),
            // 'type_pesee' => new Column(['title' => __('models/bascule_datas.fields.type_pesee'), 'data' => 'type_pesee']),

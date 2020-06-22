@@ -212,11 +212,18 @@
                 <li class="{{ Request::is('transporteurs*') ? 'active' : '' }}">
                     <a href="{{ route('transporteurs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/transporteurs.plural')</span></a>
                 </li>
+                <li class="{{ Request::is('typeFournisseurs*') ? 'active' : '' }}">
+                    <a href="{{ route('typeFournisseurs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/type_fournisseurs.plural')</span></a>
+                </li>
+                <li class="{{ Request::is('fournisseurs*') ? 'active' : '' }}">
+                    <a href="{{ route('fournisseurs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/fournisseurs.plural')</span></a>
+                </li>
+
 
         </ul>
     </ul>
 </li>
-<li class="treeview ">
+<li class="treeview">
     <a href="#">
     <i class="fa fa-dashboard"></i> <span>TRANSPORTS</span>
     <span class="pull-right-container">
@@ -225,9 +232,9 @@
     </a>
     <ul class="treeview-menu">
         
-        <!--ul class="sidebar-menu tree" data-widget="tree">
-            <li class="{{ Request::is('bascules*') ? 'active' : '' }}">
-                <a href="{{ route('bascules.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bascules.plural')</span></a>
+        <ul class="sidebar-menu tree" data-widget="tree">
+            <!--li class="{{-- Request::is('bascules*')?'active':'' --}}">
+                <a href="{{-- route('bascules.index') --}}"><i class="fa fa-edit"></i><span>@lang('models/bascules.plural')</span></a>
             </li-->
             
             <li class="{{ Request::is('typeZones*') ? 'active' : '' }}">
@@ -252,6 +259,32 @@
                 <a href="{{ route('baremePenaliteTransports.index') }}"><i class="fa fa-edit"></i><span>@lang('models/bareme_Penalite_Transports.plural')</span></a>
             </li>
             
+
+        </ul>
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-dashboard"></i> <span>FACTURIER</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <!--li class=""><a href="{{-- route('ventePetroliers.index') --}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li-->
+        <!--li class=""><a href="{{-- route('chauffeurs.index') --}}"><i class="fa fa-circle-o"></i> Dashboard v2</a></li-->
+        <ul class="sidebar-menu tree" data-widget="tree">
+                        
+            <!--li class="header">PARAMETRAGE</li-->
+                                
+                <li class="{{ Request::is('typeAccomptes*') ? 'active' : '' }}">
+                    <a href="{{ route('typeAccomptes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/type_accomptes.plural')</span></a>
+                </li>
+                <li class="{{ Request::is('accomptes*') ? 'active' : '' }}">
+                    <a href="{{ route('accomptes.index') }}"><i class="fa fa-edit"></i><span>@lang('models/accomptes.plural')</span></a>
+                </li>
+
 
         </ul>
     </ul>

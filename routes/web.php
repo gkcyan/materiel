@@ -113,3 +113,11 @@ Route::resource('baremeTransports', 'BaremeTransportController')->middleware('au
 Route::resource('basculeDatas', 'BasculeDataController')->middleware('auth');
 
 Route::resource('baremePenaliteTransports', 'BaremePenaliteTransportController')->middleware('auth');
+
+Route::resource('typeFournisseurs', 'TypeFournisseurController')->middleware('auth');
+
+Route::resource('typeAccomptes', 'TypeAccompteController')->middleware('auth');
+
+Route::resource('fournisseurs', 'FournisseurController')->middleware('auth');
+
+Route::resource('accomptes', 'AccompteController')->middleware('auth');
