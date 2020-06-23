@@ -14,33 +14,29 @@
         <!-- Styles -->
         <style>
             
-            html, body {
+            body {
                 background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
-                font-weight: 200;
+                /*font-weight: 100;*/
                 /*height: 100vh;*/
-                margin: 0;
-                
+                /*margin: 2em;*/
+                /*width: 10px;*/
+                /*margin-right: -100px;*/
+               /* margin-left: -1px;*/
+               
+                padding: 5em;
             }
-            .selector-for-some-widget {
-                box-sizing: content-box;
+            .links > a {
+                color: #636b6f;
+                padding: 0 20px;
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+               
             }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
             .top-right {
                 position: absolute;
                 right: 10px;
@@ -52,44 +48,21 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-               
-            }
-
-            .title {
-                font-size: 84px;
-               
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 50px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-               
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
+          
         </style>
         @livewireStyles
     </head>
 
     <body>
                 
-         <div class="flex-center position-ref full-height">
-             <div class="row">
+            <div class="">
+                <div class="row">
                 @if (Route::has('login'))
-                    <div class="top-left links">
+                    <div class="top-left links logo">
                         <a href="{{ url('/') }}"> <img src="{{ asset('assets/images/logo.jpg') }}" class="img-fluid" alt="logo entreprise"></a>
                     
                     </div>
-                    <div class="top-right links">
+                    <div class="top-right links langue">
                                         
                         @auth
                             <a href="{{ url('/home') }}">@lang('messages.Home')</a>|
@@ -104,11 +77,11 @@
                     </div>
                 @endif
 
-                <div class="content">
-                    <div class="row m-b-md">
-                        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="content">
+                 <div class="row">
+                        <div class="shadow-lg bg-white rounded">
 
-                            <div class="links">
+                            <div class="links module" style="text-align: center">
                                 <a href=""> @lang('messages.planteur') </a>|
                                 <a href=""> @lang('messages.assitant_agricole')</a>|
                                 <a href=""> @lang('messages.transporteur') </a>|
@@ -123,7 +96,7 @@
                             </div>
                     
                             <div class="row">
-                                    <div class="col-sm-9 col-md-9 back"><img src="{{ asset('assets/images/background.png') }}" class="img-fluid " alt="Responsive image"></div> 
+                                    <div class="col-sm-6 col-md-9 back fond-ecran"><img src="{{ asset('assets/images/background.png') }}" class="img-fluid " alt="Responsive image"></div> 
                                     
                                     <div class=" col-md-3 text-center">
                                         @if (!Auth::guest())
@@ -132,7 +105,7 @@
                                             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
                                         </blockquote>
                                         @else
-                                        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                                        <div class="shadow-lg p-3 mb-5 bg-white rounded logo-entreprise">
                             
                                             <img src="{{ asset('assets/images/logo_agro.png') }}" class="img-fluid" alt="Responsive image">
                                             @yield('content')
@@ -143,12 +116,12 @@
 
                             </div>   
                         </div>
-                    </div>
+                     </div>
                         <footer class="main-footer" style="max-height: 100px;text-align: center">
                             <strong>Copyright © 2020 <a href="#"><img src="{{ asset('assets/images/logo_copy.png') }}" class="img-fluid" alt="Responsive image"></a></strong> All rights reserved. | KeaDouan
                         </footer>
+                    </div>
                 </div>
-              </div>
             </div>
         
         
