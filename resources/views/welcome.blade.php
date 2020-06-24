@@ -19,13 +19,13 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 /*font-weight: 100;*/
-                /*height: 100vh;*/
-                /*margin: 2em;*/
+                height: 100px;
+                margin: 3em;
                 /*width: 10px;*/
                 /*margin-right: -100px;*/
                /* margin-left: -1px;*/
                
-                padding: 5em;
+                padding: 3em;
             }
             .links > a {
                 color: #636b6f;

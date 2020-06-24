@@ -54,5 +54,8 @@ class EnginType extends Model
         'statut' => 'required'
     ];
 
-    
+    public function engin()
+    {
+        return $this->hasMany(\App\Models\Engin::class,'type_id');
+    }
 }

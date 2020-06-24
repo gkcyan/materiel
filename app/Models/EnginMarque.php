@@ -54,5 +54,8 @@ class EnginMarque extends Model
         'statut' => 'required'
     ];
 
-    
+    public function engin()
+    {
+        return $this->hasMany(\App\Models\Engin::class,'marque_id');
+    }
 }

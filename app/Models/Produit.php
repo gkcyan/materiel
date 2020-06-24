@@ -69,4 +69,8 @@ class Produit extends Model
     {
         return $this->belongsTo(\App\Models\Categorie::class, 'categorie_id');
     }
+    public function engin()
+    {
+        return $this->hasMany(\App\Models\Engin::class,'produit_id');
+    }
 }

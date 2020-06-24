@@ -69,4 +69,9 @@ class EnginModele extends Model
     {
         return $this->belongsTo(\App\Models\EnginMarque::class, 'marque_id');
     }
+
+    public function engin()
+    {
+        return $this->hasMany(\App\Models\Engin::class,'modele_id');
+    }
 }
