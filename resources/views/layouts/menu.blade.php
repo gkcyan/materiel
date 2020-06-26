@@ -266,7 +266,7 @@
 
 <li class="treeview">
     <a href="#">
-        <i class="fa fa-dashboard"></i> <span>FACTURIER</span>
+        <i class="fa fa-dashboard"></i> <span>ACCOMPTE</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
         </span>
@@ -308,19 +308,39 @@
         </ul>
     </ul>
 </li-->
-<li class="{{ Request::is('factures*') ? 'active' : '' }}">
-    <a href="{{ route('factures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/factures.plural')</span></a>
-</li>
 
-<li class="{{ Request::is('carburantFactures*') ? 'active' : '' }}">
-    <a href="{{ route('carburantFactures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/carburant_factures.plural')</span></a>
-</li>
 
-<li class="{{ Request::is('factureTickets*') ? 'active' : '' }}">
-    <a href="{{ route('factureTickets.index') }}"><i class="fa fa-edit"></i><span>@lang('models/facture_tickets.plural')</span></a>
-</li>
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-dashboard"></i> <span>FACTURIER</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <!--li class=""><a href="{{-- route('ventePetroliers.index') --}}"><i class="fa fa-circle-o"></i> Dashboard v1</a></li-->
+        <!--li class=""><a href="{{-- route('chauffeurs.index') --}}"><i class="fa fa-circle-o"></i> Dashboard v2</a></li-->
+        <ul class="sidebar-menu tree" data-widget="tree">
+                        
+            <!--li class="header">PARAMETRAGE</li-->
+                                
+            <li class="{{ Request::is('factures*') ? 'active' : '' }}">
+                <a href="{{ route('factures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/factures.plural')</span></a>
+            </li>
+            
+            <li class="{{ Request::is('carburantFactures*') ? 'active' : '' }}">
+                <a href="{{ route('carburantFactures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/carburant_factures.plural')</span></a>
+            </li>
+            
+            <li class="{{ Request::is('factureTickets*') ? 'active' : '' }}">
+                <a href="{{ route('factureTickets.index') }}"><i class="fa fa-edit"></i><span>@lang('models/facture_tickets.plural')</span></a>
+            </li>
+            
+            <li class="{{ Request::is('accompteFactures*') ? 'active' : '' }}">
+                <a href="{{ route('accompteFactures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/accompte_factures.plural')</span></a>
+            </li>
 
-<li class="{{ Request::is('accompteFactures*') ? 'active' : '' }}">
-    <a href="{{ route('accompteFactures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/accompte_factures.plural')</span></a>
-</li>
 
+        </ul>
+    </ul>
+</li>
