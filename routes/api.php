@@ -84,3 +84,11 @@ Route::resource('type_accomptes', 'TypeAccompteAPIController');
 Route::resource('fournisseurs', 'FournisseurAPIController');
 
 Route::resource('accomptes', 'AccompteAPIController');
+
+Route::resource('factures', 'FactureAPIController');
+
+Route::resource('carburant_factures', 'CarburantFactureAPIController');
+
+Route::resource('facture_tickets', 'FactureTicketAPIController');
+
+Route::resource('accompte_factures', 'AccompteFactureAPIController');

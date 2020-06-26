@@ -2,8 +2,8 @@
     {
         "name": "id",
         "dbType": "integer,true,true",
-        "htmlType": null,
-        "validations": null,
+        "htmlType": "",
+        "validations": "",
         "searchable": false,
         "fillable": false,
         "primary": true,
@@ -15,7 +15,6 @@
         "name": "fournisseur_id",
         "dbType": "integer:unsigned:foreign,fournisseurs,id",
         "htmlType": "selectTable:fournisseurs:raison_so,id",
-        "relation": "1tm,Fournisseur,fournisseur_id",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -95,5 +94,9 @@
         "inForm": false,
         "inIndex": false,
         "inView": true
-    }    
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Fournisseur,fournisseur_id"
+    }
 ]

@@ -1,6 +1,15 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\Accompte;
+use App\Models\BasculeData;
+
+
+
+
+
+use App\Models\VentePetrolier;
+use App\Models\Facture;
 use App\Models\Fournisseur;
 use App\Models\TypeAccompte;
 use App\Models\TypeFournisseur;
@@ -47,6 +56,34 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['accompte_factures.fields'], function ($view) {
+            $accompteItems = Accompte::pluck('description','id')->toArray();
+            $view->with('accompteItems', $accompteItems);
+        });
+        View::composer(['accompte_factures.fields'], function ($view) {
+            $factureItems = Facture::pluck('reference','id')->toArray();
+            $view->with('factureItems', $factureItems);
+        });
+        View::composer(['facture_tickets.fields'], function ($view) {
+            $bascule_dataItems = BasculeData::pluck('num_ticket','id')->toArray();
+            $view->with('bascule_dataItems', $bascule_dataItems);
+        });
+        View::composer(['facture_tickets.fields'], function ($view) {
+            $factureItems = Facture::pluck('reference','id')->toArray();
+            $view->with('factureItems', $factureItems);
+        });
+        View::composer(['carburant_factures.fields'], function ($view) {
+            $vente_petrolierItems = VentePetrolier::pluck('quantite','id')->toArray();
+            $view->with('vente_petrolierItems', $vente_petrolierItems);
+        });
+        View::composer(['carburant_factures.fields'], function ($view) {
+            $factureItems = Facture::pluck('reference','id')->toArray();
+            $view->with('factureItems', $factureItems);
+        });
+        View::composer(['factures.fields'], function ($view) {
+            $fournisseurItems = Fournisseur::pluck('raison_so','id')->toArray();
+            $view->with('fournisseurItems', $fournisseurItems);
+        });
         View::composer(['accomptes.fields'], function ($view) {
             $fournisseurItems = Fournisseur::pluck('raison_so','id')->toArray();
             $view->with('fournisseurItems', $fournisseurItems);

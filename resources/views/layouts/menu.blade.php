@@ -308,3 +308,19 @@
         </ul>
     </ul>
 </li-->
+<li class="{{ Request::is('factures*') ? 'active' : '' }}">
+    <a href="{{ route('factures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/factures.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('carburantFactures*') ? 'active' : '' }}">
+    <a href="{{ route('carburantFactures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/carburant_factures.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('factureTickets*') ? 'active' : '' }}">
+    <a href="{{ route('factureTickets.index') }}"><i class="fa fa-edit"></i><span>@lang('models/facture_tickets.plural')</span></a>
+</li>
+
+<li class="{{ Request::is('accompteFactures*') ? 'active' : '' }}">
+    <a href="{{ route('accompteFactures.index') }}"><i class="fa fa-edit"></i><span>@lang('models/accompte_factures.plural')</span></a>
+</li>
+

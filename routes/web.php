@@ -121,3 +121,11 @@ Route::resource('typeAccomptes', 'TypeAccompteController')->middleware('auth');
 Route::resource('fournisseurs', 'FournisseurController')->middleware('auth');
 
 Route::resource('accomptes', 'AccompteController')->middleware('auth');
+
+Route::resource('factures', 'FactureController');
+
+Route::resource('carburantFactures', 'CarburantFactureController');
+
+Route::resource('factureTickets', 'FactureTicketController');
+
+Route::resource('accompteFactures', 'AccompteFactureController');
